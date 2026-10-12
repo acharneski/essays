@@ -1,0 +1,1902 @@
+<!DOCTYPE html>
+<!-- saved from url=(0108)https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260829-MFqETY7Q/page.html?t=1788035786053 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Unified Field Theory of Political Dynamics: The Universalist–Tribal–Parasite Model</title>
+    <meta name="description" content="A formal triad model of political forces — Universalism, Tribalism, and Parasitism — treated as coupled dynamical fields.">
+
+    <!-- CSS will be added here -->
+
+    <style>
+        /* ==========================================================================
+           Custom Properties / Design Tokens
+           ========================================================================== */
+        :root {
+          /* Core palette - deep ink & parchment academic theme */
+          --color-bg: #0f1216;
+          --color-bg-alt: #171b21;
+          --color-surface: #1b2027;
+          --color-surface-alt: #20262e;
+          --color-border: #2c333d;
+          --color-border-soft: #232933;
+        
+          --color-text: #dde3ea;
+          --color-text-muted: #97a3b1;
+          --color-text-faint: #6b7684;
+        
+          --color-accent: #e8b04b;      /* gold — universal accent */
+          --color-accent-soft: #f0c876;
+        
+          /* Force-specific colors */
+          --color-u: #4f9dde;   /* Universalism - blue: coherence */
+          --color-u-soft: rgba(79, 157, 222, 0.12);
+          --color-t: #d9704f;   /* Tribalism - burnt orange/red: gravity */
+          --color-t-soft: rgba(217, 112, 79, 0.12);
+          --color-p: #8e6fce;   /* Parasitism - violet: extraction */
+          --color-p-soft: rgba(142, 111, 206, 0.12);
+        
+          --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+          --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+          --font-mono: "SF Mono", "Cascadia Code", Consolas, "Courier New", monospace;
+        
+          --content-max-width: 780px;
+          --page-max-width: 1400px;
+        
+          --radius-sm: 4px;
+          --radius-md: 8px;
+          --radius-lg: 14px;
+        
+          --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+          --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.35);
+          --shadow-lg: 0 14px 40px rgba(0, 0, 0, 0.45);
+        
+          --transition-fast: 0.15s ease;
+          --transition-med: 0.3s ease;
+        }
+        
+        /* ==========================================================================
+           Reset & Base
+           ========================================================================== */
+        *,
+        *::before,
+        *::after {
+          box-sizing: border-box;
+        }
+        
+        html {
+          scroll-behavior: smooth;
+          -webkit-text-size-adjust: 100%;
+        }
+        
+        body {
+          margin: 0;
+          background: var(--color-bg);
+          color: var(--color-text);
+          font-family: var(--font-serif);
+          font-size: 17px;
+          line-height: 1.7;
+          -webkit-font-smoothing: antialiased;
+          text-rendering: optimizeLegibility;
+        }
+        
+        h1, h2, h3, h4 {
+          font-family: var(--font-sans);
+          color: #f2f5f8;
+          line-height: 1.25;
+          font-weight: 700;
+          letter-spacing: -0.01em;
+        }
+        
+        p {
+          margin: 0 0 1.1em;
+        }
+        
+        a {
+          color: var(--color-accent-soft);
+          text-decoration: none;
+          transition: color var(--transition-fast);
+        }
+        
+        a:hover,
+        a:focus {
+          color: var(--color-accent);
+          text-decoration: underline;
+        }
+        
+        ul, ol {
+          margin: 0 0 1.2em;
+          padding-left: 1.4em;
+        }
+        
+        li {
+          margin-bottom: 0.5em;
+        }
+        
+        strong {
+          color: #f5f8fb;
+          font-weight: 700;
+        }
+        
+        em {
+          color: #e7ecf1;
+        }
+        
+        blockquote {
+          margin: 0;
+        }
+        
+        button {
+          font-family: var(--font-sans);
+          cursor: pointer;
+        }
+        
+        /* ==========================================================================
+           Reading Progress Bar
+           ========================================================================== */
+        .reading-progress-bar {
+          position: fixed;
+          top: 0;
+          left: 0;
+          height: 3px;
+          width: 0%;
+          background: linear-gradient(90deg, var(--color-u), var(--color-accent), var(--color-t));
+          z-index: 1000;
+          transition: width 0.1s linear;
+        }
+        
+        /* ==========================================================================
+           Site Header
+           ========================================================================== */
+        .site-header {
+          position: relative;
+          padding: 5rem 1.5rem 4rem;
+          background:
+            radial-gradient(circle at 20% 20%, rgba(79, 157, 222, 0.16), transparent 45%),
+            radial-gradient(circle at 80% 30%, rgba(217, 112, 79, 0.14), transparent 45%),
+            radial-gradient(circle at 50% 90%, rgba(142, 111, 206, 0.16), transparent 50%),
+            var(--color-bg-alt);
+          border-bottom: 1px solid var(--color-border);
+          text-align: center;
+          overflow: hidden;
+        }
+        
+        .header-inner {
+          max-width: 840px;
+          margin: 0 auto;
+          position: relative;
+          z-index: 1;
+        }
+        
+        .site-kicker {
+          font-family: var(--font-sans);
+          text-transform: uppercase;
+          letter-spacing: 0.16em;
+          font-size: 0.78rem;
+          color: var(--color-accent-soft);
+          margin: 0 0 1.2em;
+          font-weight: 600;
+        }
+        
+        .site-title {
+          font-size: clamp(1.9rem, 4.5vw, 3.1rem);
+          margin: 0 0 0.4em;
+          color: #ffffff;
+        }
+        
+        .site-subtitle {
+          font-family: var(--font-serif);
+          font-style: italic;
+          font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+          color: var(--color-text-muted);
+          margin: 0 0 2em;
+        }
+        
+        .header-meta {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 0.75rem;
+        }
+        
+        .meta-item {
+          font-family: var(--font-sans);
+          font-size: 0.78rem;
+          letter-spacing: 0.02em;
+          padding: 0.45em 0.9em;
+          border-radius: 999px;
+          border: 1px solid var(--color-border);
+          background: rgba(255, 255, 255, 0.03);
+          color: var(--color-text-muted);
+        }
+        
+        .meta-status {
+          border-color: rgba(232, 176, 75, 0.4);
+          color: var(--color-accent-soft);
+        }
+        
+        /* ==========================================================================
+           Table of Contents Navigation
+           ========================================================================== */
+        .toc-nav {
+          max-width: var(--page-max-width);
+          margin: 0 auto;
+          padding: 1.5rem 1.5rem 0;
+        }
+        
+        .toc-inner {
+          background: var(--color-surface);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-lg);
+          padding: 1.5rem 1.75rem;
+          box-shadow: var(--shadow-sm);
+        }
+        
+        .toc-heading {
+          font-size: 0.85rem;
+          text-transform: uppercase;
+          letter-spacing: 0.14em;
+          color: var(--color-text-faint);
+          margin: 0 0 1em;
+        }
+        
+        .toc-list {
+          columns: 2;
+          column-gap: 2.5rem;
+          margin: 0;
+          padding-left: 1.1em;
+          font-family: var(--font-sans);
+          font-size: 0.92rem;
+        }
+        
+        .toc-item {
+          break-inside: avoid;
+          margin-bottom: 0.5em;
+        }
+        
+        .toc-link {
+          color: var(--color-text);
+          font-weight: 600;
+        }
+        
+        .toc-link:hover {
+          color: var(--color-accent);
+          text-decoration: none;
+        }
+        
+        .toc-sublist {
+          list-style: none;
+          padding-left: 1em;
+          margin: 0.35em 0 0;
+        }
+        
+        .toc-sublist .toc-link {
+          color: var(--color-text-muted);
+          font-weight: 400;
+          font-size: 0.88em;
+        }
+        
+        .toc-toggle {
+          display: none;
+          margin-top: 1rem;
+          width: 100%;
+          padding: 0.6em;
+          background: var(--color-surface-alt);
+          border: 1px solid var(--color-border);
+          color: var(--color-text-muted);
+          border-radius: var(--radius-sm);
+          font-size: 0.85rem;
+        }
+        
+        /* ==========================================================================
+           Main Layout
+           ========================================================================== */
+        .article-main {
+          max-width: var(--page-max-width);
+          margin: 0 auto;
+          padding: 2.5rem 1.5rem 4rem;
+          display: grid;
+          grid-template-columns: minmax(0, var(--content-max-width)) 100px;
+          gap: 2.5rem;
+          justify-content: center;
+          align-items: start;
+        }
+        
+        .article-content {
+          min-width: 0;
+          background: var(--color-surface);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-lg);
+          padding: clamp(1.5rem, 4vw, 3.5rem);
+          box-shadow: var(--shadow-md);
+        }
+        
+        .article-sidebar {
+          position: sticky;
+          top: 2rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.75rem;
+        }
+        
+        .back-to-top-btn {
+          background: var(--color-surface-alt);
+          border: 1px solid var(--color-border);
+          color: var(--color-text-muted);
+          padding: 0.7em 0.9em;
+          border-radius: var(--radius-md);
+          font-size: 0.78rem;
+          transition: all var(--transition-fast);
+          white-space: nowrap;
+        }
+        
+        .back-to-top-btn:hover {
+          color: var(--color-accent);
+          border-color: var(--color-accent);
+          transform: translateY(-2px);
+        }
+        
+        /* ==========================================================================
+           Article Sections
+           ========================================================================== */
+        .article-section {
+          padding-top: 1rem;
+          margin-bottom: 3rem;
+          scroll-margin-top: 1.5rem;
+        }
+        
+        .article-section:not(:last-child) {
+          border-bottom: 1px solid var(--color-border-soft);
+          padding-bottom: 2.5rem;
+        }
+        
+        .section-heading {
+          font-size: clamp(1.3rem, 2.6vw, 1.75rem);
+          margin: 0 0 1em;
+          padding-bottom: 0.5em;
+          border-bottom: 2px solid var(--color-accent);
+          display: inline-block;
+        }
+        
+        .article-subsection {
+          margin: 2rem 0;
+          scroll-margin-top: 1.5rem;
+        }
+        
+        .subsection-heading {
+          font-size: clamp(1.05rem, 2vw, 1.3rem);
+          margin: 0 0 0.8em;
+          color: #eef2f6;
+        }
+        
+        .abstract-section {
+          background: linear-gradient(180deg, rgba(232, 176, 75, 0.06), transparent);
+          border-radius: var(--radius-md);
+          padding: 1.5rem;
+          margin: -0.5rem -1rem 3rem;
+        }
+        
+        .abstract-text {
+          font-size: 1.05rem;
+          color: var(--color-text);
+        }
+        
+        /* ==========================================================================
+           Force-specific Subsections (Universalism / Tribalism / Parasitism)
+           ========================================================================== */
+        .force-subsection {
+          border-left: 4px solid transparent;
+          padding: 1.25rem 1.5rem;
+          border-radius: 0 var(--radius-md) var(--radius-md) 0;
+          background: rgba(255, 255, 255, 0.015);
+        }
+        
+        .force-universalism {
+          border-left-color: var(--color-u);
+          background: var(--color-u-soft);
+        }
+        
+        .force-universalism .subsection-heading {
+          color: var(--color-u);
+        }
+        
+        .force-tribalism {
+          border-left-color: var(--color-t);
+          background: var(--color-t-soft);
+        }
+        
+        .force-tribalism .subsection-heading {
+          color: var(--color-t);
+        }
+        
+        .force-parasitism {
+          border-left-color: var(--color-p);
+          background: var(--color-p-soft);
+        }
+        
+        .force-parasitism .subsection-heading {
+          color: var(--color-p);
+        }
+        
+        /* ==========================================================================
+           Lists
+           ========================================================================== */
+        .poles-list,
+        .property-list,
+        .feature-list,
+        .design-principle-list {
+          list-style: none;
+          padding-left: 0;
+        }
+        
+        .poles-list li,
+        .property-list li,
+        .feature-list li,
+        .design-principle-list li {
+          position: relative;
+          padding-left: 1.5em;
+          margin-bottom: 0.7em;
+        }
+        
+        .poles-list li::before,
+        .property-list li::before,
+        .feature-list li::before,
+        .design-principle-list li::before {
+          content: "—";
+          position: absolute;
+          left: 0;
+          color: var(--color-accent);
+          font-weight: 700;
+        }
+        
+        .numbered-findings,
+        .operational-test-list,
+        .epistemic-list,
+        .conclusion-list {
+          padding-left: 1.6em;
+        }
+        
+        .numbered-findings > li,
+        .operational-test-list > li,
+        .epistemic-list > li,
+        .conclusion-list > li {
+          margin-bottom: 1em;
+          padding-left: 0.3em;
+        }
+        
+        .numbered-findings > li::marker,
+        .operational-test-list > li::marker,
+        .epistemic-list > li::marker,
+        .conclusion-list > li::marker {
+          color: var(--color-accent);
+          font-weight: 700;
+        }
+        
+        /* ==========================================================================
+           Math / Equations
+           ========================================================================== */
+        .math-inline {
+          font-family: var(--font-mono);
+          font-style: normal;
+          background: rgba(255, 255, 255, 0.04);
+          padding: 0.05em 0.35em;
+          border-radius: 3px;
+          font-size: 0.94em;
+          color: var(--color-accent-soft);
+        }
+        
+        .equation-block {
+          background: var(--color-bg-alt);
+          border: 1px solid var(--color-border);
+          border-left: 3px solid var(--color-accent);
+          border-radius: var(--radius-md);
+          padding: 1.25rem 1.5rem;
+          margin: 1.5rem 0;
+          overflow-x: auto;
+        }
+        
+        .equation-system .equation-line {
+          padding: 0.35em 0;
+        }
+        
+        .math-display {
+          font-family: var(--font-mono);
+          font-size: 1.05rem;
+          color: #f0d99a;
+          white-space: nowrap;
+        }
+        
+        .caveat-note {
+          font-size: 0.92rem;
+          color: var(--color-text-muted);
+          font-style: italic;
+          background: rgba(255, 255, 255, 0.02);
+          border-left: 3px solid var(--color-text-faint);
+          padding: 0.9em 1.2em;
+          border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+          margin: 1.5rem 0;
+        }
+        
+        .equation-gloss-list {
+          list-style: none;
+          padding-left: 0;
+        }
+        
+        .equation-gloss-list li {
+          background: rgba(255, 255, 255, 0.02);
+          border: 1px solid var(--color-border-soft);
+          border-radius: var(--radius-sm);
+          padding: 0.9em 1.1em;
+          margin-bottom: 0.75em;
+        }
+        
+        /* ==========================================================================
+           Tables
+           ========================================================================== */
+        .table-wrapper {
+          overflow-x: auto;
+          margin: 1.5rem 0;
+          border-radius: var(--radius-md);
+          border: 1px solid var(--color-border);
+        }
+        
+        .history-table {
+          width: 100%;
+          border-collapse: collapse;
+          font-family: var(--font-sans);
+          font-size: 0.88rem;
+          min-width: 720px;
+        }
+        
+        .table-caption {
+          caption-side: top;
+          text-align: left;
+          padding: 0.8em 1em;
+          font-size: 0.8rem;
+          color: var(--color-text-faint);
+          background: var(--color-surface-alt);
+          font-style: italic;
+        }
+        
+        .history-table th {
+          background: var(--color-surface-alt);
+          color: var(--color-accent-soft);
+          text-align: left;
+          padding: 0.75em 1em;
+          border-bottom: 2px solid var(--color-border);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          font-size: 0.75rem;
+        }
+        
+        .history-table td {
+          padding: 0.8em 1em;
+          border-bottom: 1px solid var(--color-border-soft);
+          vertical-align: top;
+          color: var(--color-text-muted);
+        }
+        
+        .history-table tr:hover td {
+          background: rgba(255, 255, 255, 0.025);
+        }
+        
+        .history-table td:first-child {
+          color: var(--color-text);
+          font-weight: 600;
+        }
+        
+        .cell-spike {
+          color: var(--color-t) !important;
+          font-weight: 700;
+        }
+        
+        /* ==========================================================================
+           Blockquotes / Pull Quotes
+           ========================================================================== */
+        .pull-quote {
+          font-family: var(--font-serif);
+          font-size: 1.2rem;
+          font-style: italic;
+          line-height: 1.6;
+          color: #f2f0e8;
+          background: linear-gradient(135deg, rgba(232, 176, 75, 0.08), rgba(142, 111, 206, 0.05));
+          border-left: 4px solid var(--color-accent);
+          padding: 1.5rem 2rem;
+          margin: 2rem 0;
+          border-radius: 0 var(--radius-md) var(--radius-md) 0;
+          position: relative;
+        }
+        
+        .pull-quote::before {
+          content: "\201C";
+          font-size: 3rem;
+          color: rgba(232, 176, 75, 0.3);
+          position: absolute;
+          top: -0.2em;
+          left: 0.15em;
+          font-family: Georgia, serif;
+        }
+        
+        /* ==========================================================================
+           Conclusion Section
+           ========================================================================== */
+        .conclusion-section {
+          border-bottom: none;
+          background: radial-gradient(circle at 50% 0%, rgba(232, 176, 75, 0.06), transparent 60%);
+          border-radius: var(--radius-md);
+          padding: 1.5rem;
+        }
+        
+        /* ==========================================================================
+           Footer
+           ========================================================================== */
+        .site-footer {
+          background: var(--color-bg-alt);
+          border-top: 1px solid var(--color-border);
+          padding: 3rem 1.5rem;
+        }
+        
+        .footer-inner {
+          max-width: var(--content-max-width);
+          margin: 0 auto;
+          text-align: center;
+        }
+        
+        .footer-note {
+          font-size: 0.88rem;
+          color: var(--color-text-faint);
+          font-style: italic;
+          margin-bottom: 1.5rem;
+        }
+        
+        .footer-nav {
+          display: flex;
+          justify-content: center;
+          gap: 1.5rem;
+          flex-wrap: wrap;
+          font-family: var(--font-sans);
+        }
+        
+        .footer-link {
+          font-size: 0.85rem;
+          color: var(--color-text-muted);
+          padding: 0.5em 0.9em;
+          border: 1px solid var(--color-border);
+          border-radius: 999px;
+          transition: all var(--transition-fast);
+        }
+        
+        .footer-link:hover {
+          color: var(--color-accent);
+          border-color: var(--color-accent);
+          text-decoration: none;
+        }
+        
+        /* ==========================================================================
+           Responsive Breakpoints
+           ========================================================================== */
+        @media (max-width: 1080px) {
+          .article-main {
+            grid-template-columns: minmax(0, 1fr);
+          }
+        
+          .article-sidebar {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            top: auto;
+            z-index: 500;
+          }
+        }
+        
+        @media (max-width: 720px) {
+          body {
+            font-size: 16px;
+          }
+        
+          .site-header {
+            padding: 3.5rem 1.25rem 2.75rem;
+          }
+        
+          .toc-list {
+            columns: 1;
+          }
+        
+          .article-content {
+            padding: 1.5rem 1.1rem;
+            border-radius: var(--radius-md);
+          }
+        
+          .force-subsection {
+            padding: 1rem;
+          }
+        
+          .math-display {
+            font-size: 0.92rem;
+            white-space: normal;
+          }
+        
+          .pull-quote {
+            font-size: 1.05rem;
+            padding: 1.25rem 1.5rem;
+          }
+        }
+        
+        @media (max-width: 560px) {
+          .toc-nav {
+            padding: 1rem 1rem 0;
+          }
+        
+          .toc-list {
+            display: none;
+          }
+        
+          .toc-list.toc-list-open {
+            display: block;
+          }
+        
+          .toc-toggle {
+            display: block;
+          }
+        
+          .header-meta {
+            flex-direction: column;
+            align-items: center;
+          }
+        }
+        
+        /* ==========================================================================
+           Print Styles
+           ========================================================================== */
+        @media print {
+          .reading-progress-bar,
+          .toc-nav,
+          .article-sidebar,
+          .site-footer {
+            display: none;
+          }
+        
+          body {
+            background: #fff;
+            color: #000;
+          }
+        
+          .article-content {
+            box-shadow: none;
+            border: none;
+          }
+        }
+    </style>
+<script src="chrome-extension://ajdpfmkffanmkhejnopjppegokpogffp/assets/prompt.js"></script></head>
+<body>
+
+    <!-- Reading progress indicator, could be driven by JS -->
+    <div class="reading-progress-bar" style="width: 0%;"></div>
+
+    <!-- Site header / masthead -->
+    <header class="site-header">
+        <div class="header-inner">
+            <p class="site-kicker">Political Dynamics · Formal Theory</p>
+            <h1 class="site-title">A Unified Field Theory of Political Dynamics</h1>
+            <p class="site-subtitle">The Universalist–Tribal–Parasite Model</p>
+            <div class="header-meta">
+                <span class="meta-item meta-status">Status: Diagnostic Heuristic, Not Yet Validated</span>
+                <span class="meta-item meta-fields">Fields: Political Science · Anthropology · Institutional Economics</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Table of contents / in-page navigation -->
+    <nav class="toc-nav" aria-label="Table of Contents">
+        <div class="toc-inner">
+            <h2 class="toc-heading">Contents</h2>
+            <ol class="toc-list" id="toc-list-wrapper">
+                <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260829-MFqETY7Q/page.html?t=1788035786053#abstract">Abstract</a></li>
+                <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260829-MFqETY7Q/page.html?t=1788035786053#sec-1">1. Introduction: The Failure of Two-Pole Models</a>
+                    <ol class="toc-sublist">
+                        <li class="toc-subitem"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260829-MFqETY7Q/page.html?t=1788035786053#sec-1-1">1.1 Relationship to Prior Work</a></li>
+                    </ol>
+                </li>
+                <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260829-MFqETY7Q/page.html?t=1788035786053#sec-2">2. The Three Fundamental Forces</a>
+                    <ol class="toc-sublist">
+                        <li class="toc-subitem"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260829-MFqETY7Q/page.html?t=1788035786053#sec-2-1">2.1 Universalism (U)</a></li>
+                        <li class="toc-subitem"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260829-MFqETY7Q/page.html?t=1788035786053#sec-2-2">2.2 Tribalism (T)</a></li>
+                        <li class="toc-subitem"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260829-MFqETY7Q/page.html?t=1788035786053#sec-2-3">2.3 Parasitism (P)</a></li>
+                    </ol>
+                </li>
+                <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260829-MFqETY7Q/page.html?t=1788035786053#sec-3">3. Formal State Space</a></li>
+                <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260829-MFqETY7Q/page.html?t=1788035786053#sec-4">4. The Governing Equations</a>
+                    <ol class="toc-sublist">
+                        <li class="toc-subitem"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260829-MFqETY7Q/page.html?t=1788035786053#sec-4-1">4.1 Why This Is Not a Two-Body Oscillator</a></li>
+                        <li class="toc-subitem"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260829-MFqETY7Q/page.html?t=1788035786053#sec-4-2">4.2 Fixed Points and Their Instability</a></li>
+                        <li class="toc-subitem"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260829-MFqETY7Q/page.html?t=1788035786053#sec-4-3">4.3 The Guardian Problem: Recursive Capture</a></li>
+                    </ol>
+                </li>
+                <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260829-MFqETY7Q/page.html?t=1788035786053#sec-5">5. The Three-Body Problem of Political History</a></li>
+                <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260829-MFqETY7Q/page.html?t=1788035786053#sec-6">6. Moral Bandwidth and the Scale-Collapse Function</a>
+                    <ol class="toc-sublist">
+                        <li class="toc-subitem"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260829-MFqETY7Q/page.html?t=1788035786053#sec-6-1">6.1 The Moral Event Horizon</a></li>
+                    </ol>
+                </li>
+                <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260829-MFqETY7Q/page.html?t=1788035786053#sec-7">7. Exceptional Regions: Energy Injection and Phase Transitions</a></li>
+                <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260829-MFqETY7Q/page.html?t=1788035786053#sec-8">8. Historical Trajectories Through State Space</a>
+                    <ol class="toc-sublist">
+                        <li class="toc-subitem"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260829-MFqETY7Q/page.html?t=1788035786053#sec-8-1">8.1 Comparative Statics</a></li>
+                    </ol>
+                </li>
+                <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260829-MFqETY7Q/page.html?t=1788035786053#sec-9">9. Design Principles: Toward Parasite-Resistant Universalism</a>
+                    <ol class="toc-sublist">
+                        <li class="toc-subitem"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260829-MFqETY7Q/page.html?t=1788035786053#sec-9-1">9.1 An Operational Test for P</a></li>
+                        <li class="toc-subitem"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260829-MFqETY7Q/page.html?t=1788035786053#sec-9-2">9.2 A Note on Normative Status</a></li>
+                    </ol>
+                </li>
+                <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260829-MFqETY7Q/page.html?t=1788035786053#sec-10">10. Scope, Calibration, and Epistemic Status</a></li>
+                <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260829-MFqETY7Q/page.html?t=1788035786053#sec-11">11. Conclusion: The Cycle Continues</a></li>
+            </ol>
+            <button type="button" class="toc-toggle" aria-expanded="false" aria-controls="toc-list-wrapper">
+                Toggle Contents
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main article content -->
+    <main class="article-main">
+        <article class="article-content">
+
+            <!-- Abstract -->
+            <section id="abstract" class="article-section abstract-section">
+                <h2 class="section-heading section-heading-interactive" role="button" tabindex="0" aria-expanded="true">Abstract</h2>
+                <p class="abstract-text">
+                    Political history is often narrated as a pendulum: order versus chaos, liberalism versus
+                    nationalism, reason versus passion. This document proposes that the pendulum model is a
+                    projection artifact — a two-dimensional shadow cast by a three-body system. We introduce a
+                    formal triad of political forces — <strong>Universalism (U)</strong>, <strong>Tribalism (T)</strong>,
+                    and <strong>Parasitism (P)</strong> — and show that treating them as three coupled fields,
+                    rather than two poles, resolves a set of long-standing puzzles: why universalist movements
+                    collapse rapidly after their founding, why tribal identity persists no matter how thoroughly
+                    it is argued against, why atrocities committed at sufficient scale exit the moral vocabulary
+                    entirely, and why every "end of history" moment has so far been temporary. The result is not
+                    a moral theory but a <strong>dynamical one</strong> — a set of coupled equations describing
+                    how coherence, cohesion, and extraction compete for the same finite pool of civilizational
+                    energy. What follows should be read as a synthesis and formalization of existing, separately
+                    well-supported findings across political science, anthropology, and institutional economics,
+                    offered as a common vocabulary for those findings rather than as a finished, independently
+                    validated theory — a distinction we return to explicitly in Section 10.
+                </p>
+            </section>
+
+            <!-- Section 1 -->
+            <section id="sec-1" class="article-section">
+                <h2 class="section-heading section-heading-interactive" role="button" tabindex="0" aria-expanded="true">1. Introduction: The Failure of Two-Pole Models</h2>
+                <p>The standard historical model treats political change as oscillation between two attractors:</p>
+                <ul class="poles-list">
+                    <li><strong>Reason vs. Feeling</strong> (Enlightenment vs. Romanticism)</li>
+                    <li><strong>Universalism vs. Nationalism</strong></li>
+                    <li><strong>Order vs. Chaos</strong></li>
+                    <li><strong>Openness vs. Closure</strong></li>
+                </ul>
+                <p>
+                    This model has predictive value — it correctly anticipates that periods of abstract,
+                    rule-based coordination will eventually provoke an identity-based backlash, and vice versa.
+                    But it fails to explain three classes of observation:
+                </p>
+                <ol class="numbered-findings">
+                    <li>
+                        <strong>Early corruption.</strong> Universalist movements (Axial-age religious ethics,
+                        Enlightenment liberalism, 20th-century internationalism) do not degrade gradually under
+                        tribal pressure. They are captured almost immediately by something that is neither
+                        universalist nor tribal — a bureaucratic, extractive, narrative-controlling layer that
+                        outlives both the founding ideology and its tribal antagonists.
+                    </li>
+                    <li>
+                        <strong>Asymmetric moral vocabulary.</strong> The same act, at different scales, receives
+                        radically different moral labeling — not gradually, but as though crossing a threshold.
+                        A two-pole model of "more or less tribal" cannot explain a discontinuous collapse of
+                        vocabulary.
+                    </li>
+                    <li>
+                        <strong>Non-convergence.</strong> If history were a genuine oscillation between two poles,
+                        amplitude should decay over time as institutions learn (a damped pendulum). Instead, the
+                        amplitude appears roughly constant or even growing across eras, suggesting the system is
+                        not damped at all — it is being <em>re-energized</em> by something outside the U/T axis.
+                    </li>
+                </ol>
+                <p>
+                    A third force is required. We call it <strong>Parasitism (P)</strong>, and we show that once
+                    it is added, the system becomes a proper three-body problem: chaotic, non-convergent, and
+                    structurally incapable of settling into a fixed point — which is itself the point.
+                </p>
+
+                <!-- Subsection 1.1 -->
+                <section id="sec-1-1" class="article-subsection">
+                    <h3 class="subsection-heading">1.1 Relationship to Prior Work</h3>
+                    <p>
+                        None of the three observations above is, individually, new. Robert Michels' "iron law of
+                        oligarchy" (1911) already documented the tendency of egalitarian and revolutionary
+                        organizations to generate entrenched, self-perpetuating leadership castes almost
+                        immediately upon founding. Mancur Olson's logic of collective action (1965) explained why
+                        small, concentrated interests reliably capture the benefits that large, diffuse coalitions
+                        are meant to enjoy. Karl Polanyi's "double movement" (1944) described the recurring
+                        societal backlash against unregulated market liberalization — a structural precursor to
+                        the tribal-resurgence dynamic in Section 2.2. Robert Klitgaard's corruption identity,
+                        corruption = monopoly + discretion − accountability (1988), is a direct
+                        institutional-scale ancestor of the η/θ coefficients governing Parasitism below. Francis
+                        Fukuyama's account of "repatrimonialization" (2014) traces almost exactly the U→P slide
+                        this model formalizes. Peter Turchin's cliodynamics (2003, 2016) already treats political
+                        stability as a quantifiable dynamical system subject to structural-demographic cycles.
+                    </p>
+                    <p>
+                        What this document adds, if anything, is not a new phenomenon but a proposed
+                        <strong>common state space</strong> in which these previously separate literatures'
+                        variables can be expressed as coupled terms in a single system. The justification for the
+                        exercise is unification and precision of vocabulary, not discovery of a hidden force
+                        nobody had noticed. Readers already familiar with this literature should treat U, T, and P
+                        as relabelings — with an explicit dynamical coupling attached — of phenomena those authors
+                        documented independently and, in most cases, more rigorously.
+                    </p>
+                </section>
+            </section>
+
+            <!-- Section 2 -->
+            <section id="sec-2" class="article-section">
+                <h2 class="section-heading section-heading-interactive" role="button" tabindex="0" aria-expanded="true">2. The Three Fundamental Forces</h2>
+
+                <section id="sec-2-1" class="article-subsection force-subsection force-universalism">
+                    <h3 class="subsection-heading">2.1 Universalism (U): The Coherence Field</h3>
+                    <p>
+                        Universalism is the tendency of a political system toward <strong>symmetric, abstract,
+                        rule-based coordination</strong>. Its defining properties:
+                    </p>
+                    <ul class="property-list">
+                        <li>Moral symmetry (rules apply identically regardless of identity)</li>
+                        <li>Abstraction (individuals are fungible under the rule)</li>
+                        <li>Scalability (in principle, coordination cost does not grow with group size)</li>
+                        <li>High information requirements (coherence must be actively maintained, communicated, and enforced)</li>
+                    </ul>
+                    <p>
+                        Universalism is <strong>energy-expensive</strong>. It requires surplus — of trust, of
+                        institutional bandwidth, of shared language — to exist at all. Historically it appears at
+                        the founding moments of the Axial-age religious-ethical traditions, the Enlightenment, and
+                        20th-century international institutions. In each case, the founding articulation is far
+                        more symmetric and abstract than anything the surrounding society can sustain.
+                    </p>
+                    <p>
+                        We model Universalism as a <strong>field variable</strong>
+                        <span class="math-inline">u(t) ∈ [0, 1]</span>, representing the fraction of total
+                        political "charge" currently organized around symmetric, rule-based coordination.
+                    </p>
+                </section>
+
+                <section id="sec-2-2" class="article-subsection force-subsection force-tribalism">
+                    <h3 class="subsection-heading">2.2 Tribalism (T): The Background Gravitational Field</h3>
+                    <p>
+                        Tribalism is not a pathology; it is the <strong>ground state</strong> of political
+                        cognition. Its defining properties:
+                    </p>
+                    <ul class="property-list">
+                        <li>Identity-based coordination (in-group / out-group)</li>
+                        <li>Narrative rather than propositional processing (myth, grievance, destiny)</li>
+                        <li>Low information requirements (identity is cheap to compute; abstraction is not)</li>
+                        <li>Evolutionary priority (kin/coalition detection predates language)</li>
+                    </ul>
+                    <p>
+                        Critically, Tribalism does not need to be <em>produced</em>. It is always present, at some
+                        nonzero background level, in every human system, the way mass is always present in a
+                        gravitational field. It cannot be argued away, legislated away, or educated away — it can
+                        only be <strong>temporarily outweighed</strong> by a sufficiently energetic universalist
+                        structure, and it reasserts itself the instant that structure's energy supply runs low.
+                        This is consistent with, though independently arrived at from, Henri Tajfel's social
+                        identity theory and Tooby &amp; Cosmides' account of coalitional psychology as an ancient,
+                        fast, low-cost cognitive default rather than a learned pathology — and it matches the
+                        empirical record of prejudice-reduction interventions, which reliably suppress the
+                        <em>expression</em> of tribal cognition without eliminating the underlying disposition.
+                    </p>
+                    <p>
+                        We model Tribalism as a field variable <span class="math-inline">t(t) ∈ [0, 1]</span>,
+                        and treat it as possessing a <strong>constant, low-magnitude restoring force</strong> — a
+                        gravitational term that is always pulling the system's trajectory back toward
+                        identity-based coordination regardless of the system's current state.
+                    </p>
+                </section>
+
+                <section id="sec-2-3" class="article-subsection force-subsection force-parasitism">
+                    <h3 class="subsection-heading">2.3 Parasitism (P): The Extraction Field</h3>
+                    <p>
+                        Parasitism is qualitatively different from both of the above. It is not a moral stance, an
+                        identity, or a coordination strategy. It is a <strong>strategy for extracting value from
+                        the coordination costs paid by U and T</strong>. Its defining properties:
+                    </p>
+                    <ul class="property-list">
+                        <li>No intrinsic ideology (it adopts whatever vocabulary is locally dominant)</li>
+                        <li>Growth proportional to the <em>surface area</em> of open systems (universalist systems, being open and trust-based, are especially exposed)</li>
+                        <li>Narrative capture rather than narrative production (it does not create myths or moral codes; it hijacks existing ones)</li>
+                        <li>Institutional persistence (it outlives the ideological structure that hosted it)</li>
+                    </ul>
+                    <p>
+                        Unlike Tribalism, Parasitism does not correspond to a single evolved cognitive module, and
+                        it should not be modeled as though it does. It is better understood as an emergent
+                        strategy assembled opportunistically from several distinct, individually well-studied
+                        adaptations — status-seeking and dominance-hierarchy navigation, kin-directed nepotism,
+                        and cheater strategies that exploit gaps in cheater-detection (Tooby &amp; Cosmides,
+                        1992) — deployed wherever the coordination costs of U or the boundary-maintenance costs of
+                        T create exploitable surplus. It has no unified psychology because it does not need one:
+                        it is a niche, not an organ.
+                    </p>
+                    <p>
+                        This matters for the model's integrity, because it means P must never be allowed to become
+                        a residual bin for "political behavior the observer dislikes." Section 9.1 supplies an
+                        explicit, symmetric operational test for the category; until that test is applied, any
+                        claim that a given actor or faction is "exhibiting P" should be read as a hypothesis, not
+                        a diagnosis.
+                    </p>
+                    <p>
+                        It is also useful to disaggregate P institutionally rather than treat it as monolithic.
+                        Borrowing directly from the governance-corruption literature, we distinguish at least four
+                        modes: <strong>grand capture</strong> (control of the highest levers of resource
+                        allocation), <strong>petty extraction</strong> (diffuse, low-level rent-seeking),
+                        <strong>clientelist capture</strong> (exchange of loyalty for selective benefit, which
+                        blurs into T at its edges), and <strong>narrative capture</strong> (control of the
+                        interpretive and informational layer itself — the mode most relevant to the moral-bandwidth
+                        collapse discussed in Section 6). Klitgaard's (1988) formula, corruption = monopoly +
+                        discretion − accountability, is a direct institutional-scale antecedent of the η/θ ratio
+                        introduced below, and any future calibration of this model should attempt to map
+                        Klitgaard's three terms onto η and θ directly rather than treat them as independently free
+                        parameters.
+                    </p>
+                    <p>
+                        Parasitism is modeled as a field variable <span class="math-inline">p(t) ∈ [0, 1]</span>,
+                        whose growth rate depends not on its own ideological content (it has none) but on the
+                        <strong>product of exposure</strong> it can extract from the other two fields.
+                    </p>
+                </section>
+            </section>
+
+            <!-- Section 3 -->
+            <section id="sec-3" class="article-section">
+                <h2 class="section-heading section-heading-interactive" role="button" tabindex="0" aria-expanded="true">3. Formal State Space</h2>
+                <p>Let the instantaneous state of a political system be the point</p>
+                <div class="equation-block" role="math" aria-label="state vector equation">
+                    <span class="math-display">x(t) = (u(t), t(t), p(t)) ∈ Δ<sup>2</sup></span>
+                </div>
+                <p>
+                    on the 2-simplex, where <span class="math-inline">u + t + p = 1</span> and all coordinates are
+                    non-negative. This constraint reflects a finite pool of political "attention" or "coordination
+                    capacity" at any given time — a society can allocate its coordination energy toward
+                    abstraction, identity, or extraction, but not an unbounded amount of all three simultaneously.
+                </p>
+                <p>
+                    We additionally define a scalar <strong>systemic energy</strong> term
+                    <span class="math-inline">E(t) ≥ 0</span>, representing the surplus resources (economic,
+                    informational, institutional) available to the system at time <span class="math-inline">t</span>.
+                    <span class="math-inline">E</span> is not part of the simplex — it is an external driving
+                    variable, analogous to temperature in a thermodynamic system, and it modulates the carrying
+                    capacity of <span class="math-inline">u</span>.
+                </p>
+                <p class="caveat-note">
+                    A methodological caveat is owed at the outset. The equations that follow should be read as a
+                    proposed common notation for expressing the already-documented qualitative relationships
+                    surveyed in Section 1.1, not as a calibrated empirical model. None of the eleven Greek-letter
+                    coefficients introduced below have yet been estimated against real-world proxies — governance
+                    indices, corpus-based sentiment measures, institutional-trust surveys — and the state
+                    variables themselves (<span class="math-inline">u</span>, <span class="math-inline">t</span>,
+                    <span class="math-inline">p</span>, <span class="math-inline">E</span>) are theoretical
+                    constructs, not directly measured quantities. The formalism's value at this stage lies in
+                    making the qualitative claims precise enough to be falsified once such proxies are chosen, not
+                    in the numerical content of the equations themselves. We flag this explicitly to avoid the
+                    false precision that mathematical notation can lend to what remains, for now, a structured and
+                    hopefully useful metaphor.
+                </p>
+            </section>
+
+            <!-- Section 4 -->
+            <section id="sec-4" class="article-section">
+                <h2 class="section-heading section-heading-interactive" role="button" tabindex="0" aria-expanded="true">4. The Governing Equations</h2>
+                <p>
+                    We propose a replicator-style dynamical system, structurally related to Lotka–Volterra
+                    competition models but with an explicit extraction term:
+                </p>
+                <div class="equation-block equation-system" role="math" aria-label="governing equations">
+                    <div class="equation-line">
+                        <span class="math-display">u̇ = u( αE − βt − γp )</span>
+                    </div>
+                    <div class="equation-line">
+                        <span class="math-display">ṫ = t( δ − εuE + ζp )</span>
+                    </div>
+                    <div class="equation-line">
+                        <span class="math-display">ṗ = p( ηut − θ )</span>
+                    </div>
+                </div>
+                <p>where all Greek-letter coefficients are positive constants. Read informally:</p>
+                <ul class="equation-gloss-list">
+                    <li>
+                        <strong>u̇</strong>: Universalism grows in proportion to available energy E, but is
+                        suppressed both by the ambient pull of tribalism (−βt, the gravitational drag)
+                        and by direct extraction (−γp).
+                    </li>
+                    <li>
+                        <strong>ṫ</strong>: Tribalism has a constant background growth term δ (gravity
+                        is always "on"), is suppressed only when high-energy universalism is active
+                        (−εuE), and is <em>amplified</em> by parasitic activity (+ζp) — because
+                        parasites profit from stoking identity conflict once they have captured a universalist
+                        host, converting extracted trust into tribal grievance.
+                    </li>
+                    <li>
+                        <strong>ṗ</strong>: Parasitism's growth is proportional to the <strong>product</strong>
+                        u·t — it requires both an open, trust-based structure to infiltrate (u) and an
+                        identity-based fault line to exploit (t) — and decays at constant rate θ in the
+                        absence of hosts to feed on. This product term is the mathematical signature of the
+                        observation that parasites do not generate their own ideology; they require the friction
+                        <em>between</em> the other two fields to metabolize.
+                    </li>
+                </ul>
+                <p class="caveat-note">
+                    A further technical caveat is necessary. The three equations above are written independently
+                    for expositional clarity, but as stated they do not automatically preserve the simplex
+                    constraint u+t+p=1 introduced in Section 3 — a proper closed replicator system on
+                    Δ<sup>2</sup> requires either normalization (dividing by u̇+ṫ+ṗ) or an
+                    explicit shared depletion term subtracting the population-average growth rate from each
+                    equation. We leave this normalization implicit here rather than resolve it, consistent with
+                    the illustrative status of the formalism flagged above. A fully rigorous treatment would
+                    rewrite this system as a proper replicator equation with an explicit average-fitness
+                    subtraction term before any quantitative claim is drawn from it.
+                </p>
+
+                <section id="sec-4-1" class="article-subsection">
+                    <h3 class="subsection-heading">4.1 Why This Is Not a Two-Body Oscillator</h3>
+                    <p>
+                        If <span class="math-inline">p ≡ 0</span>, the system reduces to a damped competition
+                        between u and t modulated by E — a simple oscillator that should converge to a fixed ratio
+                        as institutions "learn." This is the naive two-pole model, and it is empirically wrong
+                        (see §1).
+                    </p>
+                    <p>
+                        The <span class="math-inline">u·t</span> coupling term in
+                        <span class="math-inline">ṗ</span> is what converts this from a two-body oscillator
+                        into a <strong>three-body problem</strong>. Three-body gravitational systems are famously
+                        non-integrable — they do not settle into stable orbits except on measure-zero initial
+                        conditions. Competitive systems of this general dissipative, nonlinear type (in the spirit
+                        of May–Leonard cyclic competition or Rössler-type attractors) are similarly known to admit
+                        non-convergent, oscillatory, or chaotic trajectories rather than fixed points, for broad
+                        regions of parameter space. We invoke this literature to support the qualitative claim
+                        that non-convergence is a <em>plausible</em> and well-precedented outcome for a system of
+                        this structural type — not as a proof that our specific, uncalibrated coefficients produce
+                        chaos. For generic initial conditions and generic coefficients within that broad class,
+                        the (u, t, p) trajectory does not converge to a fixed point; it cycles, and the cycle's
+                        phase and amplitude are history-dependent, not law-like. This matches the observed record
+                        far better than any damped-pendulum model: political history does not appear to be
+                        converging on a stable regime; it appears to be <strong>touring</strong> a manifold of
+                        temporary states.
+                    </p>
+                </section>
+
+                <section id="sec-4-2" class="article-subsection">
+                    <h3 class="subsection-heading">4.2 Fixed Points and Their Instability</h3>
+                    <p>
+                        Setting <span class="math-inline">u̇ = ṫ = ṗ = 0</span> yields, among
+                        trivial solutions, one interior fixed point:
+                    </p>
+                    <div class="equation-block" role="math" aria-label="fixed point conditions">
+                        <span class="math-display">u* = θ / (ηt*)</span>,
+                        <span class="math-display">t* = (αE − γp*) / β</span>,
+                        <span class="math-display">p* = (δ − εu*E) / (−ζ)</span>
+                    </div>
+                    <p>
+                        Note that these are only implicit conditions, not a closed-form solution: u*, t*, and p*
+                        each appear on the right-hand side of another's expression, so what is presented is a
+                        fixed-point <em>condition</em> rather than a derived value. Solving it explicitly requires
+                        substitution we do not carry out here.
+                    </p>
+                    <p>
+                        A linear stability analysis (Jacobian eigenvalues at x*) suggests this interior fixed point
+                        is generically a <strong>saddle or unstable spiral</strong> for parameter regions in which
+                        parasite growth (η) is not swamped by parasite decay (θ) — i.e., <em>the system has no
+                        stable resting state in which universalism, tribalism, and parasitism coexist in permanent
+                        balance</em>, at least within that region. We have not carried out a full stability
+                        classification across the entire eleven-dimensional coefficient space, so this should be
+                        read as a structural possibility the model makes available rather than a theorem
+                        established for all parameter values; outside the region described, the system may
+                        instead approach one of the boundary equilibria discussed in Section 8.1. Any historical
+                        era that looks like a stable equilibrium is, in this model, at best a slow transit near a
+                        saddle point — which is one candidate explanation for why such eras (the "end of history"
+                        moments) always eventually end.
+                    </p>
+                </section>
+
+                <section id="sec-4-3" class="article-subsection">
+                    <h3 class="subsection-heading">4.3 The Guardian Problem: Recursive Capture</h3>
+                    <p>
+                        The base model above treats θ, the parasite decay rate, as a fixed constant representing
+                        institutional resilience — courts, free presses, watchdogs, term limits, audits. This
+                        implicitly assumes anti-corruption machinery is permanently immune to the very dynamic it
+                        exists to suppress, which is not a safe assumption: oversight bodies, from the Praetorian
+                        Guard to modern regulatory agencies, are themselves prime targets for parasitic capture.
+                        We therefore extend the model with a fourth equation governing θ itself:
+                    </p>
+                    <div class="equation-block" role="math" aria-label="guardian equation">
+                        <span class="math-display">θ̇ = −κpθ + μ(θ<sub>0</sub> − θ)</span>
+                    </div>
+                    <p>
+                        Here sustained parasitic pressure corrodes enforcement capacity at rate κ (the guardians
+                        are captured too), while a repair process — institutional reform, elite turnover,
+                        generational renewal, constitutional renewal — restores θ toward a baseline θ₀ at rate μ.
+                        This closes a gap the base model leaves open: without it, the system has no way to
+                        represent the "who guards the guardians" failure mode, in which an apparently low-p,
+                        high-θ regime is not stable at all but is instead in a slow, silent decline toward a
+                        second, faster collapse once θ itself crosses zero. This second route to collapse is
+                        distinct from — and can occur independently of — the founding-moment vulnerability
+                        discussed in Section 7, and any institution designed using this model's recommendations
+                        (Section 9) must be checked against it explicitly, not merely against the base
+                        three-variable system.
+                    </p>
+                </section>
+            </section>
+
+            <!-- Section 5 -->
+            <section id="sec-5" class="article-section">
+                <h2 class="section-heading section-heading-interactive" role="button" tabindex="0" aria-expanded="true">5. The Three-Body Problem of Political History</h2>
+                <p>Mapping historical sequences onto trajectories through (u,t,p)-space:</p>
+                <div class="table-wrapper">
+                    <table class="history-table">
+                        <caption class="table-caption">Historical phases mapped onto (u, t, p) state space</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Phase</th>
+                                <th scope="col">u</th>
+                                <th scope="col">t</th>
+                                <th scope="col">p</th>
+                                <th scope="col">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Axial-age founding (early Buddhism, early Christianity, Confucian ethics)</td>
+                                <td>high</td>
+                                <td>low</td>
+                                <td>low</td>
+                                <td>High-coherence universalist articulation, minimal institutional mass</td>
+                            </tr>
+                            <tr>
+                                <td>State assimilation (Imperial Buddhism, Constantinian Christianity, Han bureaucracy)</td>
+                                <td>falling</td>
+                                <td>rising</td>
+                                <td class="cell-spike">spiking</td>
+                                <td>u·t term ignites; parasitic institutions capture the moral vocabulary</td>
+                            </tr>
+                            <tr>
+                                <td>Medieval/tribal consolidation</td>
+                                <td>low</td>
+                                <td>high</td>
+                                <td>moderate</td>
+                                <td>Parasite has fully repurposed universalist language as legitimating myth</td>
+                            </tr>
+                            <tr>
+                                <td>Enlightenment</td>
+                                <td>rising</td>
+                                <td>falling</td>
+                                <td>falling</td>
+                                <td>Energy injection (E ↑ via print, trade, science) re-inflates u</td>
+                            </tr>
+                            <tr>
+                                <td>Romantic backlash</td>
+                                <td>falling</td>
+                                <td>rising</td>
+                                <td>moderate</td>
+                                <td>t's background gravity reasserts as E's marginal effect saturates</td>
+                            </tr>
+                            <tr>
+                                <td>WWI</td>
+                                <td>—</td>
+                                <td class="cell-spike">spiking</td>
+                                <td>—</td>
+                                <td>Naive universalist internationalism collides with unresolved t-gravity</td>
+                            </tr>
+                            <tr>
+                                <td>Interwar/Cold War</td>
+                                <td>contested</td>
+                                <td>contested</td>
+                                <td class="cell-spike">spiking early</td>
+                                <td>High-E exceptional region (see §7); parasitic capture (illustrated historically by the rapid bureaucratic distortion of early Soviet universalism) occurs before u can stabilize, because institutional immune systems had not yet evolved</td>
+                            </tr>
+                            <tr>
+                                <td>Contemporary tribal pair</td>
+                                <td>moderate (rhetorical)</td>
+                                <td>high (behavioral)</td>
+                                <td>high</td>
+                                <td>Two mirror-image tribal formations, each using universalist vocabulary as legitimating cover, both structurally exhibiting high p</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>
+                    The table is illustrative, not a precise numerical fit — the point of the model is not
+                    curve-fitting but <strong>structural diagnosis</strong>: in every row where p spikes, it does
+                    so at the <em>boundary</em> between a u-heavy and t-heavy phase, exactly as the ηut term
+                    predicts. Section 8.1 addresses the equally important cases this table does <em>not</em>
+                    contain: polities that have not, in fact, spiked.
+                </p>
+            </section>
+
+            <!-- Section 6 -->
+            <section id="sec-6" class="article-section">
+                <h2 class="section-heading section-heading-interactive" role="button" tabindex="0" aria-expanded="true">6. Moral Bandwidth and the Scale-Collapse Function</h2>
+                <p>
+                    A second-order phenomenon requires its own formalism: the observation that moral vocabulary —
+                    the capacity of a system to <em>name</em> an act as atrocity — degrades non-linearly with the
+                    scale of the act, and that this degradation is mediated by the same (u, t, p) state. This
+                    formalizes, and gives dynamical structure to, a pattern already documented under other names:
+                    Paul Slovic's research on "psychic numbing" and the collapse of compassion at scale, and the
+                    well-replicated identifiable-victim effect in behavioral economics, both describe the same
+                    empirical phenomenon the function below is built to capture. What this model proposes to add
+                    to that literature is not the underlying finding — which is independently well-established —
+                    but the claim that the <em>rate</em> of collapse is itself state-dependent, modulated by the
+                    same (u,t,p) coordinates governing the rest of the system, rather than a fixed cognitive
+                    constant.
+                </p>
+                <p>
+                    Define <strong>moral bandwidth</strong> M as the system's capacity to apply symmetric,
+                    universalist moral categories to an event of magnitude s (e.g., s = log(deaths)):
+                </p>
+                <div class="equation-block" role="math" aria-label="moral bandwidth function">
+                    <span class="math-display">M(s; u, t, p) = u·exp(−s/s<sub>c</sub>) − λ<sub>t</sub>·t·s − λ<sub>p</sub>·p</span>
+                </div>
+                <p>
+                    where s<sub>c</sub> is a <strong>scale-collapse constant</strong> representing the largest
+                    event magnitude that unaided universalist cognition can process symmetrically (individual
+                    crimes, discrete tragedies), λ<sub>t</sub> captures the rate at which tribal narrative
+                    absorption <em>converts</em> moral magnitude into identity content (myth, grievance, sacrifice)
+                    rather than shared culpability, and λ<sub>p</sub> is a flat suppression term representing
+                    direct institutional/narrative suppression by parasitic capture.
+                </p>
+
+                <section id="sec-6-1" class="article-subsection">
+                    <h3 class="subsection-heading">6.1 The Moral Event Horizon</h3>
+                    <p>
+                        Define the <strong>moral event horizon</strong> s<sub>h</sub> as the value of s at which
+                        M(s) → 0: the scale beyond which the system can no longer produce symmetric moral
+                        vocabulary for the event at all. Solving M(s<sub>h</sub>) = 0:
+                    </p>
+                    <div class="equation-block" role="math" aria-label="moral event horizon equation">
+                        <span class="math-display">s<sub>h</sub> ≈ s<sub>c</sub>·ln( u / (λ<sub>t</sub>·t·s<sub>h</sub> + λ<sub>p</sub>·p) )</span>
+                    </div>
+                    <p>
+                        This is a transcendental equation (self-referential in s<sub>h</sub>), which is itself
+                        structurally meaningful: the event horizon is not fixed, it is <strong>state-dependent</strong>
+                        and <strong>falls</strong> as t and p rise. In a high-u, low-t, low-p regime, s<sub>h</sub>
+                        is large — the system can process even large-scale tragedy as tragedy. In a high-t or
+                        high-p regime, s<sub>h</sub> shrinks toward the scale of a single identifiable victim —
+                        beyond which the event stops being "a tragedy" and becomes, functionally, "history":
+                        absorbed into myth (t-mediated) or simply unspeakable within compromised institutions
+                        (p-mediated).
+                    </p>
+                    <p>
+                        This gives a candidate mechanism behind the folk observation that "a single death is a
+                        tragedy, a million is a statistic": it is not a claim about the relative moral weight of
+                        the deaths, but a direct consequence of M(s) crossing zero as s increases in the presence
+                        of nonzero t and p. The model predicts (testably, in principle, via textual/sentiment
+                        analysis of historical archives) that events near s<sub>h</sub> should show a measurable
+                        transition from individuated moral language to either mythic/narrative language
+                        (t-dominant capture) or administrative/euphemistic language (p-dominant capture), rather
+                        than a smooth gradient.
+                    </p>
+                </section>
+            </section>
+
+            <!-- Section 7 -->
+            <section id="sec-7" class="article-section">
+                <h2 class="section-heading section-heading-interactive" role="button" tabindex="0" aria-expanded="true">7. Exceptional Regions: Energy Injection and Phase Transitions</h2>
+                <p>
+                    Because E(t) modulates both the growth rate of u and the suppression rate of t (via the
+                    −εuE term), sudden large increases in systemic energy — industrialization, the printing
+                    press, postwar reconstruction, computing, the internet — produce <strong>exceptional
+                    regions</strong> of the phase space: transient zones where the normally-dominant saddle
+                    dynamics are overridden and u can rise rapidly.
+                </p>
+                <p>
+                    These regions are the closest real history comes to the two-pole "Enlightenment defeats
+                    tribalism" narrative — but the model makes a specific, falsifiable prediction that the naive
+                    narrative misses: <strong>the ηut term guarantees that any exceptional region with nonzero
+                    residual t will also produce a spike in ṗ</strong>, because rising u against a nonzero t floor
+                    maximizes the product u·t that feeds parasitic growth. In other words:
+                </p>
+                <blockquote class="pull-quote">
+                    Every exceptional universalist region contains, built into its own success condition, the
+                    maximum possible fuel for parasitic capture.
+                </blockquote>
+                <p>
+                    This is why high-energy universalist moments (revolutionary founding periods, postwar
+                    international orders, rapid technological utopian movements) are historically the
+                    <em>most</em>, not least, vulnerable to early and severe parasitic capture — precisely when
+                    they appear most secure. The model formalizes the intuition that naive utopias are not merely
+                    unlucky; they are structurally self-undermining unless an explicit counter-term is engineered
+                    against p (see §9).
+                </p>
+            </section>
+
+            <!-- Section 8 -->
+            <section id="sec-8" class="article-section">
+                <h2 class="section-heading section-heading-interactive" role="button" tabindex="0" aria-expanded="true">8. Historical Trajectories Through State Space</h2>
+                <p>
+                    Rather than narrate history as a sequence of eras, the model treats it as a single
+                    trajectory x(t) winding through the simplex, occasionally passing near (but never resting at)
+                    the unstable interior fixed point, and periodically entering exceptional regions driven by
+                    exogenous energy shocks E(t).
+                </p>
+                <p>Several qualitative features of this trajectory are worth naming explicitly:</p>
+                <ul class="feature-list">
+                    <li>
+                        <strong>Non-convergence is structural, not accidental.</strong> Because the interior fixed
+                        point is unstable for realistic coefficients, no amount of institutional learning within a
+                        single (u,t,p)-parameterization converges the system. Learning can change the
+                        <em>coefficients</em> (better institutions can raise θ, the parasite decay rate, or lower
+                        η, the parasite growth-from-friction rate) — but cannot, by itself, produce a stable rest
+                        state without also changing the structure of the equations.
+                    </li>
+                    <li>
+                        <strong>Tribalism's floor never reaches zero.</strong> Because ṫ contains the constant
+                        term δ, tribalism never fully vanishes even under maximal u and E. This matches the
+                        observation that no universalist movement in history has ever fully eliminated
+                        identity-based cognition — only temporarily suppressed its expression.
+                    </li>
+                    <li>
+                        <strong>Parasitic capture is the fastest-moving variable.</strong> Because p's growth term
+                        is multiplicative in u and t rather than additive, p can spike on a much shorter timescale
+                        than either u or t can rebuild — which is consistent with the historical observation that
+                        institutional corruption/capture (Stalin-era bureaucratic distortion of the Soviet
+                        project, the swift co-optation of many revolutionary movements generally) tends to
+                        visibly outpace the "natural" timescale of either ideological consolidation or identity
+                        re-formation.
+                    </li>
+                </ul>
+
+                <section id="sec-8-1" class="article-subsection">
+                    <h3 class="subsection-heading">8.1 Comparative Statics: Why Not Everywhere, and Why Not Always</h3>
+                    <p>
+                        The trajectory framing above risks implying that every polity is condemned to tour the
+                        same U→P→T cycle at the same tempo. That is not the model's claim, and the historical
+                        record contains an important class of cases it must be able to accommodate rather than
+                        explain away: long-duration, comparatively stable mixed orders — the Nordic social
+                        democracies, Switzerland's confederal cantons, Botswana's post-independence governance
+                        record — that have sustained high u and moderate t for many decades without the
+                        catastrophic p-spikes the table in Section 5 associates with founding moments elsewhere.
+                    </p>
+                    <p>
+                        The model's account of these cases is not that they have somehow escaped the triad, but
+                        that they occupy a region of parameter space where θ (parasite decay, including its
+                        recursive form in Section 4.3) has been engineered durably high and η (parasite
+                        growth-from-friction) durably low — through mechanisms such as consensus-based coalition
+                        government, high press freedom, small-N accountability networks, and guardian institutions
+                        unusually resistant to the capture dynamic of Section 4.3. These cases are therefore not
+                        falsifications of the model but its most important calibration targets: any future
+                        parameterization of η and θ should be able to reproduce both the rapid Bolshevik-style
+                        p-spike and the multi-generational Nordic plateau from the same functional form, differing
+                        only in coefficient values, not in structure. A model that cannot in principle generate
+                        both outcomes would be wrong; a model that has not yet been shown to generate both, as is
+                        currently the case here, is merely incomplete. Supplying that comparative calibration is
+                        treated in Section 10 as the immediate next research task rather than a settled result.
+                    </p>
+                </section>
+            </section>
+
+            <!-- Section 9 -->
+            <section id="sec-9" class="article-section">
+                <h2 class="section-heading section-heading-interactive" role="button" tabindex="0" aria-expanded="true">9. Design Principles: Toward Parasite-Resistant Universalism</h2>
+                <p>
+                    If the model is approximately correct, the practical implication is sharp and somewhat counter
+                    to conventional political rhetoric on all sides:
+                </p>
+                <blockquote class="pull-quote">
+                    The primary design target for anyone attempting to build a durable universalist system should
+                    not be the suppression of tribalism (t), but the suppression of the parasite growth
+                    coefficient η and the elevation of the parasite decay coefficient θ — including its
+                    recursive, guardian-capture form (§4.3).
+                </blockquote>
+                <p>Concretely, this reframes several perennial debates as <em>engineering</em> problems rather than moral ones:</p>
+                <ul class="design-principle-list">
+                    <li>
+                        <strong>Institutional transparency</strong> functions as a direct reduction of η: it
+                        reduces the "friction surface" available for extraction between open (u) and
+                        identity-based (t) subsystems.
+                    </li>
+                    <li>
+                        <strong>Redundant, decentralized enforcement</strong> raises θ and, importantly, lowers κ
+                        in Section 4.3's guardian equation: a parasite that captures one node does not
+                        automatically capture the whole narrative/resource-allocation apparatus, and no single
+                        guardian institution can be captured to bring down the entire enforcement layer.
+                    </li>
+                    <li>
+                        <strong>Tolerance for tribal expression within bounded domains</strong> — rather than
+                        attempts at total suppression — may counter-intuitively <em>lower</em> long-run p, because
+                        attempts to drive t → 0 increase δ's effective pressure (a compressed spring), which
+                        historically manifests as violent correction (the WWI pattern: naive universalist
+                        suppression of national identity followed by explosive tribal reassertion) and <em>also</em>
+                        creates larger u·t friction surfaces during the suppression phase itself.
+                    </li>
+                    <li>
+                        <strong>Treating tribalism as background gravity rather than as an enemy to defeat</strong>
+                        reallocates political energy away from an unwinnable fight (against δ, a constant) and
+                        toward the winnable fight (against η and θ, both engineerable constants).
+                    </li>
+                </ul>
+                <p>
+                    This is the mathematical restatement of the essay's central discovery: naive utopian projects
+                    fail not because tribalism is too strong, but because they mistake tribalism for the threat,
+                    leaving the parasite term completely undefended — and an undefended multiplicative growth term
+                    against a constant background field will always eventually dominate.
+                </p>
+
+                <section id="sec-9-1" class="article-subsection">
+                    <h3 class="subsection-heading">9.1 An Operational Test for P, and Why It Must Be Symmetric</h3>
+                    <p>
+                        Because "parasite" is among the most rhetorically loaded words available in political
+                        discourse, this model is only responsible if it supplies a test for the category that
+                        cannot simply collapse into "whichever faction I oppose." We propose the following
+                        conditions, all of which must hold before an actor or institution is classified as
+                        exhibiting high p rather than high t or low u:
+                    </p>
+                    <ol class="operational-test-list">
+                        <li>
+                            <strong>Ideological content-independence.</strong> The actor's vocabulary and stated
+                            values could be swapped for those of a rival faction with no material change in its
+                            extraction behavior. A structure that behaves identically whether it is nominally
+                            communist, nationalist, religious, or liberal is exhibiting p; a structure whose
+                            behavior tracks its stated ideology, even when that ideology is one the observer
+                            dislikes, is exhibiting u or t, not p.
+                        </li>
+                        <li>
+                            <strong>Institutional outlasting.</strong> The actor or apparatus persists across
+                            changes of ideological leadership, regime, or founding cohort, continuing to extract
+                            value under new banners.
+                        </li>
+                        <li>
+                            <strong>Directional asymmetry of information flow.</strong> The actor systematically
+                            increases its own informational or resource position while decreasing the
+                            transparency or accountability available to those it extracts from.
+                        </li>
+                        <li>
+                            <strong>Falsifiable counter-test.</strong> The classification must in principle be
+                            revocable: if the actor submits to external audit, term limits, or redistributive
+                            constraint and the extraction behavior stops, it was accountable governance, not
+                            parasitism, and the classification must be withdrawn.
+                        </li>
+                    </ol>
+                    <p>
+                        Any application of this model — including by its own authors — that labels a rival
+                        political tribe "parasitic" without checking these four conditions is not using the
+                        model; it is using the model's vocabulary to do what tribal cognition (§2.2) already does
+                        for free. This is the single most important safeguard the model requires, and the one
+                        most likely to be skipped by exactly the actors most eager to cite the model in the first
+                        place.
+                    </p>
+                </section>
+
+                <section id="sec-9-2" class="article-subsection">
+                    <h3 class="subsection-heading">9.2 A Note on Normative Status: Description Is Not Destiny</h3>
+                    <p>
+                        A clarification is owed regarding the status of Section 2.2's claim that tribalism cannot
+                        be eliminated. That claim is empirical, not prescriptive: it is a statement about the
+                        durability of a cognitive default, not a statement about what is owed to it, and it does
+                        not license the inference that resisting tribal escalation locally is futile or not worth
+                        attempting. Persistent forces are not thereby forces one has no obligation to resist —
+                        gravity is persistent and we still build airplanes.
+                    </p>
+                    <p>
+                        Nor does the model's diagnostic framing license unconstrained technocratic intervention
+                        against p in the name of "engineering." The same concentration of monitoring and
+                        enforcement capacity that raises θ is also the raw material from which the next parasitic
+                        capture is built, if that capacity is not itself bound by the accountability constraints
+                        in Section 9.1 and the guardian-capture dynamic of Section 4.3. Any institution built on
+                        this model's recommendations should therefore be designed with explicit, hard,
+                        rights-based limits — due process, sunset clauses, distributed rather than centralized
+                        audit authority — that apply even when, especially when, the institution's stated purpose
+                        is fighting p. A design that raises θ by concentrating unchecked power in a single
+                        anti-corruption body has not solved the problem this model describes; it has relocated
+                        it, and Section 4.3's κ term will eventually find it.
+                    </p>
+                </section>
+            </section>
+
+            <!-- Section 10 -->
+            <section id="sec-10" class="article-section">
+                <h2 class="section-heading section-heading-interactive" role="button" tabindex="0" aria-expanded="true">10. Scope, Calibration, and Epistemic Status</h2>
+                <p>
+                    It is worth stating plainly, in one place, what kind of claim this document is making, since
+                    the notation used throughout risks implying a stronger claim than is warranted. The
+                    Universalist–Tribal–Parasite model is best understood as a <strong>synthetic diagnostic
+                    heuristic</strong>: a proposed common vocabulary and state space for integrating findings that
+                    already exist, in more rigorous and empirically grounded form, across political science,
+                    evolutionary anthropology, and institutional economics (§1.1). It is not, at present, a
+                    validated or falsifiable predictive theory, for three specific and correctable reasons:
+                </p>
+                <ol class="epistemic-list">
+                    <li>
+                        <strong>No coefficient has been estimated against data.</strong> The Greek-letter constants
+                        introduced in Section 4 (and Section 4.3) are currently free parameters chosen for
+                        narrative plausibility, not fit to governance indices (e.g., the World Bank's Worldwide
+                        Governance Indicators, Transparency International's Corruption Perceptions Index),
+                        corpus-based sentiment measures, or historical event datasets of the kind used in
+                        cliodynamics.
+                    </li>
+                    <li>
+                        <strong>The comparative cases have been identified but not fitted.</strong> Section 8.1
+                        names the right class of negative cases — long-duration stable mixed orders — but does
+                        not yet demonstrate that the same functional form reproduces both those cases and the
+                        founding-moment collapses of Section 5 from a single, principled parameterization.
+                    </li>
+                    <li>
+                        <strong>The state variables are constructs, not measurements.</strong> u, t, and p are not
+                        currently operationalized in a way that an independent party could code from primary
+                        sources and reproduce.
+                    </li>
+                </ol>
+                <p>
+                    None of these are objections to the model's continued development; they are the model's own
+                    research agenda, listed here explicitly so that the confidence lent by the equations in
+                    Sections 3–4 does not imply they have already been resolved. A model that specifies exactly
+                    what would need to be true to falsify it, and has not yet done the work to check, is in a
+                    meaningfully better epistemic position than one offering no such specification at all — but it
+                    is not yet in the position its equations visually suggest, and readers, especially readers
+                    inclined to invoke Section 9's design principles in real institutional debates, should treat it
+                    accordingly.
+                </p>
+            </section>
+
+            <!-- Section 11 -->
+            <section id="sec-11" class="article-section conclusion-section">
+                <h2 class="section-heading section-heading-interactive" role="button" tabindex="0" aria-expanded="true">11. Conclusion: The Cycle Continues</h2>
+                <p>
+                    The Universalist–Tribal–Parasite model does not predict an end to the cycle it describes —
+                    quite the opposite. Because the interior fixed point is unstable and the tribal background
+                    term never vanishes, the model predicts, structurally, that:
+                </p>
+                <ol class="conclusion-list">
+                    <li>Every high-energy exceptional region will produce a universalist resurgence,</li>
+                    <li>every such resurgence will generate, as an unavoidable side-effect of its own success, the maximal friction surface for parasitic capture,</li>
+                    <li>every episode of parasitic capture will eventually stoke a tribal correction, and</li>
+                    <li>every tribal correction will eventually exhaust itself and await the next energy shock — unless, per Section 4.3, its own guardians are captured first, in which case collapse can arrive by a second, faster route.</li>
+                </ol>
+                <p>
+                    This is not pessimism; it is a specification, offered in the more modest register described
+                    in Section 10: a synthesis of existing findings into a common vocabulary, not a proven law of
+                    history. A system that cannot be permanently stabilized can still be <strong>steered</strong>
+                    — its amplitude reduced, its parasitic capture delayed and weakened, its tribal corrections
+                    made less violent — by engineering directly against the η and θ terms rather than against δ,
+                    and by binding that engineering itself to the symmetric test of Section 9.1 and the
+                    rights-based limits of Section 9.2. The lesson of the long historical current, from the Axial
+                    age through the Enlightenment, through the world wars, through the Cold War, and into the
+                    present, is not that reason must defeat tribe, or that tribe must be tolerated, but that
+                    <strong>every era which forgot to defend against the parasite — and every defense against the
+                    parasite that forgot to guard itself — lost the fight it thought it was having.</strong>
+                </p>
+            </section>
+
+        </article>
+
+        <!-- Sidebar for supplementary widgets: back-to-top, share, etc. -->
+        <aside class="article-sidebar">
+            <button type="button" class="back-to-top-btn" aria-label="Back to top">↑ Top</button>
+        </aside>
+    </main>
+
+    <!-- Footer with citation / meta info -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p class="footer-note">
+                This document is offered as a synthetic diagnostic heuristic (§10), not a validated predictive
+                theory. Coefficients are illustrative and uncalibrated.
+            </p>
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <a class="footer-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260829-MFqETY7Q/page.html?t=1788035786053#abstract">Back to Abstract</a>
+                <a class="footer-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260829-MFqETY7Q/page.html?t=1788035786053#sec-1">Start Reading</a>
+                <a class="footer-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260829-MFqETY7Q/page.html?t=1788035786053#sec-10">Epistemic Status</a>
+            </nav>
+        </div>
+    </footer>
+
+<!-- JavaScript will be added here -->
+
+    <script>
+        // ============================================================================
+        // Unified Field Theory of Political Dynamics - Interactive Behaviors
+        // ============================================================================
+        
+        document.addEventListener('DOMContentLoaded', () => {
+        
+            // ------------------------------------------------------------------------
+            // 1. Reading Progress Bar
+            // Updates a fixed progress bar width based on how far the user has
+            // scrolled through the full document.
+            // ------------------------------------------------------------------------
+            const progressBar = document.querySelector('.reading-progress-bar');
+        
+            function updateReadingProgress() {
+                const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+                if (progressBar) {
+                    progressBar.style.width = `${progress}%`;
+                }
+            }
+        
+            // Throttle scroll handling with requestAnimationFrame for performance
+            let progressTicking = false;
+            window.addEventListener('scroll', () => {
+                if (!progressTicking) {
+                    requestAnimationFrame(() => {
+                        updateReadingProgress();
+                        progressTicking = false;
+                    });
+                    progressTicking = true;
+                }
+            }, { passive: true });
+        
+            updateReadingProgress(); // initial call on load
+        
+            // ------------------------------------------------------------------------
+            // 2. Table of Contents: Active Link Highlighting via IntersectionObserver
+            // Highlights the TOC link corresponding to the section currently in view.
+            // ------------------------------------------------------------------------
+            const tocLinks = Array.from(document.querySelectorAll('.toc-link'));
+            const sections = Array.from(document.querySelectorAll('main.article-main [id]'))
+                .filter(el => tocLinks.some(link => link.getAttribute('href') === `#${el.id}`));
+        
+            const tocLinkMap = new Map();
+            tocLinks.forEach(link => {
+                const id = link.getAttribute('href').slice(1);
+                tocLinkMap.set(id, link);
+            });
+        
+            function clearActiveTocLinks() {
+                tocLinks.forEach(link => link.classList.remove('toc-link-active'));
+            }
+        
+            if ('IntersectionObserver' in window && sections.length) {
+                const observer = new IntersectionObserver((entries) => {
+                    // Find the entry closest to the top of the viewport that's intersecting
+                    let bestEntry = null;
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            if (!bestEntry || entry.boundingClientRect.top < bestEntry.boundingClientRect.top) {
+                                bestEntry = entry;
+                            }
+                        }
+                    });
+        
+                    if (bestEntry) {
+                        const activeLink = tocLinkMap.get(bestEntry.target.id);
+                        if (activeLink) {
+                            clearActiveTocLinks();
+                            activeLink.classList.add('toc-link-active');
+                        }
+                    }
+                }, {
+                    root: null,
+                    rootMargin: '-10% 0px -70% 0px',
+                    threshold: 0
+                });
+        
+                sections.forEach(section => observer.observe(section));
+            }
+        
+            // ------------------------------------------------------------------------
+            // 3. Smooth Scrolling for In-Page Anchor Links
+            // Applies to TOC links and footer navigation links.
+            // ------------------------------------------------------------------------
+            const anchorLinks = document.querySelectorAll('a[href^="#"]');
+        
+            anchorLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const targetId = link.getAttribute('href').slice(1);
+                    const targetEl = document.getElementById(targetId);
+                    if (targetEl) {
+                        e.preventDefault();
+                        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        // Update the URL hash without an abrupt jump
+                        history.pushState(null, '', `#${targetId}`);
+                        // Move focus for accessibility
+                        targetEl.setAttribute('tabindex', '-1');
+                        targetEl.focus({ preventScroll: true });
+                    }
+                });
+            });
+        
+            // ------------------------------------------------------------------------
+            // 4. Table of Contents Toggle (for collapsible/mobile TOC)
+            // ------------------------------------------------------------------------
+            const tocToggle = document.querySelector('.toc-toggle');
+            const tocNav = document.querySelector('.toc-nav');
+            const tocList = document.querySelector('.toc-list');
+        
+            if (tocToggle && tocList) {
+                // Give the list an id so aria-controls resolves correctly if not already set
+                if (!tocList.id) {
+                    tocList.id = 'toc-list-wrapper';
+                }
+                tocToggle.setAttribute('aria-controls', tocList.id);
+        
+                tocToggle.addEventListener('click', () => {
+                    const isExpanded = tocToggle.getAttribute('aria-expanded') === 'true';
+                    tocToggle.setAttribute('aria-expanded', String(!isExpanded));
+                    tocNav.classList.toggle('toc-nav-expanded', !isExpanded);
+                });
+            }
+        
+            // ------------------------------------------------------------------------
+            // 5. Back to Top Button
+            // Shown/hidden based on scroll position; scrolls smoothly to top.
+            // ------------------------------------------------------------------------
+            const backToTopBtn = document.querySelector('.back-to-top-btn');
+        
+            if (backToTopBtn) {
+                const SCROLL_THRESHOLD = 480;
+        
+                function toggleBackToTopVisibility() {
+                    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                    backToTopBtn.classList.toggle('back-to-top-btn-visible', scrollTop > SCROLL_THRESHOLD);
+                }
+        
+                let backToTopTicking = false;
+                window.addEventListener('scroll', () => {
+                    if (!backToTopTicking) {
+                        requestAnimationFrame(() => {
+                            toggleBackToTopVisibility();
+                            backToTopTicking = false;
+                        });
+                        backToTopTicking = true;
+                    }
+                }, { passive: true });
+        
+                toggleBackToTopVisibility(); // initial state
+        
+                backToTopBtn.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+        
+            // ------------------------------------------------------------------------
+            // 6. Deep-Link Handling on Initial Load
+            // If the page loads with a hash already in the URL, ensure the target
+            // section is scrolled into view (accounting for any fixed header).
+            // ------------------------------------------------------------------------
+            if (window.location.hash) {
+                const initialTarget = document.getElementById(window.location.hash.slice(1));
+                if (initialTarget) {
+                    // Delay slightly to allow layout/fonts to settle
+                    setTimeout(() => {
+                        initialTarget.scrollIntoView({ block: 'start' });
+                    }, 50);
+                }
+            }
+        
+            // ------------------------------------------------------------------------
+            // 7. Collapsible Section Headings (optional progressive enhancement)
+            // Clicking a top-level section heading toggles a "collapsed" class,
+            // allowing readers to fold long formal sections for easier navigation.
+            // ------------------------------------------------------------------------
+            const sectionHeadings = document.querySelectorAll('.article-section > .section-heading');
+        
+            sectionHeadings.forEach(heading => {
+                heading.classList.add('section-heading-interactive');
+                heading.setAttribute('role', 'button');
+                heading.setAttribute('tabindex', '0');
+                heading.setAttribute('aria-expanded', 'true');
+        
+                const toggleCollapse = () => {
+                    const section = heading.closest('.article-section');
+                    const isCollapsed = section.classList.toggle('article-section-collapsed');
+                    heading.setAttribute('aria-expanded', String(!isCollapsed));
+                };
+        
+                heading.addEventListener('click', toggleCollapse);
+                heading.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleCollapse();
+                    }
+                });
+            });
+        
+        });
+    </script>
+
+</body></html>

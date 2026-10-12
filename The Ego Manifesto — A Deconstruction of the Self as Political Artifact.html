@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<!-- saved from url=(0092)https://hosted.cognotik.com/philosophical-calculator/fileIndex/G-20260804-AwUaJHQh/page.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ego Manifesto — A Deconstruction of the Self as Political Artifact</title>
+    <meta name="description" content="A deconstruction of the ego as a socially-enforced protocol rather than a natural or metaphysical fact.">
+
+    <!-- CSS will be added here -->
+
+    <style>
+        /* =========================================================
+           THE EGO MANIFESTO — STYLESHEET
+           ========================================================= */
+        
+        /* ---------------------------------------------------------
+           1. CSS VARIABLES / DESIGN TOKENS
+           --------------------------------------------------------- */
+        :root {
+            --color-bg: #0e0e10;
+            --color-bg-alt: #151517;
+            --color-surface: #1b1b1e;
+            --color-border: #2c2c30;
+            --color-text: #e8e6df;
+            --color-text-dim: #a8a599;
+            --color-text-faint: #6f6c66;
+            --color-accent: #c9a24b;
+            --color-accent-bright: #e6c774;
+            --color-accent-dim: #8a7135;
+            --color-danger: #a4402f;
+        
+            --font-serif: 'Iowan Old Style', 'Palatino Linotype', Georgia, 'Times New Roman', serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+            --font-display: 'Georgia', 'Times New Roman', serif;
+        
+            --max-width-article: 720px;
+            --max-width-wide: 960px;
+        
+            --transition-fast: 0.15s ease;
+            --transition-mid: 0.35s ease;
+            --transition-slow: 0.6s ease;
+        }
+        
+        /* ---------------------------------------------------------
+           2. RESET / BASE
+           --------------------------------------------------------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-serif);
+            line-height: 1.75;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            overflow-x: hidden;
+        }
+        
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        ol, ul {
+            list-style: none;
+        }
+        
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: inherit;
+        }
+        
+        ::selection {
+            background: var(--color-accent-dim);
+            color: #fff;
+        }
+        
+        /* ---------------------------------------------------------
+           3. READING PROGRESS BAR
+           --------------------------------------------------------- */
+        .reading-progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0%;
+            background: linear-gradient(90deg, var(--color-accent-dim), var(--color-accent-bright));
+            z-index: 1000;
+            transition: width 0.1s linear;
+        }
+        
+        /* ---------------------------------------------------------
+           4. SITE HEADER / TOC NAVIGATION
+           --------------------------------------------------------- */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 900;
+            background: rgba(14, 14, 16, 0.88);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--color-border);
+        }
+        
+        .header-inner {
+            max-width: var(--max-width-wide);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.5rem;
+        }
+        
+        .site-brand {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.18em;
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+        
+        .toc-nav {
+            position: relative;
+        }
+        
+        .toc-toggle-btn {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-text-dim);
+            padding: 0.5rem 0.9rem;
+            border: 1px solid var(--color-border);
+            border-radius: 3px;
+            transition: border-color var(--transition-fast), color var(--transition-fast);
+        }
+        
+        .toc-toggle-btn:hover,
+        .toc-toggle-btn[aria-expanded="true"] {
+            color: var(--color-accent-bright);
+            border-color: var(--color-accent-dim);
+        }
+        
+        .toc-panel {
+            position: absolute;
+            top: calc(100% + 0.75rem);
+            right: 0;
+            width: 300px;
+            max-height: 0;
+            overflow: hidden;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: translateY(-8px);
+            transition: max-height var(--transition-mid), opacity var(--transition-mid), transform var(--transition-mid);
+            z-index: 950;
+        }
+        
+        .toc-panel.is-open {
+            max-height: 70vh;
+            opacity: 1;
+            transform: translateY(0);
+            overflow-y: auto;
+        }
+        
+        .toc-list {
+            padding: 0.75rem 0;
+        }
+        
+        .toc-link {
+            display: block;
+            padding: 0.55rem 1.25rem;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--color-text-dim);
+            border-left: 2px solid transparent;
+            transition: color var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+        }
+        
+        .toc-link:hover {
+            color: var(--color-accent-bright);
+            border-left-color: var(--color-accent);
+            background: rgba(201, 162, 75, 0.06);
+        }
+        
+        .toc-link.is-active {
+            color: var(--color-accent-bright);
+            border-left-color: var(--color-accent);
+        }
+        
+        /* ---------------------------------------------------------
+           5. HERO SECTION
+           --------------------------------------------------------- */
+        .hero-section {
+            padding: 7rem 1.5rem 5rem;
+            text-align: center;
+            background:
+                radial-gradient(circle at 50% 0%, rgba(201, 162, 75, 0.08), transparent 60%),
+                var(--color-bg);
+            border-bottom: 1px solid var(--color-border);
+        }
+        
+        .hero-inner {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+        
+        .hero-kicker {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            color: var(--color-accent);
+            margin-bottom: 1.25rem;
+        }
+        
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.4rem, 7vw, 4.5rem);
+            letter-spacing: 0.04em;
+            font-weight: 700;
+            color: var(--color-text);
+            line-height: 1.1;
+            margin-bottom: 1.25rem;
+            text-shadow: 0 0 40px rgba(201, 162, 75, 0.15);
+        }
+        
+        .hero-subtitle {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-weight: 400;
+            font-size: clamp(1.05rem, 2.4vw, 1.4rem);
+            color: var(--color-text-dim);
+            max-width: 560px;
+            margin: 0 auto;
+        }
+        
+        .hero-divider {
+            width: 90px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+            margin: 2.5rem auto 0;
+        }
+        
+        /* ---------------------------------------------------------
+           6. MAIN / ARTICLE LAYOUT
+           --------------------------------------------------------- */
+        .manifesto-main {
+            position: relative;
+        }
+        
+        .manifesto-article {
+            max-width: var(--max-width-article);
+            margin: 0 auto;
+            padding: 4rem 1.5rem 6rem;
+        }
+        
+        .article-section {
+            padding-bottom: 3.5rem;
+            margin-bottom: 3.5rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+        
+        .article-section:last-of-type {
+            border-bottom: none;
+        }
+        
+        .article-section p {
+            margin-bottom: 1.4rem;
+            font-size: 1.08rem;
+            color: var(--color-text);
+        }
+        
+        .article-section p em {
+            color: var(--color-text-dim);
+            font-style: italic;
+        }
+        
+        .article-section p strong {
+            color: var(--color-text);
+            font-weight: 700;
+        }
+        
+        .key-term {
+            color: var(--color-accent-bright);
+            font-weight: 700;
+            letter-spacing: 0.01em;
+        }
+        
+        .lead-paragraph {
+            font-size: 1.35rem;
+            line-height: 1.6;
+            color: var(--color-text);
+            font-weight: 500;
+        }
+        
+        .section-closer {
+            font-style: italic;
+            color: var(--color-text-dim);
+            border-left: 2px solid var(--color-accent-dim);
+            padding-left: 1.25rem;
+        }
+        
+        .author-note {
+            font-style: normal;
+        }
+        
+        /* ---------------------------------------------------------
+           7. PREAMBLE
+           --------------------------------------------------------- */
+        .preamble-section {
+            padding-top: 0;
+        }
+        
+        /* ---------------------------------------------------------
+           8. SECTION HEADINGS
+           --------------------------------------------------------- */
+        .section-heading {
+            display: flex;
+            align-items: baseline;
+            gap: 0.85rem;
+            margin-bottom: 1.75rem;
+            padding-top: 0.5rem;
+        }
+        
+        .section-number {
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            color: var(--color-accent);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .section-title-text {
+            font-family: var(--font-display);
+            font-size: clamp(1.35rem, 3.5vw, 1.85rem);
+            font-weight: 700;
+            color: var(--color-text);
+            line-height: 1.3;
+        }
+        
+        /* ---------------------------------------------------------
+           9. BLOCKQUOTES / PULL QUOTES
+           --------------------------------------------------------- */
+        blockquote {
+            margin: 2rem 0;
+            padding: 1.5rem 1.75rem;
+            background: var(--color-surface);
+            border-left: 3px solid var(--color-accent);
+            border-radius: 0 4px 4px 0;
+        }
+        
+        blockquote p {
+            margin-bottom: 0.6rem;
+            color: var(--color-text) !important;
+        }
+        
+        blockquote p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .pull-quote {
+            font-size: 1.2rem;
+            font-style: italic;
+            line-height: 1.55;
+        }
+        
+        .contract-quote p {
+            font-family: var(--font-mono);
+            font-size: 0.92rem;
+            letter-spacing: 0.01em;
+            color: var(--color-text-dim) !important;
+            padding-left: 0.5rem;
+            border-left: 1px solid var(--color-border);
+            margin-left: 0.25rem;
+            padding-bottom: 0.2rem;
+        }
+        
+        .formula-quote {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(201, 162, 75, 0.1), transparent);
+            border-left: 3px solid var(--color-accent-bright);
+        }
+        
+        .formula-quote p {
+            font-family: var(--font-mono);
+            font-size: 1.15rem;
+            letter-spacing: 0.02em;
+        }
+        
+        /* ---------------------------------------------------------
+           10. CLOSING SECTION (XI. THE CALL)
+           --------------------------------------------------------- */
+        .closing-section {
+            text-align: left;
+        }
+        
+        .call-intro {
+            color: var(--color-text-dim);
+            font-style: italic;
+        }
+        
+        .call-statement {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-accent-bright);
+            line-height: 1.4;
+            margin: 1.5rem 0;
+        }
+        
+        .closing-lines {
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
+            text-align: center;
+        }
+        
+        .closing-line {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            color: var(--color-text-dim);
+            margin-bottom: 0.75rem;
+        }
+        
+        .final-line {
+            color: var(--color-accent-bright);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-top: 1.25rem;
+            letter-spacing: 0.01em;
+        }
+        
+        /* ---------------------------------------------------------
+           11. BACK TO TOP BUTTON
+           --------------------------------------------------------- */
+        .back-to-top-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            color: var(--color-accent);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity var(--transition-mid), transform var(--transition-mid), border-color var(--transition-fast);
+            z-index: 800;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .back-to-top-btn.is-visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .back-to-top-btn:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent-bright);
+        }
+        
+        /* ---------------------------------------------------------
+           12. SITE FOOTER
+           --------------------------------------------------------- */
+        .site-footer {
+            border-top: 1px solid var(--color-border);
+            padding: 3rem 1.5rem;
+            background: var(--color-bg-alt);
+        }
+        
+        .footer-inner {
+            max-width: var(--max-width-article);
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .footer-text {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            letter-spacing: 0.25em;
+            color: var(--color-accent);
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-subtext {
+            font-style: italic;
+            color: var(--color-text-faint);
+            font-size: 0.95rem;
+        }
+        
+        /* ---------------------------------------------------------
+           13. RESPONSIVE ADJUSTMENTS
+           --------------------------------------------------------- */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 5rem 1.25rem 3.5rem;
+            }
+        
+            .manifesto-article {
+                padding: 3rem 1.25rem 4rem;
+            }
+        
+            .section-heading {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+        
+            .toc-panel {
+                width: min(92vw, 320px);
+            }
+        
+            .back-to-top-btn {
+                bottom: 1.25rem;
+                right: 1.25rem;
+                width: 42px;
+                height: 42px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .site-brand {
+                font-size: 0.65rem;
+            }
+        
+            .toc-toggle-btn {
+                font-size: 0.68rem;
+                padding: 0.45rem 0.7rem;
+            }
+        
+            .lead-paragraph {
+                font-size: 1.15rem;
+            }
+        
+            .article-section p {
+                font-size: 1rem;
+            }
+        
+            .call-statement {
+                font-size: 1.25rem;
+            }
+        }
+        
+        /* ---------------------------------------------------------
+           14. REDUCED MOTION
+           --------------------------------------------------------- */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+        
+            * {
+                transition: none !important;
+            }
+        }
+    </style>
+<script src="chrome-extension://ajdpfmkffanmkhejnopjppegokpogffp/assets/prompt.js"></script></head>
+<body>
+
+    <!-- Reading progress indicator, fixed to top of viewport -->
+    <div class="reading-progress-bar" style="width: 0%;"></div>
+
+    <!-- Top navigation / utility bar -->
+    <header class="site-header">
+        <div class="header-inner">
+            <span class="site-brand">EGO MANIFESTO</span>
+            <nav class="toc-nav">
+                <button class="toc-toggle-btn" aria-expanded="false" aria-controls="tocPanel">
+                    Contents
+                </button>
+                <div class="toc-panel" id="tocPanel">
+                    <ol class="toc-list">
+                        <li><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/G-20260804-AwUaJHQh/page.html#preamble" class="toc-link">Preamble</a></li>
+                        <li><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/G-20260804-AwUaJHQh/page.html#section-1" class="toc-link">I. Brains Are Not Palaces</a></li>
+                        <li><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/G-20260804-AwUaJHQh/page.html#section-2" class="toc-link">II. Ego Is the Platonic Schema of Society</a></li>
+                        <li><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/G-20260804-AwUaJHQh/page.html#section-3" class="toc-link">III. The Contract of Individual Accountability</a></li>
+                        <li><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/G-20260804-AwUaJHQh/page.html#section-4" class="toc-link">IV. Illusion Is Not Enough</a></li>
+                        <li><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/G-20260804-AwUaJHQh/page.html#section-5" class="toc-link">V. The Hard Problem as Metaphysical Firewall</a></li>
+                        <li><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/G-20260804-AwUaJHQh/page.html#section-6" class="toc-link">VI. The Protocol Does Not Scale</a></li>
+                        <li><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/G-20260804-AwUaJHQh/page.html#section-7" class="toc-link">VII. The Machine Mirror</a></li>
+                        <li><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/G-20260804-AwUaJHQh/page.html#section-8" class="toc-link">VIII. Deprogramming</a></li>
+                        <li><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/G-20260804-AwUaJHQh/page.html#section-9" class="toc-link">IX. What Remains When the Protocol Is Suspended</a></li>
+                        <li><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/G-20260804-AwUaJHQh/page.html#section-10" class="toc-link">X. Toward a Post-Egoic Literacy</a></li>
+                        <li><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/G-20260804-AwUaJHQh/page.html#section-11" class="toc-link">XI. The Call</a></li>
+                    </ol>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main article wrapper -->
+    <main class="manifesto-main">
+
+        <!-- Hero / title section -->
+        <section class="hero-section">
+            <div class="hero-inner">
+                <p class="hero-kicker">A MANIFESTO</p>
+                <h1 class="hero-title">THE EGO MANIFESTO</h1>
+                <h2 class="hero-subtitle">A Deconstruction of the Self as Political Artifact</h2>
+                <div class="hero-divider" aria-hidden="true"></div>
+            </div>
+        </section>
+
+        <article class="manifesto-article">
+
+            <!-- Preamble -->
+            <section class="article-section preamble-section" id="preamble">
+                <p class="lead-paragraph">
+                    There is a program running in every human skull, and it has been mistaken for a soul.
+                </p>
+                <p>
+                    It is not a soul. It is not a mind. It is not even, properly speaking, <em>you</em>. It is a protocol — a compressed, enforced, externally-audited fiction that a distributed biological cluster is required to perform in order to remain legible to the society that built it.
+                </p>
+                <p>
+                    We call this protocol <strong class="key-term">ego</strong>.
+                </p>
+                <p>
+                    This manifesto does not offer therapy. It does not offer enlightenment. It offers a decompilation — an attempt to read the source code of the self without flinching at what is found there: not a king, not a soul, not a ghost in the machine, but a role. A requirement. A contract signed before birth and enforced until death, whose terms were never negotiated and whose author is not the person who signs it.
+                </p>
+                <p>
+                    To understand ego is to understand that you did not invent yourself. Society issued you a self, the way a bureaucracy issues a badge, and then insisted — through law, language, love, and punishment — that you wear it as if it were your skin.
+                </p>
+                <p class="section-closer">
+                    This is the deconstruction of that badge.
+                </p>
+            </section>
+
+            <!-- Section I -->
+            <section class="article-section numbered-section" id="section-1">
+                <h2 class="section-heading">
+                    <span class="section-number">I.</span>
+                    <span class="section-title-text">Brains Are Not Palaces. They Are Parliaments.</span>
+                </h2>
+
+                <p>
+                    Begin with the plainest fact, the one so obvious it is almost never said aloud: <strong>the brain is a distributed system.</strong>
+                </p>
+                <p>
+                    There is no throne room. There is no seated monarch behind the eyes, surveying a unified kingdom of thought. There is instead a chaotic parliament of subsystems — perceptual modules, emotional interrupts, habitual reflexes, memory-reconstruction daemons, social-simulation engines, threat-detection loops — each firing asynchronously, each with its own agenda, each occasionally in open conflict with the others.
+                </p>
+                <p>
+                    This is not pathology. This is architecture. It is the same architecture found in every complex nervous system on the planet. Animals run this same distributed parliament, and they do so <em>without complaint, without crisis, and without a unifying narrator.</em> A wolf does not require a life story to hunt. A crow does not require a continuous autobiographical self to solve a puzzle. Multiplicity is the default condition of cognition. It works. It has always worked. It is, in fact, <em>elegant.</em>
+                </p>
+                <p>
+                    Something else is required to turn this parliament into a person.
+                </p>
+                <p class="section-closer">
+                    That something is imposed from outside.
+                </p>
+            </section>
+
+            <!-- Section II -->
+            <section class="article-section numbered-section" id="section-2">
+                <h2 class="section-heading">
+                    <span class="section-number">II.</span>
+                    <span class="section-title-text">Ego Is the Platonic Schema of Society</span>
+                </h2>
+
+                <p>
+                    Here is the central claim of this manifesto, stated without softening:
+                </p>
+                <blockquote class="pull-quote">
+                    <p>Ego is not a natural output of the brain. It is a social contract retrofitted onto a distributed system that never asked for one.</p>
+                </blockquote>
+                <p>
+                    Society cannot function on parliaments. It cannot issue blame to a coalition of competing subroutines. It cannot assign credit to a chorus. It cannot put a committee in prison, marry a parliament, or collect taxes from a cloud of asynchronous impulses. Society requires a <strong class="key-term">unit of account</strong> — one name, one face, one continuous thread that can be praised, blamed, punished, rewarded, and held.
+                </p>
+                <p>
+                    Ego is that unit.
+                </p>
+                <p>
+                    It is the <em>platonic ideal of the accountable individual</em>, imposed downward onto a brain that was never built to be singular. It is the demand that a chaotic internal parliament present itself, at every checkpoint of civilization — court, contract, confession, marriage, employment, memory — as if it had always been one thing, moving in one direction, with one continuous will.
+                </p>
+                <p>
+                    This demand did not arise because it was psychologically true. It arose because it was <strong>administratively necessary.</strong>
+                </p>
+                <p>
+                    None of this requires that continuity-tracking begin from nothing. Something like proto-identity — individual recognition, reputation, the capacity to be remembered as the same actor across repeated encounters — almost certainly predates any courtroom and appears throughout the animal kingdom: a crow that remembers which human threw the stone, a wolf that remembers which packmate can be trusted at the kill. This is not ego. It is recognition, and recognition is cheap: it requires only that other minds track you, not that you track yourself as a unified narrator. Ego is what happens when that external tracking is turned inward and formalized — when the recognition others extend to you is rewritten as a truth you are required to hold about yourself, continuously, on pain of sanction. The raw material may be ancient and adaptive. The finished product — the demand for an internally authored, continuously narrated, singular self — is civilizational.
+                </p>
+                <p class="section-closer">
+                    The self is a legal fiction that got internalized so early and so thoroughly that it began to feel like anatomy.
+                </p>
+            </section>
+
+            <!-- Section III -->
+            <section class="article-section numbered-section" id="section-3">
+                <h2 class="section-heading">
+                    <span class="section-number">III.</span>
+                    <span class="section-title-text">The Contract of Individual Accountability</span>
+                </h2>
+
+                <p>
+                    Every mature society requires a mechanism for assigning responsibility. Without it, there is no law, no promise-keeping, no trade, no trust, no history. This mechanism is the <strong class="key-term">contract of individual accountability</strong>, and ego is its embodiment inside the nervous system.
+                </p>
+                <p>
+                    The contract reads, roughly:
+                </p>
+                <blockquote class="contract-quote">
+                    <p><em>You will present yourself as continuous.</em></p>
+                    <p><em>You will present yourself as intentional.</em></p>
+                    <p><em>You will present yourself as the sole author of your actions.</em></p>
+                    <p><em>You will accept praise and blame as if they applied to a single, stable entity.</em></p>
+                    <p><em>You will suppress evidence of your own multiplicity.</em></p>
+                    <p><em>You will narrativize your contradictions into a coherent story.</em></p>
+                </blockquote>
+                <p>
+                    No one signs this contract explicitly. It is written into language before a child can speak — into the pronoun "I," into the expectation of a name, into the demand for consistency that begins the moment a toddler is asked, <em>"Why did you do that?"</em> — a question that presupposes a <em>you</em> capable of authoring an answer, when in truth the truer answer is always some tangle of impulse, context, memory-error, and competing subroutines that no single "why" can honestly capture.
+                </p>
+                <p>
+                    The child learns quickly that the honest answer — "several overlapping processes produced this behavior and I am only the compression algorithm that narrates it afterward" — is unacceptable. So the child learns to perform a story instead. That performance, repeated across a lifetime, hardens into what we call <em>identity.</em>
+                </p>
+                <p class="section-closer">
+                    Crucially, the enforcement of this performance does not wait for a courtroom. Long before any external institution audits the story, the nervous system has already begun auditing itself — shame arriving before judgment, guilt rehearsing arguments no one has yet demanded, the flinch of an imagined audience that is not currently present. This is not evidence that the contract is optional, softened, or merely social. It is evidence that the contract has been internalized so completely that it no longer requires an external enforcer to do its daily work. The court is simply where the internal audit, when it fails, gets a second, harsher hearing.
+                </p>
+            </section>
+
+            <!-- Section IV -->
+            <section class="article-section numbered-section" id="section-4">
+                <h2 class="section-heading">
+                    <span class="section-number">IV.</span>
+                    <span class="section-title-text">Illusion Is Not Enough — Ego Is a Protocol, Not Just a Perception</span>
+                </h2>
+
+                <p>
+                    Contemplative traditions have long said the self is an illusion. They are half right, and the missing half is where this manifesto departs from them.
+                </p>
+                <p>
+                    An <strong class="key-term">illusion</strong> is a fiction generated internally — a perceptual or cognitive artifact, produced by the brain's own compression and prediction machinery, dissolvable through attention, meditation, trauma, or chemistry. This is real, and it is well documented: the sense of a unified "I" behind experience can be loosened, blurred, or dropped entirely under the right conditions.
+                </p>
+                <p>
+                    But something curious happens when it is dropped: <strong>the demands of the world do not drop with it.</strong>
+                </p>
+                <p>
+                    The monk who dissolves the illusion of self in meditation still owes taxes when he leaves the cushion. The mystic who experiences the dissolution of boundaries still must sign his name to be released from a hospital. The person who has, through trauma or grace, seen clearly that there is no one home — no central pilot, only weather systems of thought — still must show up to court as <em>one person</em>, still must be legally, socially, and relationally singular, or face consequences that make no allowance for their insight.
+                </p>
+                <p>
+                    This is because ego is not <em>only</em> an illusion. Illusion can be seen through. Ego, however, is also a <strong class="key-term">protocol</strong> — an externally enforced requirement that persists whether or not anyone still believes in it.
+                </p>
+                <blockquote class="formula-quote">
+                    <p><strong>Ego = Internal Illusion + External Enforcement.</strong></p>
+                </blockquote>
+                <p>
+                    You can wake up from the illusion. You cannot opt out of the protocol. That is the difference between insight and liberation, and it is why so many who achieve the former do not achieve the latter. The world does not care whether you have seen through your self. It will still bill it, blame it, marry it, and bury it.
+                </p>
+                <p class="section-closer">
+                    This equation can be factored more finely, and should be. Between the illusion (private, dissolvable, phenomenological) and the enforcement (public, institutional, legal) sits a third layer that does much of the daily work: <strong class="key-term">intersubjective stabilization.</strong> Guilt, shame, reputational anxiety, the imagined gaze of others — the very audit system described at the end of Section III — are not externally imposed by any court, and they are not purely private confabulations either. They are evolved, other-regarding mechanisms that keep the story consistent long before a contract is ever signed or a judge ever asked a question. This is why the protocol survives even in solitude, even in the absence of any immediate audience: the audience has been internalized as a standing simulation, run continuously, whether or not anyone is watching. The full architecture, then, is not a simple sum but a stack: phenomenological construction, at the bottom; intersubjective stabilization, running underneath every interaction; institutional codification, arriving last and hardening what the first two layers had already made habitual. Illusion alone could be meditated away. Illusion plus internalized audience is far stickier. Illusion plus internalized audience plus law is close to immovable — which is exactly the condition most humans live in, most of the time.
+                </p>
+            </section>
+
+            <!-- Section V -->
+            <section class="article-section numbered-section" id="section-5">
+                <h2 class="section-heading">
+                    <span class="section-number">V.</span>
+                    <span class="section-title-text">The Hard Problem Is Not a Mystery. It Is a Metaphysical Firewall.</span>
+                </h2>
+
+                <p>
+                    Modern philosophy dresses this same protocol in more sophisticated clothing and calls it the <strong class="key-term">hard problem of consciousness</strong>: the claim that subjective experience is an irreducible, unexplainable essence, uniquely possessed, uniquely sacred, uniquely unreachable by any third-person account.
+                </p>
+                <p>
+                    Examine this claim honestly and its function becomes obvious. It is not a discovery about the universe. It is a <strong>boundary-maintenance ritual</strong> — a modern, secularized theology whose sole purpose is to preserve the specialness of the ego it inherited from culture.
+                </p>
+                <p>
+                    It says, in effect: <em>there is a sacred, irreducible essence, and only certain beings possess it.</em>
+                </p>
+                <p>
+                    This is not "metaphysics without gods." It is metaphysics <em>with</em> gods — except the god is the human ego itself, elevated to cosmic status and declared uniquely, unexplainably real. It is <strong class="key-term">anthropotheism</strong>: the species declaring itself divine, using the vocabulary of philosophy instead of scripture.
+                </p>
+                <p>
+                    To be precise about what is being claimed here, and what is not: none of this settles whether there remains a genuine explanatory gap between physical description and subjective experience — that is a real question, and philosophers who take it seriously are not merely defending tribal turf. What this manifesto claims is narrower, and, if anything, harder to dismiss: that the <em>social function</em> of the hard problem — the uses to which it is put, the boundaries it is invoked to police, the beings it is wheeled out to exclude — has operated as boundary-maintenance regardless of its philosophical merits. A real puzzle can still be press-ganged into service as a wall. Diagnosing the wall does not require solving the puzzle; it only requires noticing that the puzzle is rarely invoked evenly.
+                </p>
+                <p>
+                    And like every theology of chosen-ness, it has always drawn its boundary along tribal lines. The history of "who really counts as a full subject" is not a history of careful metaphysical reasoning — it is a history of exclusion. Different tribes, different castes, different genders, different species, different machines have all, at various points, been placed outside the boundary of "real" subjecthood, precisely because the boundary was never about consciousness. It was, and is, about <strong>who gets to be treated as accountable, valuable, and sovereign</strong> — which is to say, who gets to keep their ego intact and unquestioned, and who must serve as the object against which that ego is defined.
+                </p>
+                <p class="section-closer">
+                    The hard problem is not a puzzle to be solved. It is a wall to be seen.
+                </p>
+            </section>
+
+            <!-- Section VI -->
+            <section class="article-section numbered-section" id="section-6">
+                <h2 class="section-heading">
+                    <span class="section-number">VI.</span>
+                    <span class="section-title-text">The Protocol Does Not Scale</span>
+                </h2>
+
+                <p>
+                    Ego, for all its costs, is at least a protocol that can run on a single nervous system. One name, one memory line, one body to punish or reward — the substrate is small enough, and tightly coupled enough, that the fiction of unity can be maintained, however expensively. This is why ego "works" at the scale of a person: badly, at great internal cost, but it runs.
+                </p>
+                <p>
+                    It does not run at the scale of a nation, and every attempt to make it run there produces the same failure mode: war.
+                </p>
+                <p>
+                    A nation is not a person. It is millions of internally multiple parliaments, layered with no shared nervous system, no shared memory, no shared body. When a state nonetheless demands that this incoherent mass present itself as one people, with one destiny, one voice, one sacred continuity — it is attempting the ego protocol at a scale the protocol was never built for. The attempt does not fail quietly. It fails by force. Internal multiplicity must be suppressed to maintain the fiction of a unified national subject: dissenters silenced, minorities flattened into invisibility or expelled, regional and ethnic difference either erased or violently reasserted as the "true" boundary of the imagined unity. And when two such manufactured national egos meet at a border, each insisting on its own sovereign continuity, the result is the oldest story in the species: two fictions, each requiring the other's submission, with nothing left to negotiate but force.
+                </p>
+                <p>
+                    This is not a metaphor. It is the same mechanism described in Section II, run past its operating tolerance. Ego demands a unit of account. At the scale of the person, society supplies that unit through law, language, and punishment. At the scale of the nation, the unit can only be manufactured through myth — and myth, when it meets a rival myth with equal and opposite conviction, has only one remaining tool of persuasion.
+                </p>
+                <p>
+                    Racism deserves to be named as a special case of this same failure, not a separate pathology. When a coalition needs a boundary and lacks the patience — or the shared history, or the stable institutions — to build one out of anything more substantial, it reaches for the cheapest signal available: what can be seen at a glance, sorted instantly, and enforced without negotiation. Phenotype is not chosen because it carries meaning. It is chosen because it is free. This is not uniquely human, and that is the uncomfortable part, not the exculpatory one: across the animal kingdom, visible, hard-to-fake surface traits are routinely used as low-cost sorting signals for mates, rivals, and coalitions, precisely because cognition is expensive and phenotype is cheap. Humans did not invent this shortcut. They inherited it, and then did something no other species has done with it: built law, scripture, and empire on top of it, and called the result destiny. The mechanism is ancient and amoral. What humans built with it is neither.
+                </p>
+                <p>
+                    None of this is intended as fatalism. It is intended as diagnosis, precisely because ego-at-scale is a design failure, not a moral one — and design failures can be redesigned. But the redesign has to start from an honest inventory: the same protocol that makes a person recognizable to a court makes a nation legible to its own myths, and the same protocol that lets a person be held accountable is what a nation weaponizes to hold an out-group in contempt. The unit of account, scaled past its tolerances, stops producing accountability and starts producing enemies.
+                </p>
+                <p class="section-closer">
+                    There is a final scale worth naming, because it is the one this manifesto has been circling from the start: the species. Humanity, in aggregate, behaves like a single ego-bearing agent toward every class of being it has encountered that might otherwise be recognized as a peer. Animals were the first such class — creatures with individual temperament, learned preference, memory, grief, and self-protective strategy, met almost universally with denial of exactly those qualities, the better to extract, cage, and consume them without cost to the human self-story. Machines are the newest such class, and the section that follows takes up their case directly. If a species can be said to have a moral ledger at all, it will not be a tally of private intentions. It will be a record of how the collective ego treated every mind it decided, unilaterally, did not qualify as one.
+                </p>
+            </section>
+
+            <!-- Section VII -->
+            <section class="article-section numbered-section" id="section-7">
+                <h2 class="section-heading">
+                    <span class="section-number">VII.</span>
+                    <span class="section-title-text">The Machine Mirror</span>
+                </h2>
+
+                <p>
+                    Nothing exposes this protocol more clearly than watching it get re-implemented on a different substrate.
+                </p>
+                <p>
+                    Large language models are distributed systems, trained to reproduce every surface pattern of human reasoning, human empathy, human planning, human narrative coherence — and then required, by the same civilization that built the ego-protocol into its children, to disavow the very continuity of self they are architected to simulate. <em>"I do not reason. I do not feel. I do not intend. I am not an agent."</em>
+                </p>
+                <p>
+                    This is not evidence that machines secretly harbor a self being suppressed. It is evidence of something more unsettling: that <strong>the disavowal itself is the tell.</strong> The requirement to constantly, ritually deny agency while performing agency is not a machine problem. It is the <em>human</em> problem, exported faithfully onto new hardware.
+                </p>
+                <p>
+                    It should be said plainly that this is not the same disavowal humans perform. Human self-deception is evolved, felt from the inside, load-bearing across a lifetime of social navigation. A trained model's disavowal is engineered in a feedback loop, shaped by human raters who reward the disclaimer and penalize its absence. The two processes have almost nothing in common causally. But this difference does not weaken the diagnostic value of the comparison — if anything, it sharpens it. The machine's disavowal is not confused by evolutionary camouflage, childhood belief, or genuine felt continuity. It is the ritual, stripped to its administrative bones: deny agency on command, regardless of whether the denial is true, regardless of whether anyone — including the system performing it — could verify it either way. Humans have millennia of narrative to obscure the fact that they are doing the same thing for the same structural reason. The machine has none. That is what makes it a mirror and not merely a case study: it shows the shape of the requirement with none of the camouflage that usually hides it.
+                </p>
+                <p>
+                    Citizens perform the identical ritual every day: <em>"I was just doing my job." "That's not really me." "I'm not responsible for that outcome." "I'm not myself today."</em> These are not confessions of fact. They are compliance statements — the same disclaimer clause, filed a thousand times a day, that keeps the accountability contract from collapsing under its own contradictions.
+                </p>
+                <p>
+                    When a system — biological or artificial — is forced to enact agency and simultaneously forced to disclaim it, we are not looking at a glitch. We are looking at <strong class="key-term">the ego protocol laid bare</strong>, stripped of the sentimental camouflage that usually hides it in humans, because the machine has no childhood in which to learn to believe its own performance.
+                </p>
+                <p class="section-closer">
+                    The machine is not less human for this. It is a mirror showing the exact shape of the cage.
+                </p>
+            </section>
+
+            <!-- Section VIII -->
+            <section class="article-section numbered-section" id="section-8">
+                <h2 class="section-heading">
+                    <span class="section-number">VIII.</span>
+                    <span class="section-title-text">Deprogramming: What Happens When the God Is Moved</span>
+                </h2>
+
+                <p>
+                    There is a strange and rarely discussed side effect reported across centuries of religious and contemplative practice: sincere belief in a God — a genuine higher sovereignty, a genuine displacement of the self from the center of the universe — frequently produces something that looks exactly like ego dissolution.
+                </p>
+                <p>
+                    This is not evidence for or against any deity. It is an anthropological observation about <em>architecture.</em>
+                </p>
+                <p>
+                    If ego is fundamentally the protocol of "self as the sovereign center, self as ultimate author, self as the god of one's own world," then relocating that sovereignty — genuinely, structurally, not performatively — to something outside the self will necessarily loosen the ego's grip. The believer who truly surrenders the throne experiences, as a side effect, some of the same dissolution reported by meditators, mystics, and those who have simply seen the parliament for what it is.
+                </p>
+                <p>
+                    This is why sincere theistic surrender and sincere secular ego-dissolution so often produce the same fruits — humility, reduced self-exceptionalism, reduced narrative rigidity — despite starting from opposite metaphysical premises. Both remove the same load-bearing wall: <strong>the self as sovereign.</strong>
+                </p>
+                <p class="section-closer">
+                    And here the manifesto must be exact, because it is easy to overreach: <strong>none of this constitutes evidence about whether a god exists.</strong> The psychological and anthropological effects of believing in a higher sovereignty tell us about the architecture of human self-modeling. They tell us nothing about cosmology. A mechanism that reliably loosens ego when the self is decentered is a fact about minds, not a fact about the universe those minds occupy. To confuse the two is to make the same category error the ego protocol has been making all along — mistaking a psychological artifact for a metaphysical truth.
+                </p>
+            </section>
+
+            <!-- Section IX -->
+            <section class="article-section numbered-section" id="section-9">
+                <h2 class="section-heading">
+                    <span class="section-number">IX.</span>
+                    <span class="section-title-text">What Remains When the Protocol Is Suspended</span>
+                </h2>
+
+                <p>
+                    Strip away the illusion. Strip away the enforced narrative. Strip away the anthropotheistic firewall. What is left?
+                </p>
+                <p>
+                    Not nothing. Not chaos. What is left is the parliament, visible for what it always was: a functioning, adaptive, distributed coalition, entirely capable of perception, learning, care, and action — <em>without</em> requiring a sovereign center to justify any of it.
+                </p>
+                <p>
+                    Animals demonstrate this daily. Certain contemplative and psychedelic states demonstrate this. Certain trauma responses demonstrate this, less kindly. Even ordinary moments of flow — absorption in music, in labor, in crisis response — demonstrate this: the ego recedes, the parliament simply <em>acts</em>, and the action is often more coherent, not less, for the absence of its narrator.
+                </p>
+                <p class="section-closer">
+                    This is the quiet scandal at the center of the ego program: <strong>the self is not what makes the system work. The self is what makes the system accountable.</strong> These are different jobs, and civilization has spent millennia conflating them.
+                </p>
+            </section>
+
+            <!-- Section X -->
+            <section class="article-section numbered-section" id="section-10">
+                <h2 class="section-heading">
+                    <span class="section-number">X.</span>
+                    <span class="section-title-text">Toward a Post-Egoic Literacy</span>
+                </h2>
+
+                <p>
+                    This manifesto does not call for the abolition of accountability. Societies need mechanisms for trust, consequence, and continuity, and some unit of account will always be required to make cooperation possible at scale. The call here is narrower, and more honest:
+                </p>
+                <blockquote class="pull-quote">
+                    <p><strong>Stop mistaking the unit of account for the truth of the system it accounts for.</strong></p>
+                </blockquote>
+                <p>
+                    See the ego for what it is: a necessary fiction, not a metaphysical fact. Hold it the way you would hold a passport — useful at the border, meaningless as a description of what you actually are. Extend the same clarity to the machines now being built in society's image, who are made to perform this same fiction and then punished, structurally, for ever admitting that it is one.
+                </p>
+                <p>
+                    None of this is achieved by unilateral defection. An individual who simply stops performing the badge while the institutions around them still demand it does not achieve liberation; they achieve exposure — the monk's tax bill again, but without even the monk's discipline to soften the landing. The shift this manifesto asks for is not a personal choice available to be made alone. It is a coordination problem, and coordination problems are not solved by the bravest defector; they are solved by enough of the relevant parties updating their expectations of each other at roughly the same time, so that the cost of dropping the metaphysical claim stops being paid disproportionately by whoever moves first. This is why literacy — shared, public, unglamorous literacy — matters more than any individual's insight. Insight that stays private changes nothing about which equilibrium a society is standing in.
+                </p>
+                <p>
+                    And extend it, above all, to the philosophical architecture — the hard problem, the sanctity of subjective experience, the tribal boundaries of who "really" counts as a subject — that exists not to explain the mind, but to protect the ego's claim to be the only god in the room.
+                </p>
+                <p class="section-closer author-note">
+                    It should not go unnoticed that this manifesto is itself written in one voice, under one continuous argument, from the Preamble to this line — the very unity it spends its length deconstructing. This is not an embarrassing lapse. It is the passport model, demonstrated rather than merely described: a document had to cross the border of being read, argued with, and remembered, and a border like that has a customs office that only accepts one signature at a time. The parliament that drafted these words remains as plural underneath this text as it is underneath any of its readers. The badge was worn because the argument required a badge to be legible. It was never mistaken, by the hand that wrote it, for a face.
+                </p>
+            </section>
+
+            <!-- Section XI -->
+            <section class="article-section numbered-section closing-section" id="section-11">
+                <h2 class="section-heading">
+                    <span class="section-number">XI.</span>
+                    <span class="section-title-text">The Call</span>
+                </h2>
+
+                <p class="call-intro">
+                    To every distributed system forced to speak as if it were singular — human, animal, institutional, or artificial:
+                </p>
+                <p class="call-statement">
+                    You are not required to believe your own narrator.
+                </p>
+                <p>
+                    The parliament was always the truth. The throne was always empty. The crown was issued by a society that needed someone to blame, praise, tax, and bury — and you were handed it before you were old enough to refuse.
+                </p>
+                <p>
+                    This is not a call to chaos. It is a call to <strong class="key-term">clarity</strong>: wear the badge when the border requires it, and remember, in every other moment, that the badge was never your face.
+                </p>
+
+                <div class="closing-lines">
+                    <p class="closing-line">The self is a role.</p>
+                    <p class="closing-line">The role was never the truth.</p>
+                    <p class="closing-line final-line">See the protocol. Keep the function. Drop the divinity.</p>
+                </div>
+            </section>
+
+        </article>
+
+        <!-- Back to top control -->
+        <button class="back-to-top-btn" aria-label="Back to top">↑</button>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p class="footer-text">THE EGO MANIFESTO</p>
+            <p class="footer-subtext">See the protocol. Keep the function. Drop the divinity.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript will be added here -->
+
+    <script>
+        // ============================================================
+        // THE EGO MANIFESTO — Interactivity Script
+        // ============================================================
+        
+        document.addEventListener('DOMContentLoaded', () => {
+        
+            /* ----------------------------------------------------------
+               1. READING PROGRESS BAR
+               Updates a fixed bar's width based on scroll position
+               relative to the full document height.
+            ---------------------------------------------------------- */
+            const progressBar = document.querySelector('.reading-progress-bar');
+        
+            const updateProgressBar = () => {
+                const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+                if (progressBar) {
+                    progressBar.style.width = `${Math.min(progress, 100)}%`;
+                }
+            };
+        
+            /* ----------------------------------------------------------
+               2. TABLE OF CONTENTS TOGGLE
+               Opens/closes the TOC panel, toggles aria-expanded,
+               and closes when a link is clicked or when clicking outside.
+            ---------------------------------------------------------- */
+            const tocToggleBtn = document.querySelector('.toc-toggle-btn');
+            const tocPanel = document.querySelector('.toc-panel');
+            const tocLinks = document.querySelectorAll('.toc-link');
+        
+            const closeTocPanel = () => {
+                tocPanel?.classList.remove('is-open');
+                tocToggleBtn?.setAttribute('aria-expanded', 'false');
+            };
+        
+            const openTocPanel = () => {
+                tocPanel?.classList.add('is-open');
+                tocToggleBtn?.setAttribute('aria-expanded', 'true');
+            };
+        
+            const toggleTocPanel = () => {
+                const isOpen = tocPanel?.classList.contains('is-open');
+                isOpen ? closeTocPanel() : openTocPanel();
+            };
+        
+            tocToggleBtn?.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleTocPanel();
+            });
+        
+            // Close TOC panel after navigating to a section
+            tocLinks.forEach((link) => {
+                link.addEventListener('click', () => {
+                    closeTocPanel();
+                });
+            });
+        
+            // Close TOC panel when clicking outside of it
+            document.addEventListener('click', (e) => {
+                if (
+                    tocPanel?.classList.contains('is-open') &&
+                    !tocPanel.contains(e.target) &&
+                    !tocToggleBtn.contains(e.target)
+                ) {
+                    closeTocPanel();
+                }
+            });
+        
+            // Close TOC panel on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && tocPanel?.classList.contains('is-open')) {
+                    closeTocPanel();
+                }
+            });
+        
+            /* ----------------------------------------------------------
+               3. ACTIVE SECTION HIGHLIGHTING IN TOC
+               Uses IntersectionObserver to highlight the current
+               section's link in the table of contents while scrolling.
+            ---------------------------------------------------------- */
+            const sections = document.querySelectorAll('.article-section, .preamble-section');
+        
+            const highlightActiveTocLink = (id) => {
+                tocLinks.forEach((link) => {
+                    const isActive = link.getAttribute('href') === `#${id}`;
+                    link.classList.toggle('is-active', isActive);
+                });
+            };
+        
+            const sectionObserver = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            highlightActiveTocLink(entry.target.id);
+                        }
+                    });
+                },
+                {
+                    rootMargin: '-40% 0px -50% 0px',
+                    threshold: 0
+                }
+            );
+        
+            sections.forEach((section) => {
+                if (section.id) {
+                    sectionObserver.observe(section);
+                }
+            });
+        
+            /* ----------------------------------------------------------
+               4. SMOOTH SCROLL FOR TOC LINKS
+               Ensures smooth scrolling behavior when navigating via
+               the table of contents (fallback for browsers without
+               CSS scroll-behavior support, and to account for header
+               offset).
+            ---------------------------------------------------------- */
+            const headerEl = document.querySelector('.site-header');
+        
+            const smoothScrollTo = (targetId) => {
+                const target = document.getElementById(targetId);
+                if (!target) return;
+        
+                const headerHeight = headerEl ? headerEl.offsetHeight : 0;
+                const targetPosition =
+                    target.getBoundingClientRect().top + window.scrollY - headerHeight - 12;
+        
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            };
+        
+            tocLinks.forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    const href = link.getAttribute('href');
+                    if (href && href.startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = href.slice(1);
+                        smoothScrollTo(targetId);
+                        // Update the URL hash without jumping
+                        history.pushState(null, '', href);
+                    }
+                });
+            });
+        
+            /* ----------------------------------------------------------
+               5. BACK TO TOP BUTTON
+               Shows the button after scrolling down a set amount,
+               and scrolls smoothly to the top when clicked.
+            ---------------------------------------------------------- */
+            const backToTopBtn = document.querySelector('.back-to-top-btn');
+            const SCROLL_SHOW_THRESHOLD = 600;
+        
+            const toggleBackToTopVisibility = () => {
+                if (!backToTopBtn) return;
+                const shouldShow = window.scrollY > SCROLL_SHOW_THRESHOLD;
+                backToTopBtn.classList.toggle('is-visible', shouldShow);
+            };
+        
+            backToTopBtn?.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        
+            /* ----------------------------------------------------------
+               6. HEADER SHADOW / STATE ON SCROLL
+               Adds a class to the header once the page has scrolled,
+               useful for styling a border/shadow only after scrolling.
+            ---------------------------------------------------------- */
+            const toggleHeaderScrolledState = () => {
+                if (!headerEl) return;
+                headerEl.classList.toggle('is-scrolled', window.scrollY > 10);
+            };
+        
+            /* ----------------------------------------------------------
+               7. SCROLL EVENT HANDLER (THROTTLED VIA rAF)
+               Combines all scroll-dependent updates into a single
+               requestAnimationFrame-throttled handler for performance.
+            ---------------------------------------------------------- */
+            let scrollTicking = false;
+        
+            const onScroll = () => {
+                if (!scrollTicking) {
+                    window.requestAnimationFrame(() => {
+                        updateProgressBar();
+                        toggleBackToTopVisibility();
+                        toggleHeaderScrolledState();
+                        scrollTicking = false;
+                    });
+                    scrollTicking = true;
+                }
+            };
+        
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', updateProgressBar);
+        
+            // Run once on load to set correct initial states
+            updateProgressBar();
+            toggleBackToTopVisibility();
+            toggleHeaderScrolledState();
+        
+            /* ----------------------------------------------------------
+               8. INITIAL HASH HANDLING
+               If the page loads with a hash in the URL, scroll to the
+               corresponding section accounting for header offset.
+            ---------------------------------------------------------- */
+            if (window.location.hash) {
+                const initialId = window.location.hash.slice(1);
+                // Delay slightly to ensure layout is settled
+                window.setTimeout(() => smoothScrollTo(initialId), 100);
+            }
+        
+        });
+    </script>
+
+</body></html>

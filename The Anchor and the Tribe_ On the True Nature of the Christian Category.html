@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<!-- saved from url=(0108)https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260820-8m2BEpHD/page.html?t=1787233192317 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Anchor and the Tribe: On the True Nature of the Christian Category</title>
+    <meta name="description" content="An essay on how naming a tribe creates a tribe, and how the universalist anchor of the earliest Christian teaching was displaced by an imperial identity system.">
+    <!-- CSS will be added here -->
+
+    <style>
+        /* ==========================================================================
+           Custom Properties / Design Tokens
+           ========================================================================== */
+        :root {
+            --color-bg: #faf7f2;
+            --color-bg-alt: #f1ece2;
+            --color-surface: #ffffff;
+            --color-text: #2a2622;
+            --color-text-muted: #6b6459;
+            --color-accent: #8a2e2e;
+            --color-accent-dark: #6e2222;
+            --color-accent-soft: #d9c3a3;
+            --color-border: #e2d9c9;
+            --color-link: #8a2e2e;
+        
+            --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        
+            --max-width-content: 42rem;
+            --max-width-wide: 60rem;
+        
+            --radius-sm: 4px;
+            --radius-md: 10px;
+        
+            --transition-fast: 0.18s ease;
+            --transition-medium: 0.32s ease;
+        
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.14);
+        }
+        
+        /* ==========================================================================
+           Reset / Base
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-serif);
+            color: var(--color-text);
+            background-color: var(--color-bg);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+        
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        
+        a {
+            color: var(--color-link);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+        
+        a:hover {
+            color: var(--color-accent-dark);
+            text-decoration: underline;
+        }
+        
+        ul, ol {
+            padding-left: 1.4rem;
+        }
+        
+        button {
+            font-family: inherit;
+            cursor: pointer;
+        }
+        
+        /* ==========================================================================
+           Reading Progress Bar
+           ========================================================================== */
+        .reading-progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0%;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-accent-soft));
+            z-index: 1000;
+            transition: width 0.1s linear;
+        }
+        
+        /* ==========================================================================
+           Site Header
+           ========================================================================== */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 500;
+            background-color: rgba(250, 247, 242, 0.92);
+            backdrop-filter: saturate(180%) blur(8px);
+            border-bottom: 1px solid var(--color-border);
+        }
+        
+        .header-inner {
+            max-width: var(--max-width-wide);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.9rem 1.5rem;
+        }
+        
+        .site-brand {
+            font-family: var(--font-sans);
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            color: var(--color-accent-dark);
+        }
+        
+        .header-nav {
+            display: flex;
+            align-items: center;
+        }
+        
+        .toc-toggle-btn {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: transparent;
+            border: 1px solid var(--color-border);
+            color: var(--color-text);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-sm);
+            transition: background-color var(--transition-fast), border-color var(--transition-fast);
+        }
+        
+        .toc-toggle-btn:hover {
+            background-color: var(--color-bg-alt);
+            border-color: var(--color-accent-soft);
+        }
+        
+        /* ==========================================================================
+           Table of Contents Sidebar
+           ========================================================================== */
+        .toc-sidebar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: min(320px, 85vw);
+            background-color: var(--color-surface);
+            box-shadow: var(--shadow-lg);
+            z-index: 1100;
+            transform: translateX(100%);
+            transition: transform var(--transition-medium);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .toc-sidebar.is-open {
+            transform: translateX(0);
+        }
+        
+        .toc-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+        
+        .toc-title {
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--color-accent-dark);
+        }
+        
+        .toc-close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            line-height: 1;
+            color: var(--color-text-muted);
+            transition: color var(--transition-fast);
+        }
+        
+        .toc-close-btn:hover {
+            color: var(--color-accent);
+        }
+        
+        .toc-list {
+            list-style: none;
+            padding: 1rem 0;
+            margin: 0;
+        }
+        
+        .toc-item {
+            border-bottom: 1px solid var(--color-bg-alt);
+        }
+        
+        .toc-link {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            font-family: var(--font-sans);
+            font-size: 0.92rem;
+            color: var(--color-text);
+            text-decoration: none;
+            transition: background-color var(--transition-fast), color var(--transition-fast), padding-left var(--transition-fast);
+        }
+        
+        .toc-link:hover {
+            background-color: var(--color-bg-alt);
+            color: var(--color-accent-dark);
+            padding-left: 1.85rem;
+            text-decoration: none;
+        }
+        
+        .toc-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(20, 16, 12, 0.4);
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity var(--transition-medium), visibility var(--transition-medium);
+        }
+        
+        .toc-overlay.is-visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* ==========================================================================
+           Hero Section
+           ========================================================================== */
+        .hero-section {
+            background: linear-gradient(160deg, var(--color-bg-alt) 0%, var(--color-bg) 60%);
+            border-bottom: 1px solid var(--color-border);
+            padding: 5rem 1.5rem 4rem;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: var(--max-width-content);
+            margin: 0 auto;
+        }
+        
+        .hero-eyebrow {
+            font-family: var(--font-sans);
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            font-size: 0.78rem;
+            color: var(--color-accent);
+            margin-bottom: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .hero-title {
+            font-size: clamp(2.2rem, 5vw, 3.4rem);
+            line-height: 1.15;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 0.85rem;
+            letter-spacing: -0.01em;
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+            color: var(--color-text-muted);
+            font-style: italic;
+            margin-bottom: 1.75rem;
+        }
+        
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .meta-item {
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--color-text-muted);
+            border: 1px solid var(--color-border);
+            padding: 0.35rem 0.9rem;
+            border-radius: 999px;
+        }
+        
+        /* ==========================================================================
+           Main / Article Layout
+           ========================================================================== */
+        .article-main {
+            position: relative;
+        }
+        
+        .article-content {
+            max-width: var(--max-width-content);
+            margin: 0 auto;
+            padding: 3rem 1.5rem 4rem;
+        }
+        
+        .content-section {
+            margin-bottom: 3rem;
+            scroll-margin-top: 5rem;
+        }
+        
+        .content-section p {
+            margin-bottom: 1.25rem;
+            font-size: 1.08rem;
+            color: var(--color-text);
+        }
+        
+        .intro-section .lede-paragraph {
+            font-size: 1.28rem;
+            line-height: 1.6;
+            color: var(--color-text);
+            font-weight: 400;
+        }
+        
+        .intro-section .lede-paragraph::first-letter {
+            font-size: 3.2rem;
+            line-height: 1;
+            float: left;
+            padding-right: 0.5rem;
+            color: var(--color-accent);
+            font-weight: 700;
+        }
+        
+        .section-heading {
+            font-size: clamp(1.5rem, 3vw, 1.9rem);
+            color: var(--color-accent-dark);
+            margin: 0 0 1.25rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 2px solid var(--color-accent-soft);
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+        
+        /* Emphasis / pull phrase */
+        .pull-phrase {
+            color: var(--color-accent-dark);
+        }
+        
+        /* ==========================================================================
+           Lists
+           ========================================================================== */
+        .posture-list,
+        .teachings-list,
+        .apocalyptic-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 1.5rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+        
+        .posture-item,
+        .apocalyptic-list li {
+            background-color: var(--color-surface);
+            border-left: 4px solid var(--color-accent-soft);
+            padding: 1rem 1.25rem;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-sm);
+            font-size: 1.02rem;
+            transition: border-color var(--transition-fast), transform var(--transition-fast);
+        }
+        
+        .posture-item:hover,
+        .apocalyptic-list li:hover {
+            border-left-color: var(--color-accent);
+            transform: translateX(2px);
+        }
+        
+        .teachings-list {
+            padding-left: 1.4rem;
+            list-style: disc;
+            gap: 0.6rem;
+        }
+        
+        .teachings-list li {
+            font-size: 1.05rem;
+        }
+        
+        .mechanism-steps {
+            margin: 1.5rem 0;
+            padding-left: 1.6rem;
+            counter-reset: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+        
+        .mechanism-steps li {
+            font-size: 1.05rem;
+            padding-left: 0.3rem;
+        }
+        
+        /* ==========================================================================
+           Figure / Image
+           ========================================================================== */
+        .article-figure {
+            margin: 2.25rem 0;
+            text-align: center;
+        }
+        
+        .figure-image {
+            width: 100%;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--color-border);
+        }
+        
+        .figure-caption {
+            margin-top: 0.85rem;
+            font-family: var(--font-sans);
+            font-size: 0.88rem;
+            color: var(--color-text-muted);
+            line-height: 1.5;
+            padding: 0 0.5rem;
+        }
+        
+        /* ==========================================================================
+           Closing Section
+           ========================================================================== */
+        .closing-section {
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
+        }
+        
+        .closing-paragraph {
+            font-style: italic;
+            color: var(--color-text-muted);
+            border-left: 3px solid var(--color-accent-soft);
+            padding-left: 1.25rem;
+        }
+        
+        /* ==========================================================================
+           Back to Top Button
+           ========================================================================== */
+        .back-to-top-btn {
+            position: fixed;
+            bottom: 1.75rem;
+            right: 1.75rem;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            border: none;
+            background-color: var(--color-accent);
+            color: #fff;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity var(--transition-medium), transform var(--transition-medium), background-color var(--transition-fast), visibility var(--transition-medium);
+            z-index: 400;
+        }
+        
+        .back-to-top-btn.is-visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .back-to-top-btn:hover {
+            background-color: var(--color-accent-dark);
+        }
+        
+        /* ==========================================================================
+           Site Footer
+           ========================================================================== */
+        .site-footer {
+            background-color: var(--color-bg-alt);
+            border-top: 1px solid var(--color-border);
+            padding: 2.5rem 1.5rem;
+        }
+        
+        .footer-inner {
+            max-width: var(--max-width-content);
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .footer-note {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            letter-spacing: 0.02em;
+        }
+        
+        /* ==========================================================================
+           Responsive Adjustments
+           ========================================================================== */
+        @media (max-width: 640px) {
+            .hero-section {
+                padding: 3.5rem 1.25rem 2.75rem;
+            }
+        
+            .article-content {
+                padding: 2rem 1.25rem 3rem;
+            }
+        
+            .content-section p,
+            .posture-item,
+            .apocalyptic-list li,
+            .teachings-list li,
+            .mechanism-steps li {
+                font-size: 1rem;
+            }
+        
+            .intro-section .lede-paragraph {
+                font-size: 1.15rem;
+            }
+        
+            .back-to-top-btn {
+                bottom: 1.1rem;
+                right: 1.1rem;
+                width: 2.6rem;
+                height: 2.6rem;
+            }
+        }
+        
+        @media (min-width: 641px) and (max-width: 900px) {
+            .article-content {
+                padding: 2.5rem 2rem 3.5rem;
+            }
+        }
+        
+        /* ==========================================================================
+           Print
+           ========================================================================== */
+        @media print {
+            .site-header,
+            .toc-sidebar,
+            .toc-overlay,
+            .back-to-top-btn,
+            .reading-progress-bar {
+                display: none !important;
+            }
+        }
+    </style>
+<script src="chrome-extension://ajdpfmkffanmkhejnopjppegokpogffp/assets/prompt.js"></script></head>
+<body>
+
+    <!-- Decorative reading-progress indicator, populated/animated via JS -->
+    <div class="reading-progress-bar" style="width: 0%;"></div>
+
+    <!-- Site-level header / masthead -->
+    <header class="site-header">
+        <div class="header-inner">
+            <span class="site-brand">Essays</span>
+            <nav class="header-nav">
+                <button class="toc-toggle-btn" type="button" aria-expanded="false" aria-controls="tocSidebar">
+                    Contents
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Slide-out / collapsible table of contents -->
+    <nav class="toc-sidebar" id="tocSidebar" aria-label="Table of contents">
+        <div class="toc-header">
+            <h2 class="toc-title">Contents</h2>
+            <button class="toc-close-btn" type="button" aria-label="Close table of contents">×</button>
+        </div>
+        <ol class="toc-list">
+            <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260820-8m2BEpHD/page.html?t=1787233192317#three-uses-of-one-word">Three Uses of One Word</a></li>
+            <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260820-8m2BEpHD/page.html?t=1787233192317#naming-as-the-origin-of-the-tribe">Naming as the Origin of the Tribe</a></li>
+            <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260820-8m2BEpHD/page.html?t=1787233192317#the-original-anchor">The Original Anchor: An Anti-Tribal Teaching</a></li>
+            <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260820-8m2BEpHD/page.html?t=1787233192317#how-rome-cut-the-tether">How Rome Cut the Tether</a></li>
+            <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260820-8m2BEpHD/page.html?t=1787233192317#every-later-tradition">Every Later Tradition Inherits Rome's Anchor</a></li>
+            <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260820-8m2BEpHD/page.html?t=1787233192317#the-confession-clause">The Confession Clause</a></li>
+            <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260820-8m2BEpHD/page.html?t=1787233192317#the-clearest-test-case">The Clearest Test Case: A Funeral Protest</a></li>
+            <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260820-8m2BEpHD/page.html?t=1787233192317#mass-delusion">What This Means for the Word "Delusional"</a></li>
+            <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260820-8m2BEpHD/page.html?t=1787233192317#failure-mode-ancients-diagnosed">A Failure Mode the Ancients Already Diagnosed</a></li>
+            <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260820-8m2BEpHD/page.html?t=1787233192317#the-countercurrent">The Countercurrent That Never Fully Drowned</a></li>
+            <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260820-8m2BEpHD/page.html?t=1787233192317#the-fracture-still-running">The Fracture Still Running</a></li>
+        </ol>
+    </nav>
+    <!-- Overlay used to dim/close sidebar on mobile, toggled via JS -->
+    <div class="toc-overlay"></div>
+
+    <!-- Main article wrapper -->
+    <main class="article-main">
+
+        <!-- Hero / title section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <p class="hero-eyebrow">Religion &amp; Empire — A Structural Reading</p>
+                <h1 class="hero-title">The Anchor and the Tribe</h1>
+                <p class="hero-subtitle">On the True Nature of the Christian Category</p>
+                <div class="hero-meta">
+                    <span class="meta-item reading-time">~ 20 min read</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Article body -->
+        <article class="article-content">
+
+            <!-- Opening / framing section -->
+            <section class="content-section intro-section" id="intro">
+                <p class="lede-paragraph">
+                    There is a story that surfaces every so often, in one form or another: Palestinian Christian
+                    families in the West Bank, pressured by Israeli settlers to leave land their communities have
+                    occupied for generations, in a context widely described as encompassing both genocide and
+                    ecocide. On its surface, this is a story about geopolitics and suffering. But sit with it for a
+                    moment, and it becomes something else as well: a story that quietly forces a contest over the
+                    definition of a word. Because the moment you ask what obligation, if any, is owed to these
+                    families, you are forced to answer a prior question — what is the word "Christian" actually
+                    <em>for</em>?
+                </p>
+                <p>
+                    This is not a side issue. It is the whole issue. And once the mechanism is visible, it explains
+                    not just this one story but the entire two-thousand-year arc of the religion itself.
+                </p>
+            </section>
+
+            <!-- Section: Three Uses of One Word -->
+            <section class="content-section" id="three-uses-of-one-word">
+                <h2 class="section-heading">Three Uses of One Word</h2>
+                <p>
+                    Consider three postures a person might take toward a story like this, each one reaching for the
+                    word "Christian" and using it differently, even though none of them are actually disagreeing
+                    about whether displaced families deserve compassion. They are disagreeing about what the word is
+                    doing in the sentence.
+                </p>
+                <ul class="posture-list">
+                    <li class="posture-item">
+                        <strong>De-emphasizer.</strong> Christian identity is invoked only to be set aside —
+                        “as a Christian, it shouldn't even matter” — because the real category
+                        doing the moral work is <em>humanity</em>, not <em>Christianity</em>. This is the imago Dei
+                        move: universal dignity prior to, and independent of, tribal membership.
+                    </li>
+                    <li class="posture-item">
+                        <strong>Leveling device.</strong> All people are equal; hierarchy itself is a spiritual
+                        defect, and anyone who asserts otherwise has failed some basic moral test. This is adjacent
+                        to the first but adds teeth — moral condemnation of anyone who claims superiority.
+                    </li>
+                    <li class="posture-item">
+                        <strong>Membership test.</strong> Christian identity becomes conditional, something a person
+                        can be expelled from for holding the wrong view on the matter. Belonging is tied to
+                        conformity, not to compassion.
+                    </li>
+                </ul>
+
+                <!-- Key illustrative figure -->
+                <figure class="article-figure">
+                    <img class="figure-image" src="./The Anchor and the Tribe_ On the True Nature of the Christian Category_files/three_postures_of_christian_identity.png" alt="Three distinct uses of the word &#39;Christian&#39; — as a de-emphasizer, a leveling device, and a membership test — each answering a different unspoken question about identity." loading="lazy">
+                    <figcaption class="figure-caption">
+                        Three distinct uses of the word "Christian" — as a de-emphasizer, a leveling device,
+                        and a membership test — each answering a different unspoken question about identity.
+                    </figcaption>
+                </figure>
+
+                <p>
+                    Three different answers to three different unspoken questions: Is Christianity a moral stance? A
+                    community? A tribal identity? Each posture quietly picks one, and any conversation that mixes them
+                    will feel like people talking past each other — because they are answering different
+                    questions while believing they're answering the same one.
+                </p>
+                <p>
+                    The conflict ignites specifically around Palestinian Christians because that topic forces a
+                    genuine contradiction to the surface. American Christian identity, in particular, has been built
+                    to hold together three things that don't actually cohere: universal compassion for all suffering
+                    humans, tribal loyalty to "our people," and political alignment with the state of Israel.
+                    Settlers pressuring Christian families out of the West Bank detonates the usual narrative in
+                    which "Israel" and "Christian ally" sit comfortably in the same sentence. When the narrative
+                    destabilizes, people reach for whatever identity tool restores their sense of coherence. That
+                    reach is what produces the disproportionate tension whenever this story comes up at all.
+                </p>
+            </section>
+
+            <!-- Section: Naming as the Origin of the Tribe -->
+            <section class="content-section" id="naming-as-the-origin-of-the-tribe">
+                <h2 class="section-heading">Naming as the Origin of the Tribe</h2>
+                <p>
+                    Here is the mechanism underneath all of it: <strong class="pull-phrase">naming a tribe is what
+                    creates the tribe.</strong>
+                </p>
+                <p>
+                    A tribe is not a group of people who happen to share a belief. A tribe is a boundary condition.
+                    Before anyone says "real Christians are..." or "you don't belong in the Christian community,"
+                    there is no perimeter — there are simply people, ideas, and behaviors. The moment someone
+                    speaks the name as a boundary, a perimeter snaps into existence: inside and outside, membership
+                    and exile, obligation and exclusion. This is not a description of a preexisting fact. It is a
+                    performative act. Naming doesn't report a category; it manufactures one.
+                </p>
+                <p>
+                    Before the naming, the <em>anchor</em> — the thing all the language is supposed to be in
+                    service of — is something like: shared humanity, shared suffering, shared dignity, a moral
+                    obligation that doesn't check membership cards. This is the universalist frame, and it is,
+                    historically, the oldest Christian frame there is.
+                </p>
+                <p>
+                    After the naming, the anchor changes. Universalism gets quietly replaced by membership.
+                    Compassion gets replaced by loyalty. Moral obligation gets replaced by in-group obligation. The
+                    tether to the original anchor doesn't fray — it <em>snaps</em>, cleanly, at the exact
+                    moment the tribal name is invoked as a boundary rather than a description.
+                </p>
+                <p>
+                    This is why a story like the one about the West Bank generates tension out of all proportion to
+                    its content. Nobody engaging with it is actually debating whether displaced families deserve
+                    help. They are debating which anchor gets to operate — the universal one or the tribal one
+                    — and the moment the tribal name enters the sentence as a boundary, the universal anchor is
+                    cut loose.
+                </p>
+            </section>
+
+            <!-- Section: The Original Anchor -->
+            <section class="content-section" id="the-original-anchor">
+                <h2 class="section-heading">The Original Anchor: An Anti-Tribal Teaching</h2>
+                <p>
+                    What makes this especially sharp is that the anchor being cut loose was, by any honest historical
+                    reading, a fairly revolutionary one. The earliest Jesus movement was not a religion in the modern
+                    institutional sense. It was a behavioral phenotype — a way of living that happened to
+                    cohere around a set of teachings that were, structurally, anti-tribal from the ground up:
+                </p>
+                <ul class="teachings-list">
+                    <li><em>Love your enemies</em> — a direct refusal of tribal sorting.</li>
+                    <li><em>The last shall be first</em> — a direct inversion of hierarchy.</li>
+                    <li><em>Call no man father</em> — a refusal of institutional authority.</li>
+                    <li><em>Do not resist an evil person</em> — a refusal of the logic of retaliatory violence.</li>
+                    <li><em>Whatever you do to the least of these, you do to me</em> — a collapse of the distinction between insider and outsider suffering.</li>
+                </ul>
+                <p>
+                    None of this is designed to run an institution. It cannot administer an empire, staff a
+                    bureaucracy, enforce a hierarchy, or maintain a boundary. It is designed to <em>dissolve</em>
+                    those things. This is precisely why the earliest Christians — the ones who were, in
+                    significant numbers, willingly martyred — were such a different breed from anything that
+                    came after. They were not merely believers holding an opinion. They were practitioners of a
+                    counter-imperial ethic that made them structurally incompatible with Rome. Rome did not kill them
+                    primarily because of a theological disagreement; Rome killed them because they refused,
+                    categorically, to participate in the empire's violence, its hierarchies, its purity codes, its
+                    economic domination. Their martyrdom was not masochism. It was the logical terminus of refusing
+                    to play the imperial game at all.
+                </p>
+            </section>
+
+            <!-- Section: How Rome Cut the Tether -->
+            <section class="content-section" id="how-rome-cut-the-tether">
+                <h2 class="section-heading">How Rome Cut the Tether</h2>
+                <p>
+                    Empires cannot operate without tribes. Rome's entire administrative logic depended on clear
+                    categories, clear hierarchies, clear insiders and outsiders, clear loyalty structures. A
+                    universalist moral movement that dissolved tribal boundaries was, structurally, a threat to the
+                    imperial operating system — right up until Rome discovered it could do something more
+                    useful than destroy the movement: it could convert it.
+                </p>
+                <p>
+                    The mechanism of that conversion is worth stating plainly, because it is the single most
+                    consequential move in the religion's history:
+                </p>
+                <ol class="mechanism-steps">
+                    <li>Take a universalist moral system.</li>
+                    <li>Name it as a tribe ("Christian").</li>
+                    <li>Define membership — baptism, creed, obedience.</li>
+                    <li>Centralize authority — bishops, councils, eventually the emperor himself.</li>
+                    <li>Fuse moral virtue with group identity.</li>
+                    <li>Externalize all vice as "not truly Christian."</li>
+                    <li>Use the resulting tribe to unify and administer the empire.</li>
+                </ol>
+                <p>
+                    This is anchor-replacement, executed at civilizational scale. Universalism was replaced by
+                    tribal membership. Teachings were replaced by doctrine. Compassion was replaced by loyalty.
+                    Revolution was replaced by institution. Rome did not destroy Christianity — that would have
+                    been the crude move. Rome did something far more effective: it converted Christianity into a
+                    Roman object, retaining the name and the vocabulary while inverting the operating system
+                    underneath.
+                </p>
+                <p>
+                    It would be a mistake, though, to picture this as a single clean snap on a single afternoon in
+                    the year 313. Boundary-drawing did not wait for Constantine's baptism to appear in the historical
+                    record — Paul himself named rivals as false teachers within a generation of the
+                    crucifixion, the earliest communities argued fiercely over who could be readmitted after lapsing
+                    under persecution, and the Donatist controversy that convulsed North Africa shows a rigorist
+                    faction hardening its purity boundary <em>against</em> the emperor, not because of him. What
+                    Constantine's conversion changed was not the mere existence of boundaries — any community
+                    negotiating identity draws some lines — but their <em>function and their reach</em>. Before
+                    Nicaea, drawing a boundary wrongly could get a believer exiled from a congregation. After Nicaea,
+                    it could get a believer exiled from the empire. The mechanism above did not invent tribalism out
+                    of nothing; it fused an already-present, containable tendency toward boundary-making with the
+                    enforcement apparatus of a state, which is what allowed a local, survivable temptation to become
+                    a civilizational operating system.
+                </p>
+                <p>
+                    Once the anchor became identity rather than teaching, the teachings themselves became optional
+                    — available for citation, useful for branding, but no longer load-bearing. A church could
+                    quote "blessed are the peacemakers" while blessing armies. It could quote "the last shall be
+                    first" while building rigid hierarchies. This is not hypocrisy in the simple sense; it is the
+                    predictable output of a system whose actual operating logic is imperial, wearing teachings as a
+                    decorative layer rather than running them as source code.
+                </p>
+            </section>
+
+            <!-- Section: Every Later Tradition Inherits Rome's Anchor -->
+            <section class="content-section" id="every-later-tradition">
+                <h2 class="section-heading">Every Later Tradition Inherits Rome's Anchor</h2>
+                <p>
+                    This is the uncomfortable part, and it's worth stating without softening it: the entire family of
+                    Christian churches — Catholic, Orthodox, Protestant, Evangelical, and everything downstream
+                    — inherits Rome's anchor, not Jesus's. Not because any particular believer is insincere,
+                    but because the institutional features every one of these traditions relies on are Roman
+                    features, not Jesus features: hierarchy, doctrine, tribal identity, boundary-policing,
+                    institutional survival logic, political entanglement. Jesus's teachings cannot run any of these
+                    structures. They were never designed to. They were designed to dissolve them.
+                </p>
+                <p>
+                    So when a modern institution — or a modern believer — says "we follow Jesus's
+                    teachings," the honest structural answer is: no, you are following a Romanized identity system
+                    that replaced those teachings with a boundary and a membership test almost from the moment of
+                    formation. This is not primarily a claim about anyone's sincerity. It is a claim about which
+                    operating system is actually running underneath the vocabulary. A person can genuinely,
+                    sincerely believe they are executing Jesus's teachings while actually executing loyalty-to-tribe,
+                    because the entire conceptual world they inherited was built by the post-Constantinian
+                    settlement, centuries after the original anchor was cut loose. They were never handed the
+                    original operating system. They were handed its Roman replacement, rebranded with the original
+                    name.
+                </p>
+            </section>
+
+            <!-- Section: The Confession Clause -->
+            <section class="content-section" id="the-confession-clause">
+                <h2 class="section-heading">The Confession Clause</h2>
+                <p>
+                    There is a piece of evidence for this built directly into the machinery of the largest Christian
+                    institution on Earth: confession. Confession is not proof that individual Christians secretly
+                    know, in some private guilty corner of themselves, that they are failing to follow Jesus. It is
+                    something more structurally revealing than that. Confession exists because the institution
+                    itself — not the individual, the <em>institution</em> — requires a mechanism to
+                    metabolize the permanent, built-in gap between the teachings it claims and the behavior its
+                    actual operating system produces.
+                </p>
+                <p>
+                    Jesus's teachings, applied without modification, cannot run a hierarchy, cannot run a
+                    state-aligned church, cannot run a doctrinal enforcement apparatus. The institution knows this,
+                    even if it never says so in those words. So it builds a ritual — regular, repeatable,
+                    normalized — for absorbing the mismatch. Confession is the pressure valve for a
+                    contradiction that is architectural, not personal. It does not exist because people occasionally
+                    sin. It exists because the system's ideal and the system's function were divorced from each
+                    other at the moment of institutionalization, and some ongoing mechanism was required to keep
+                    that divorce from being visible.
+                </p>
+                <p>
+                    This is why the mismatch is not merely a matter of individuals falling short of an agreed
+                    standard. The standard itself was never wired into the institution's operating logic. The
+                    institution runs on identity, hierarchy, and boundary; the teachings run on universalism,
+                    inversion of power, and the dissolution of boundary. Confession is the seam where those two
+                    systems are stitched together, repeatedly, forever, without either ever actually reconciling.
+                </p>
+            </section>
+
+            <!-- Section: Funeral Protest test case -->
+            <section class="content-section" id="the-clearest-test-case">
+                <h2 class="section-heading">The Clearest Test Case: A Funeral Protest</h2>
+                <p>
+                    If the abstraction feels slippery, there is a test case simple enough to settle it: is there any
+                    reading of Jesus's teachings under which protesting a funeral counts as following them?
+                </p>
+                <p>
+                    There isn't. Every relevant strand of the teaching runs the opposite direction. "Blessed are the
+                    peacemakers" forecloses turning grief into a battlefield. "Love your enemies" forecloses treating
+                    the newly dead — and their mourners — as enemies to be humiliated. "Do not resist an
+                    evil person" forecloses using confrontation as spectacle. "Whatever you do to the least of these,
+                    you do to me" forecloses treating any human being's death as an occasion for triumphant cruelty.
+                    There is no seam in the teaching through which a funeral protest can be threaded and called
+                    faithful execution of it.
+                </p>
+                <p>
+                    And yet such protests happen, under the same banner, invoking the same name. The resolution of
+                    that contradiction is not that the participants are lying, and it is not, strictly, that they are
+                    "delusional" in the clinical sense — though the word captures something real about the
+                    <em>result</em>: a belief that does not match reality, sincerely held, producing more harm rather
+                    than less. The more precise mechanism is that the identity system has fully overridden the
+                    ethical one. The tribal boundary — us, our doctrine, our politics, our nation — has
+                    become the operative anchor, and the teachings have been reduced to vocabulary deployed after
+                    the fact to justify what the tribal anchor already decided.
+                </p>
+                <p>
+                    This is the whole arc, condensed into a single scene: a system that markets itself by the name of
+                    a teacher whose entire program was the dissolution of tribal boundary, executed by an
+                    institutional machine whose entire program is the maintenance of tribal boundary. The teachings
+                    are not being betrayed by careless individuals. They are being structurally overridden by the
+                    architecture itself, and have been since a few centuries after the movement began.
+                </p>
+            </section>
+
+            <!-- Section: Mass Delusion -->
+            <section class="content-section" id="mass-delusion">
+                <h2 class="section-heading">What This Means for the Word "Delusional" — and Why the Answer Is Mass Delusion</h2>
+                <p>
+                    It's worth being precise here, because precision is the entire point of this analysis. Calling
+                    the mismatch "delusion" captures the <em>outcome</em> correctly — a sincere claim that does
+                    not match the observable behavior, producing more conflict rather than less. But it misattributes
+                    the <em>cause</em>, if you leave it at the level of the individual. The cause is not a failure of
+                    individual cognition. It is anchor displacement: an institutional system, assembled by empire,
+                    that took a universalist, anti-hierarchical, anti-violent teaching and rebuilt it as a tribal
+                    identity, membership structure, and loyalty test, while retaining the original name as branding.
+                </p>
+                <p>
+                    The people operating inside that system today did not choose the substitution. They inherited
+                    it, fully formed, seventeen centuries deep. Their sincerity is not in question. What's in
+                    question is whether the system they inherited is even capable, structurally, of producing the
+                    behavior the original teachings called for. The honest answer, most of the time, is no.
+                </p>
+                <p>
+                    So is this, then, a mass delusion? Yes — but precisely in the structural sense of that
+                    term, not the dismissive one. A delusion held by one person, unshared and self-generated, is a
+                    clinical matter. A delusion inherited by hundreds of millions of people, transmitted not through
+                    private psychosis but through catechesis, liturgy, upbringing, and institutional design,
+                    reproduced identically across seventeen centuries and dozens of denominations that otherwise
+                    disagree about almost everything else — that is a mass delusion in the fullest sense: a
+                    sincerely held belief, systematically manufactured and systematically re-manufactured by a
+                    structure whose actual operating function contradicts it. It is not billions of people
+                    independently hallucinating the same content. It is one anchor, displaced a single time at the
+                    moment of imperial conversion, and then faithfully re-inherited by every subsequent generation
+                    until the substitution itself became invisible — indistinguishable, from the inside, from
+                    the original.
+                </p>
+                <p>
+                    That is what makes it a mass delusion rather than a personal failing: its scale is
+                    civilizational, its transmission is institutional rather than psychological, and its persistence
+                    requires no individual to be dishonest, only for every individual to receive the substitute
+                    anchor already dressed in the original's clothes. The visible symptoms of that inherited mismatch
+                    are exactly the things that prompted this whole inquiry: an identity that can be invoked to expel
+                    rather than include, a moral category that dissolves under the pressure of any story that forces
+                    a real contradiction into view, and, in its most extreme form, a protest staged at a funeral in
+                    the name of a man who said blessed are the peacemakers.
+                </p>
+                <p>
+                    It is worth pausing on one point before turning to how the ancients themselves diagnosed this:
+                    the mechanism described here is not exclusive to Christianity. Any universalist project that
+                    scales far enough to touch state power — a revolutionary movement that seizes the state it
+                    once opposed, a human-rights internationalism absorbed into the foreign policy of the powers it
+                    was meant to check — faces the same pressure toward anchor displacement, the same
+                    temptation to let identity quietly replace practice. This essay concerns the Christian instance
+                    because it is the instance behind the story that opened it. But it is also, remarkably, an
+                    instance whose own foundational literature already contains a diagnosis of exactly this failure
+                    mode, written centuries before anyone had the vocabulary of "institutions" or "tribes" to name it
+                    directly.
+                </p>
+            </section>
+
+            <!-- Section: Ancients diagnosis / apocalyptic literature -->
+            <section class="content-section" id="failure-mode-ancients-diagnosed">
+                <h2 class="section-heading">A Failure Mode the Ancients Already Diagnosed</h2>
+                <p>
+                    If this feels like a modern diagnosis of an ancient problem, that's because it is only half
+                    right. The ancients were not naive about this pattern. Some of the very texts produced by the
+                    tradition itself — the apocalyptic literature embedded in Daniel, in the Synoptic
+                    apocalypses, in Revelation — were, read structurally rather than supernaturally, direct
+                    warnings about exactly this mechanism: a population convinced of its own righteousness while its
+                    institutions execute the inversion of that righteousness.
+                </p>
+                <p>
+                    This is worth taking seriously as a claim about genre, not doctrine. Apocalyptic literature is
+                    routinely misread as forecasting — a kind of predictive almanac of future catastrophe. But
+                    that misreading is itself an instance of the same substitution described above: content emptied
+                    of its structural meaning and repurposed as tribal branding, in this case eschatological
+                    branding rather than institutional branding. Read in its own context, apocalyptic writing was a
+                    genre of political and sociological critique, produced by communities living under, or just
+                    emerging from, imperial domination, and encoded in symbol because direct statement was not
+                    survivable.
+                </p>
+                <p>
+                    What it encodes, stripped of imagery, is a small set of claims that map with unnerving precision
+                    onto the mechanism already described:
+                </p>
+                <ul class="apocalyptic-list">
+                    <li>
+                        <strong>A mark, a name, a boundary.</strong> The "mark of the beast" is not a barcode
+                        prophecy. It is the ancient description of exactly the mechanism above: a tribal boundary
+                        imposed on a population, sorting people by allegiance rather than by conduct. Naming a
+                        tribe, marking membership, drawing a perimeter — the text is describing
+                        anchor-replacement using the only vocabulary available to a first-century audience.
+                    </li>
+                    <li>
+                        <strong>A beast that looks like a lamb.</strong> This image — power dressed in the
+                        appearance of gentleness — is as precise a description of institutional Christianity's
+                        inherited contradiction as has ever been written. A system that quotes "blessed are the
+                        peacemakers" while blessing armies is, structurally, a beast wearing a lamb's face. The
+                        ancients did not need modern institutional analysis to notice this; they built the image
+                        directly into the canon.
+                    </li>
+                    <li>
+                        <strong>Nations deceived, not individuals hallucinating.</strong> The apocalyptic texts
+                        consistently describe deception at the level of "the nations" or "the whole world," never as
+                        a private psychiatric event suffered by isolated individuals. This is the ancient equivalent
+                        of the distinction this essay has been drawing throughout: mass delusion is not billions of
+                        people independently malfunctioning. It is one displaced anchor, reproduced structurally
+                        across a population, exactly as the texts describe.
+                    </li>
+                    <li>
+                        <strong>A falling away that retains the name.</strong> The recurring warning about a "great
+                        falling away," or a church that has kept the form of devotion while denying its substance,
+                        is the ancient articulation of the graft this essay has been describing: the tree and the
+                        graft sharing one name, until the difference between them becomes invisible even to the
+                        people living inside it.
+                    </li>
+                </ul>
+                <p>
+                    None of this requires believing the texts are predictive. It only requires reading them as what
+                    they plainly are on their surface: sociological and political documents, written by people who
+                    had directly experienced what happens when a moral movement gets absorbed into an imperial
+                    order, trying to warn the communities that came after them that the absorption would look, from
+                    the inside, exactly like fidelity. That is the specific danger they were naming — not some
+                    future cataclysm, but a present and recurring one: a population sincerely certain of its own
+                    righteousness, executing, without any felt contradiction, the precise inversion of the thing it
+                    believes itself to be protecting.
+                </p>
+                <p>
+                    This is why the mechanism described earlier in this essay is not a novel discovery. It is a
+                    known failure mode, diagnosed inside the tradition's own foundational literature, using the
+                    descriptive tools available at the time — symbol, image, and apocalyptic narrative rather
+                    than institutional sociology. The ancients watched the first iteration of exactly this
+                    substitution happen to their own communities, under Rome, in real time, and left behind a
+                    warning about it in the only genre built to survive the empire's censors. That warning has been
+                    sitting inside the canon the entire time, mistaken for a countdown to the future when it was, all
+                    along, a diagnosis of the present.
+                </p>
+            </section>
+
+            <!-- Section: The Countercurrent -->
+            <section class="content-section" id="the-countercurrent">
+                <h2 class="section-heading">The Countercurrent That Never Fully Drowned</h2>
+                <p>
+                    If the graft had fully replaced the tree, this essay would be an impossibility — there
+                    would be no vantage point left inside the tradition from which to notice the substitution, let
+                    alone name it using categories the tradition's own founding texts supply. That the diagnosis can
+                    be made at all is itself evidence against the cleanest version of the claim. The universalist
+                    anchor was never entirely severed; it went underground, resurfaced, and asserted itself as a
+                    minority countercurrent in nearly every century since Constantine — persecuted,
+                    marginalized, and never institutionally dominant, but never fully extinguished either.
+                </p>
+                <p>
+                    Francis of Assisi renounced wealth and hierarchy to embrace the leper. The Radical Reformation
+                    — Anabaptists, Mennonites, and later Quakers — rejected the sword and the state
+                    church precisely on the grounds that the fused system had betrayed the Sermon on the Mount.
+                    Tolstoy read the Gospels without a priest's spectacles late in his life and found the same
+                    anti-tribal ethic this essay describes, then spent his final decades trying, however
+                    imperfectly, to live it. Kierkegaard, writing from inside the most comfortable and cultural
+                    Christendom in Europe, spent an entire authorship insisting that being a Christian was not a
+                    predicate one could inherit by birth in a Danish parish. Dietrich Bonhoeffer, Óscar Romero,
+                    and the liberation theologians who followed them found the universalist anchor sturdy enough to
+                    die for, under twentieth-century regimes that had every institutional incentive to keep the
+                    tribal anchor running smoothly. And today, the Kairos Palestine document and organizations like
+                    Sabeel make substantially this same argument from inside Palestinian Christian communities
+                    themselves, in explicitly theological rather than sociological language.
+                </p>
+                <p>
+                    None of this undoes the mechanism described above; it complicates it in the correct direction.
+                    Not a single clean rupture, severing a whole civilization from its origin for seventeen centuries
+                    without remainder — but a perpetual contest, the tribal anchor and the universal anchor
+                    wrestling inside the same name, in every generation, with the tribal anchor usually, but never
+                    completely, winning the institutional battle for resources, legitimacy, and state alignment. The
+                    mass delusion described earlier in this essay is real, and it is the dominant pattern. But it has
+                    never been the only pattern, and the fact that it has never been the only pattern is precisely
+                    what makes recovery of the original anchor a live possibility rather than mere nostalgia.
+                </p>
+            </section>
+
+            <!-- Closing section: The Fracture Still Running -->
+            <section class="content-section closing-section" id="the-fracture-still-running">
+                <h2 class="section-heading">The Fracture Still Running</h2>
+                <p>
+                    None of this is ancient history in any inert sense. It is a live fracture, and it is exactly what
+                    surfaces whenever a topic forces the contradiction into view — as it does when Christian
+                    families in the West Bank are pressured out of their homes by a regime many of their
+                    would-be co-religionists are politically aligned with. In that moment, two incompatible operating
+                    systems collide under the same name: the universalist anchor, which says suffering matters
+                    regardless of category, and the tribal anchor, which says loyalty to the group matters more than
+                    the suffering of anyone outside it.
+                </p>
+                <p>
+                    The early Christians, the ones who died rather than participate in imperial violence, would
+                    recognize the first. They would not recognize the second. The tragedy embedded in the phrase
+                    "Christian tribe" is that the tribe was never the point — it was the byproduct of an empire
+                    that needed one, grafted onto a movement that began, quite deliberately, as the refusal of
+                    exactly that. And the mass delusion is not that anyone chose the graft. It is that, seventeen
+                    centuries later, the graft and the tree still share one name, and almost no one alive was ever
+                    shown the difference.
+                </p>
+                <p class="closing-paragraph">
+                    There is a final trap worth naming, if only because this essay would otherwise walk directly into
+                    it: the temptation to turn this diagnosis into a new boundary — a quieter, more
+                    sophisticated membership test that sorts the world into those who see the graft and those still
+                    fooled by it. That would simply be the tribal anchor reasserting itself in intellectual dress,
+                    drawing a perimeter around "people who understand anchor displacement" instead of around "people
+                    who hold the correct creed." The only way to name this mechanism without repeating it is to hold
+                    the diagnosis open-handed — as an invitation back toward the universal anchor, extended to
+                    everyone still standing on either side of the tribal line, rather than as a fresh credential for
+                    the newly enlightened. The tree and the graft share one name. The task is not to win the argument
+                    about which of them is the real Christianity. It is to let the water reach the root again.
+                </p>
+            </section>
+
+        </article>
+
+        <!-- Back to top control, shown/hidden via JS on scroll -->
+        <button class="back-to-top-btn" type="button" aria-label="Back to top">↑</button>
+
+    </main>
+
+    <!-- Site-level footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p class="footer-note">
+                An essay on identity, empire, and the displacement of a universal anchor.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript will be added here -->
+
+    <script>
+        // ============================================================
+        // The Anchor and the Tribe — Interactivity
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', () => {
+        
+            /* ---------------------------------------------------------
+               Element references
+            --------------------------------------------------------- */
+            const progressBar   = document.querySelector('.reading-progress-bar');
+            const tocToggleBtn   = document.querySelector('.toc-toggle-btn');
+            const tocSidebar     = document.getElementById('tocSidebar');
+            const tocCloseBtn    = document.querySelector('.toc-close-btn');
+            const tocOverlay     = document.querySelector('.toc-overlay');
+            const tocLinks       = document.querySelectorAll('.toc-link');
+            const backToTopBtn   = document.querySelector('.back-to-top-btn');
+            const sections       = document.querySelectorAll('.content-section');
+            const readingTimeEl  = document.querySelector('.reading-time');
+            const header         = document.querySelector('.site-header');
+        
+            /* ---------------------------------------------------------
+               1. Reading progress bar
+               Updates width based on how far the user has scrolled
+               through the document.
+            --------------------------------------------------------- */
+            const updateReadingProgress = () => {
+                const scrollTop    = window.scrollY;
+                const docHeight    = document.documentElement.scrollHeight - window.innerHeight;
+                const progress     = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+                if (progressBar) {
+                    progressBar.style.width = `${Math.min(progress, 100)}%`;
+                }
+            };
+        
+            /* ---------------------------------------------------------
+               2. Table of Contents (sidebar) open/close
+            --------------------------------------------------------- */
+            const openToc = () => {
+                tocSidebar.classList.add('toc-open');
+                tocOverlay.classList.add('toc-overlay-visible');
+                tocToggleBtn.setAttribute('aria-expanded', 'true');
+                document.body.classList.add('toc-locked');
+            };
+        
+            const closeToc = () => {
+                tocSidebar.classList.remove('toc-open');
+                tocOverlay.classList.remove('toc-overlay-visible');
+                tocToggleBtn.setAttribute('aria-expanded', 'false');
+                document.body.classList.remove('toc-locked');
+            };
+        
+            const toggleToc = () => {
+                const isOpen = tocSidebar.classList.contains('toc-open');
+                isOpen ? closeToc() : openToc();
+            };
+        
+            if (tocToggleBtn) tocToggleBtn.addEventListener('click', toggleToc);
+            if (tocCloseBtn)  tocCloseBtn.addEventListener('click', closeToc);
+            if (tocOverlay)   tocOverlay.addEventListener('click', closeToc);
+        
+            // Close ToC after clicking a link (useful on mobile) and smooth-scroll
+            tocLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const targetId = link.getAttribute('href');
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        e.preventDefault();
+                        closeToc();
+                        // Delay scroll slightly so sidebar close animation doesn't jump content
+                        setTimeout(() => {
+                            targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 150);
+                    }
+                });
+            });
+        
+            // Close ToC with Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && tocSidebar.classList.contains('toc-open')) {
+                    closeToc();
+                }
+            });
+        
+            /* ---------------------------------------------------------
+               3. Back-to-top button
+               Show after scrolling down a bit; smooth scroll to top.
+            --------------------------------------------------------- */
+            const toggleBackToTop = () => {
+                if (window.scrollY > 600) {
+                    backToTopBtn.classList.add('back-to-top-visible');
+                } else {
+                    backToTopBtn.classList.remove('back-to-top-visible');
+                }
+            };
+        
+            if (backToTopBtn) {
+                backToTopBtn.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+        
+            /* ---------------------------------------------------------
+               4. Header shadow / condensed state on scroll
+            --------------------------------------------------------- */
+            const toggleHeaderState = () => {
+                if (window.scrollY > 20) {
+                    header.classList.add('site-header-scrolled');
+                } else {
+                    header.classList.remove('site-header-scrolled');
+                }
+            };
+        
+            /* ---------------------------------------------------------
+               5. Active section highlighting in the Table of Contents
+               Uses IntersectionObserver for efficient scroll-spy behavior.
+            --------------------------------------------------------- */
+            const highlightActiveTocLink = (id) => {
+                tocLinks.forEach(link => {
+                    const isActive = link.getAttribute('href') === `#${id}`;
+                    link.classList.toggle('toc-link-active', isActive);
+                });
+            };
+        
+            if ('IntersectionObserver' in window && sections.length) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '-40% 0px -55% 0px', // triggers roughly mid-viewport
+                    threshold: 0
+                };
+        
+                const sectionObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && entry.target.id) {
+                            highlightActiveTocLink(entry.target.id);
+                        }
+                    });
+                }, observerOptions);
+        
+                sections.forEach(section => {
+                    if (section.id) sectionObserver.observe(section);
+                });
+            }
+        
+            /* ---------------------------------------------------------
+               6. Estimated reading time calculation
+               Counts words in the article body and estimates minutes
+               at an average adult reading speed.
+            --------------------------------------------------------- */
+            const calculateReadingTime = () => {
+                const articleContent = document.querySelector('.article-content');
+                if (!articleContent || !readingTimeEl) return;
+        
+                const text = articleContent.textContent || '';
+                const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
+                const wordsPerMinute = 220;
+                const minutes = Math.max(1, Math.round(wordCount / wordsPerMinute));
+        
+                readingTimeEl.textContent = `~ ${minutes} min read`;
+            };
+        
+            /* ---------------------------------------------------------
+               7. Scroll event handling (throttled via requestAnimationFrame)
+            --------------------------------------------------------- */
+            let scrollTicking = false;
+        
+            const handleScroll = () => {
+                if (!scrollTicking) {
+                    requestAnimationFrame(() => {
+                        updateReadingProgress();
+                        toggleBackToTop();
+                        toggleHeaderState();
+                        scrollTicking = false;
+                    });
+                    scrollTicking = true;
+                }
+            };
+        
+            window.addEventListener('scroll', handleScroll, { passive: true });
+            window.addEventListener('resize', updateReadingProgress);
+        
+            /* ---------------------------------------------------------
+               8. Initialization
+            --------------------------------------------------------- */
+            calculateReadingTime();
+            updateReadingProgress();
+            toggleBackToTop();
+            toggleHeaderState();
+        });
+    </script>
+
+</body></html>

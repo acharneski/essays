@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Essays</title>
+  <style>
+    body { font-family: Georgia, serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.5; color: #222; }
+    input { width: 100%; padding: .5rem; font-size: 1rem; margin-bottom: 1rem; box-sizing: border-box; }
+    ul { list-style: none; padding: 0; }
+    li { padding: .4rem 0; border-bottom: 1px solid #eee; }
+    a { color: #0b5cad; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .tag { font-size: .7rem; color: #666; border: 1px solid #ccc; border-radius: 3px; padding: 0 .3rem; margin-left: .5rem; }
+  </style>
+</head>
+<body>
+  <h1>Essays</h1>
+  <input id="filter" type="search" placeholder="Filter…">
+  <ul id="list"></ul>
+  <script src="manifest.js"></script>
+  <script>
+    const list = document.getElementById('list');
+    const { ESSAYS, hrefFor, isMarkdown } = EssayManifest;
+    const sorted = [...ESSAYS].sort((a, b) => a.title.localeCompare(b.title));
+    for (const e of sorted) {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = hrefFor(e);
+      a.textContent = e.title;
+      li.appendChild(a);
+      if (isMarkdown(e.file)) {
+        const t = document.createElement('span');
+        t.className = 'tag';
+        t.textContent = 'md';
+        li.appendChild(t);
+      }
+      list.appendChild(li);
+    }
+    document.getElementById('filter').addEventListener('input', (ev) => {
+      const q = ev.target.value.toLowerCase();
+      for (const li of list.children) li.hidden = !li.textContent.toLowerCase().includes(q);
+    });
+  </script>
+</body>
+</html>
