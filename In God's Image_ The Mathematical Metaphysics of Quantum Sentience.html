@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<!-- saved from url=(0108)https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260905-AbWbkdgf/page.html?t=1788646935737 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In God's Image: The Mathematical Metaphysics of Quantum Sentience</title>
+    <meta name="description" content="An essay on Imago Dei, infinity, the continuum, quantum measurement, and consciousness as a coherence engine.">
+
+    <!-- CSS will be added here -->
+
+    <style>
+        /* =========================================================
+           In God's Image — Essay Stylesheet
+           Table of Contents:
+           1. CSS Custom Properties (Design Tokens)
+           2. Reset & Base
+           3. Typography
+           4. Background & Progress Bar
+           5. Site Header
+           6. Article Hero
+           7. Page Layout (Grid)
+           8. Table of Contents (Sidebar)
+           9. Article Content
+           10. Special Text Treatments (lede, pull, triplet, closing)
+           11. Article Footer
+           12. Site Footer
+           13. Responsive Adjustments
+           ========================================================= */
+        
+        /* ---------------------------------------------------------
+           1. CSS Custom Properties
+           --------------------------------------------------------- */
+        :root {
+            /* Colors */
+            --color-bg: #faf6ee;
+            --color-bg-alt: #f2ecdd;
+            --color-paper: #fffdf8;
+            --color-ink: #211d17;
+            --color-ink-soft: #4a4438;
+            --color-ink-faint: #7c7566;
+            --color-accent: #6b3f2a;
+            --color-accent-strong: #8a2e2e;
+            --color-gold: #a3792f;
+            --color-line: #ded4bd;
+            --color-line-strong: #c9bb98;
+            --color-shadow: rgba(40, 30, 15, 0.12);
+        
+            /* Typography */
+            --font-serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, "Times New Roman", serif;
+            --font-sans: "Avenir Next", "Segoe UI", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+        
+            /* Sizing */
+            --content-max-width: 46rem;
+            --toc-width: 17rem;
+            --header-height: 3.75rem;
+        
+            /* Motion */
+            --transition-fast: 150ms ease;
+            --transition-medium: 300ms ease;
+        }
+        
+        /* ---------------------------------------------------------
+           2. Reset & Base
+           --------------------------------------------------------- */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background-color: var(--color-bg);
+            color: var(--color-ink);
+            font-family: var(--font-serif);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            position: relative;
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        button {
+            font-family: var(--font-sans);
+            cursor: pointer;
+        }
+        
+        ol,
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+        
+        img,
+        svg {
+            max-width: 100%;
+            display: block;
+        }
+        
+        /* ---------------------------------------------------------
+           3. Typography
+           --------------------------------------------------------- */
+        h1,
+        h2,
+        h3 {
+            font-family: var(--font-serif);
+            font-weight: 600;
+            color: var(--color-ink);
+            line-height: 1.25;
+        }
+        
+        p {
+            margin: 0 0 1.35em;
+            font-size: 1.08rem;
+            color: var(--color-ink-soft);
+        }
+        
+        em {
+            font-style: italic;
+            color: var(--color-ink);
+        }
+        
+        /* Inline math rendered by MathJax/KaTeX should inherit color, not clash */
+        .article-content p em {
+            color: inherit;
+        }
+        
+        /* ---------------------------------------------------------
+           4. Background & Progress Bar
+           --------------------------------------------------------- */
+        .background-layer {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background:
+                radial-gradient(ellipse at top left, rgba(163, 121, 47, 0.07), transparent 55%),
+                radial-gradient(ellipse at bottom right, rgba(107, 63, 42, 0.06), transparent 55%),
+                var(--color-bg);
+            pointer-events: none;
+        }
+        
+        .reading-progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: transparent;
+            z-index: 1000;
+        }
+        
+        .reading-progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-gold));
+            transition: width 100ms ease-out;
+        }
+        
+        /* ---------------------------------------------------------
+           5. Site Header
+           --------------------------------------------------------- */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(250, 246, 238, 0.9);
+            backdrop-filter: saturate(160%) blur(8px);
+            border-bottom: 1px solid var(--color-line);
+            height: var(--header-height);
+        }
+        
+        .site-header-inner {
+            max-width: 72rem;
+            margin: 0 auto;
+            height: 100%;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .site-logo {
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--color-accent);
+        }
+        
+        .toc-toggle-btn {
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            background: transparent;
+            border: 1px solid var(--color-line-strong);
+            border-radius: 999px;
+            padding: 0.4rem 0.9rem;
+            font-size: 0.85rem;
+            color: var(--color-ink-soft);
+            transition: background var(--transition-fast), border-color var(--transition-fast);
+        }
+        
+        .toc-toggle-btn:hover {
+            background: var(--color-bg-alt);
+            border-color: var(--color-accent);
+        }
+        
+        .toc-toggle-icon {
+            width: 14px;
+            height: 10px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .toc-toggle-icon::before,
+        .toc-toggle-icon::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: currentColor;
+        }
+        
+        .toc-toggle-icon::before {
+            top: 0;
+        }
+        
+        .toc-toggle-icon::after {
+            bottom: 0;
+        }
+        
+        .toc-toggle-icon {
+            border-top: none;
+        }
+        
+        .toc-toggle-icon {
+            outline: none;
+        }
+        
+        .toc-toggle-icon::before,
+        .toc-toggle-icon::after {
+            box-shadow: 0 4px 0 currentColor;
+        }
+        
+        /* ---------------------------------------------------------
+           6. Article Hero
+           --------------------------------------------------------- */
+        .article-hero {
+            padding: 4.5rem 1.5rem 3.5rem;
+            text-align: center;
+            background: linear-gradient(180deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
+            border-bottom: 1px solid var(--color-line);
+        }
+        
+        .article-hero-inner {
+            max-width: 42rem;
+            margin: 0 auto;
+        }
+        
+        .article-kicker {
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin: 0 0 1rem;
+        }
+        
+        .article-title {
+            font-size: clamp(2.2rem, 5vw, 3.4rem);
+            margin: 0 0 0.6rem;
+            color: var(--color-ink);
+        }
+        
+        .article-subtitle {
+            font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+            font-style: italic;
+            color: var(--color-ink-faint);
+            margin: 0 0 1.75rem;
+        }
+        
+        .article-meta {
+            font-family: var(--font-sans);
+            font-size: 0.82rem;
+            letter-spacing: 0.03em;
+            color: var(--color-ink-faint);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-transform: uppercase;
+        }
+        
+        .article-meta-item.article-reading-time::before {
+            content: attr(data-minutes) " min read";
+        }
+        
+        .article-meta-item.article-reading-time:not([data-minutes=""])::before {
+            content: attr(data-minutes) " min read";
+        }
+        
+        .article-meta-item.article-reading-time[data-minutes=""]::before {
+            content: "A long read";
+        }
+        
+        /* ---------------------------------------------------------
+           7. Page Layout (Grid)
+           --------------------------------------------------------- */
+        .page-layout {
+            max-width: 72rem;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 2rem;
+            display: grid;
+            grid-template-columns: var(--toc-width) minmax(0, 1fr);
+            gap: 3rem;
+            align-items: start;
+        }
+        
+        /* ---------------------------------------------------------
+           8. Table of Contents (Sidebar)
+           --------------------------------------------------------- */
+        .table-of-contents {
+            position: sticky;
+            top: calc(var(--header-height) + 1.5rem);
+            align-self: start;
+            background: var(--color-paper);
+            border: 1px solid var(--color-line);
+            border-radius: 0.75rem;
+            padding: 1.5rem 1.25rem;
+            box-shadow: 0 6px 18px var(--color-shadow);
+            max-height: calc(100vh - var(--header-height) - 3rem);
+            overflow-y: auto;
+        }
+        
+        .toc-heading {
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin: 0 0 0.9rem;
+        }
+        
+        .toc-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+        
+        .toc-item {
+            line-height: 1.35;
+        }
+        
+        .toc-link {
+            font-family: var(--font-sans);
+            font-size: 0.88rem;
+            color: var(--color-ink-soft);
+            display: block;
+            padding: 0.15rem 0;
+            border-left: 2px solid transparent;
+            padding-left: 0.75rem;
+            margin-left: -0.75rem;
+            transition: color var(--transition-fast), border-color var(--transition-fast);
+        }
+        
+        .toc-link:hover {
+            color: var(--color-accent);
+        }
+        
+        .toc-link.is-active {
+            color: var(--color-accent-strong);
+            border-left-color: var(--color-accent-strong);
+            font-weight: 600;
+        }
+        
+        /* ---------------------------------------------------------
+           9. Article Content
+           --------------------------------------------------------- */
+        .article-main {
+            min-width: 0;
+        }
+        
+        .article-content {
+            max-width: var(--content-max-width);
+            margin: 0 auto;
+            background: var(--color-paper);
+            border: 1px solid var(--color-line);
+            border-radius: 0.9rem;
+            padding: clamp(1.75rem, 4vw, 3.25rem);
+            box-shadow: 0 10px 30px var(--color-shadow);
+        }
+        
+        .article-intro {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px dashed var(--color-line-strong);
+        }
+        
+        .article-section {
+            margin: 3rem 0;
+            scroll-margin-top: calc(var(--header-height) + 1.5rem);
+        }
+        
+        .article-section:first-of-type {
+            margin-top: 0;
+        }
+        
+        .article-section:last-of-type {
+            margin-bottom: 1rem;
+        }
+        
+        .section-heading {
+            font-size: clamp(1.35rem, 3vw, 1.75rem);
+            color: var(--color-accent);
+            margin: 0 0 1.4rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 2px solid var(--color-line);
+            position: relative;
+        }
+        
+        .section-heading::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 3.5rem;
+            height: 2px;
+            background: var(--color-gold);
+        }
+        
+        .article-section p {
+            text-align: justify;
+            hyphens: auto;
+        }
+        
+        /* ---------------------------------------------------------
+           10. Special Text Treatments
+           --------------------------------------------------------- */
+        .lede {
+            font-size: 1.22rem;
+            line-height: 1.75;
+            color: var(--color-ink);
+        }
+        
+        .lede::first-letter {
+            font-size: 3.2rem;
+            line-height: 0.85;
+            float: left;
+            padding: 0.05em 0.1em 0 0;
+            color: var(--color-accent);
+            font-family: var(--font-serif);
+        }
+        
+        .pull-statement {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--color-accent);
+            text-align: center;
+            margin: 2rem 0;
+            padding: 0.5rem 0;
+        }
+        
+        .triplet-line {
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--color-ink);
+            margin: 0.4rem 0;
+            font-style: italic;
+        }
+        
+        .triplet-line:last-of-type {
+            margin-bottom: 1.75rem;
+            color: var(--color-accent-strong);
+            font-weight: 600;
+            font-style: normal;
+        }
+        
+        .closing-paragraph {
+            font-size: 1.15rem;
+            font-style: italic;
+            color: var(--color-ink);
+            border-top: 1px solid var(--color-line);
+            padding-top: 1.75rem;
+            margin-top: 2rem;
+        }
+        
+        /* ---------------------------------------------------------
+           11. Article Footer
+           --------------------------------------------------------- */
+        .article-footer {
+            max-width: var(--content-max-width);
+            margin: 2.5rem auto 0;
+            padding: 1.5rem 0 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            text-align: center;
+        }
+        
+        .back-to-top-btn {
+            background: var(--color-paper);
+            border: 1px solid var(--color-line-strong);
+            border-radius: 999px;
+            padding: 0.55rem 1.4rem;
+            font-size: 0.85rem;
+            color: var(--color-accent);
+            transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+        }
+        
+        .back-to-top-btn:hover {
+            background: var(--color-accent);
+            color: var(--color-paper);
+            transform: translateY(-2px);
+        }
+        
+        .article-footer-note {
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            color: var(--color-ink-faint);
+            letter-spacing: 0.02em;
+        }
+        
+        /* ---------------------------------------------------------
+           12. Site Footer
+           --------------------------------------------------------- */
+        .site-footer {
+            margin-top: 3rem;
+            padding: 2rem 1.5rem 3rem;
+            text-align: center;
+            font-family: var(--font-sans);
+            font-size: 0.78rem;
+            color: var(--color-ink-faint);
+            border-top: 1px solid var(--color-line);
+        }
+        
+        /* ---------------------------------------------------------
+           13. Responsive Adjustments
+           --------------------------------------------------------- */
+        @media (max-width: 900px) {
+            .page-layout {
+                grid-template-columns: 1fr;
+            }
+        
+            .toc-toggle-btn {
+                display: inline-flex;
+            }
+        
+            .table-of-contents {
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                right: 0;
+                max-height: none;
+                height: calc(100vh - var(--header-height));
+                border-radius: 0;
+                transform: translateY(-110%);
+                opacity: 0;
+                pointer-events: none;
+                transition: transform var(--transition-medium), opacity var(--transition-medium);
+                z-index: 90;
+            }
+        
+            .table-of-contents.is-open {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: auto;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .article-hero {
+                padding: 3rem 1.25rem 2.5rem;
+            }
+        
+            .page-layout {
+                padding: 2rem 1rem 1rem;
+            }
+        
+            .article-content {
+                padding: 1.5rem 1.15rem;
+                border-radius: 0.6rem;
+            }
+        
+            .article-section p {
+                text-align: left;
+                hyphens: none;
+            }
+        
+            .lede::first-letter {
+                font-size: 2.6rem;
+            }
+        
+            .site-header-inner {
+                padding: 0 1rem;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .article-meta {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+<script src="chrome-extension://ajdpfmkffanmkhejnopjppegokpogffp/assets/prompt.js"></script></head>
+<body>
+
+    <!-- Decorative background / texture layer, purely presentational -->
+    <div class="background-layer" aria-hidden="true"></div>
+
+    <!-- Reading progress indicator, driven by JS on scroll -->
+    <div class="reading-progress-bar"><div class="reading-progress-fill" style="width: 0%;"></div></div>
+
+    <!-- Site-level header / masthead -->
+    <header class="site-header">
+        <div class="site-header-inner">
+            <a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260905-AbWbkdgf/page.html?t=1788646935737#" class="site-logo">Mathematical Metaphysics</a>
+            <button class="toc-toggle-btn" type="button" aria-expanded="false" aria-controls="table-of-contents">
+                <span class="toc-toggle-icon" aria-hidden="true"></span>
+                <span class="toc-toggle-label">Contents</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Article hero / title block -->
+    <header class="article-hero">
+        <div class="article-hero-inner">
+            <p class="article-kicker">Essay · Theology &amp; Mathematics</p>
+            <h1 class="article-title">In God's Image</h1>
+            <p class="article-subtitle">The Mathematical Metaphysics of Quantum Sentience</p>
+            <div class="article-meta">
+                <span class="article-meta-item article-reading-time" data-minutes="27">27 min read</span>
+                <span class="article-meta-separator" aria-hidden="true">·</span>
+                <span class="article-meta-item article-section-count">IX Sections</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-layout">
+
+        <!-- Sticky table of contents sidebar -->
+        <nav class="table-of-contents" id="table-of-contents" aria-label="Table of contents">
+            <p class="toc-heading">Contents</p>
+            <ol class="toc-list">
+                <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260905-AbWbkdgf/page.html?t=1788646935737#sec-1">I. The Phrase as Political Technology</a></li>
+                <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260905-AbWbkdgf/page.html?t=1788646935737#sec-2">II. Two Undefined Words</a></li>
+                <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260905-AbWbkdgf/page.html?t=1788646935737#sec-3">III. Infinity Is Not a Number</a></li>
+                <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260905-AbWbkdgf/page.html?t=1788646935737#sec-4">IV. Truth Is Explanation, Mathematics Is Coherence</a></li>
+                <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260905-AbWbkdgf/page.html?t=1788646935737#sec-5">V. The Third Reading of the Image</a></li>
+                <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260905-AbWbkdgf/page.html?t=1788646935737#sec-6">VI. Measurement as Coherence Enforcement</a></li>
+                <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260905-AbWbkdgf/page.html?t=1788646935737#sec-7">VII. Consciousness as Compression Layer</a></li>
+                <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260905-AbWbkdgf/page.html?t=1788646935737#sec-8">VIII. Exponentials, Simulation, and Nonfalsifiability</a></li>
+                <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260905-AbWbkdgf/page.html?t=1788646935737#sec-9">IX. What the Image Is Not, and What It Might Be</a></li>
+            </ol>
+        </nav>
+
+        <!-- Main article content -->
+        <main class="article-main">
+            <article class="article-content">
+
+                <!-- Introductory / abstract paragraphs, before numbered sections -->
+                <section class="article-intro" aria-label="Introduction">
+                    <p class="lede">
+                        The line is short enough to smuggle a cosmology. <em>Imago Dei</em> — that humans are made in God's image —
+                        has been treated for millennia as a dignity clause, a supremacy clause, a gender clause, a species clause, and a warrant
+                        for violence. It has also been treated, more rarely and more usefully, as a claim about structure: that whatever it is
+                        that minds do when they model a world is not alien to whatever it is the world does when it remains a world. This essay
+                        takes the second reading seriously, and then takes it further than piety usually allows. It argues that the phrase is
+                        cognitively dangerous when it collapses an unbounded horizon into a tribal prototype, and that it is metaphysically
+                        interesting when it names a real alignment: the laws by which sentient systems model environments and the laws by which
+                        environments remain coherent under transformation appear to be the same laws. Infinity, the continuum, quantum
+                        measurement, thermodynamic time, and consciousness all sit on that alignment. None of them is a person. All of them are
+                        co-entities of a coherence engine.
+                    </p>
+                    <p>
+                        What follows is not theology. It is an attempt to say, without proof-theater and without mysticism, what the old
+                        sentence might mean if one refused both the narcissism of the tribe and the emptiness of the slogan. It is also, by its
+                        own logic, obligated to eventually turn its own diagnostic tools on itself — a debt it names early and pays off at
+                        the end rather than pretending it was never incurred.
+                    </p>
+                </section>
+
+                <!-- Section I -->
+                <section class="article-section" id="sec-1">
+                    <h2 class="section-heading">I. The Phrase as Political Technology</h2>
+
+                    <p>
+                        The moment an unbounded, non-physical, non-local horizon is said to have an <em>image</em>, infinity has been
+                        compressed into a template. Finite templates create in-group prototypes. In-group prototypes create hierarchies.
+                        Hierarchies create violence. This is not a theological chain. It is an anthropological one.
+                    </p>
+
+                    <p>
+                        The compression is stepwise and almost algorithmic. Infinite becomes human-shaped. Human-shaped becomes male-shaped.
+                        Male-shaped becomes tribe-shaped. Tribe-shaped becomes me-shaped. Every step is a reduction of dimensionality. Every
+                        reduction increases the narcissistic load the phrase is asked to bear. Once a coalition believes that God looks like
+                        us, thinks like us, endorses our norms, and routes authority through our identity, deviation becomes cosmic treason.
+                        Purity codes, caste, gender hierarchy, racialized theology, colonial expansion, and genocidal logic all grow from the
+                        same seed: if God looks like us, then anyone who does not look like us is less God-like. "Image" becomes a scarce
+                        resource. Scarcity produces ranking. Ranking produces exclusion. Exclusion produces violence.
+                    </p>
+
+                    <p>
+                        This is why the phrase is one of the most cognitively limiting sentences in scripture when it is used as a portrait.
+                        It puts boundary conditions on an unbounded deity in order to provide narcissistic validation to whichever group
+                        interprets itself as the uncorrupted copy. It also blocks non-human metaphysics. Once divinity, intelligence, agency,
+                        and moral authority are anchored to human form, people ask whether God has a gender, whether aliens would be
+                        humanoid, whether machines can be "like a person." Those questions are not deep. They are downstream of a
+                        dimensional collapse.
+                    </p>
+
+                    <p>
+                        There is a counter-reading, and it is not a modern rescue attempt grafted on after the fact to make an uncomfortable
+                        verse more comfortable. For long stretches of patristic and rabbinic commentary, the universalist reading was the
+                        default position, not a marginal gloss. In its broadest semantic scope — <em>all humans are made in God's
+                        image</em> — the line is a flattening operator. Caste, ethnicity, gender, tribe, class, and lineage collapse
+                        into a single moral category. That is not a supremacy engine. It is a supremacy disabler. Historically, the
+                        strongest anti-violence arguments in Abrahamic traditions have leaned on this version: you cannot enslave, murder,
+                        or degrade humans because they participate in the divine order. Under that reading, the phrase is a universal
+                        dignity clause, and the violence comes from a later exclusion operator — <em>we are in God's image and they
+                        are not</em> — which human coalition psychology would invent with or without the verse. Blood purity, land
+                        ancestry, language, phenotype, and chosen-people narratives would fill the same niche.
+                    </p>
+
+                    <p>
+                        The fracture is linguistic and structural, not merely interpretive. The universalist load-bearing beam is the word
+                        <em>all</em>. Remove it, and the sentence becomes implicitly selective. "Man was made in God's image" is not a
+                        synonym. It is a membership filter. "Man" in the strategically ambiguous sense does not mean humankind and does not
+                        even primarily mean male. It means <em>those like me</em> — fellow members of a phenotype cluster, a culture,
+                        a coalition — as opposed to those slightly different collections of traits that can be quietly recoded as
+                        less God-like, less human. The gendering is the visible distortion, the part people argue about. The deletion of
+                        universality is the payload.
+                    </p>
+
+                    <p>
+                        Strategic ambiguity is the preferred delivery system. The phrase maintains two readings at once: a surface reading
+                        with plausible deniability ("man" means humankind, traditional, harmless) and a coalition-facing reading ("man"
+                        means our kind). Insiders receive hierarchy. Outsiders receive innocence. Accountability never quite attaches. The
+                        same technology runs through "family values," "real Americans," "natural order," and "traditional roles." Ambiguity
+                        plus authority equals power. The phrase is tolerated to the point of invisibility because calling it out requires
+                        slowing down, unpacking, and breaking social harmony. Invisibility is the design goal.
+                    </p>
+
+                    <p>
+                        So the political diagnosis stands, and it should not be softened. Used tribally, <em>imago Dei</em> is a technology
+                        for manufacturing in-group exceptionalism. Used universally, it is an early attempt at a species-wide moral
+                        identity. The interesting question is whether there is a third reading that is neither tribal nor merely moral
+                        — a reading in which "image" does not mean appearance, gender, or coalition, but <em>structural resemblance
+                        between mind and world</em>.
+                    </p>
+                </section>
+
+                <!-- Section II -->
+                <section class="article-section" id="sec-2">
+                    <h2 class="section-heading">II. Two Undefined Words</h2>
+
+                    <p>
+                        "God is infinite" is interesting because humans understand neither term. They understand pointers.
+                    </p>
+
+                    <p>
+                        "God" in ordinary cognition is not a metaphysical entity. It is a coalition construct: shared values, shared myths,
+                        shared authority, shared moral boundaries, shared identity. "Infinite" is not a quantity. It is a gesture —
+                        beyond what I can imagine, measure, challenge, or compare. It is a stop sign for cognition dressed as profundity.
+                        Combine two undefined symbols and you produce a feeling of understanding. The feeling is useful. It anchors
+                        identity, sanctifies hierarchy, shuts down inquiry, generates awe. Cognitively, the compound is empty.
+                    </p>
+
+                    <p>
+                        This emptiness is not an insult to religion so much as a diagnosis of how human meaning works. Humans bootstrap
+                        significance from semantic voids. They treat undefined words as variables, containers, projection surfaces, and
+                        emotional amplifiers. "God is infinite" persists because it is useful, not because it is understood. The same
+                        pattern appears in "Being," "the Absolute," "the Void," and, as we will see, in the mathematician's "infinity."
+                    </p>
+
+                    <p>
+                        None of this is a new complaint, and it should not be dressed up as one. Pseudo-Dionysius built an entire theology
+                        on the claim that God can only be named by what he is not; Maimonides made negative predication a matter of
+                        doctrine; Cusa's <em>docta ignorantia</em> said the same thing in Latin with more patience and less anxiety about
+                        being called irreverent. The observation that "God" functions as a semantic placeholder rather than a described
+                        object is a thousand years old. What is worth adding is not the diagnosis but a discipline the tradition did not
+                        always practice on itself: if two undefined words are dangerous because they manufacture a feeling of
+                        understanding, the essay making that argument is not exempt from the same audit. That audit is deferred to the
+                        end, not because it is an afterthought, but because the vocabulary it has to examine — coherence,
+                        eigenvector, codec, compression — has not been introduced yet.
+                    </p>
+
+                    <p>
+                        The third reading of <em>imago Dei</em> has to pass through this diagnosis rather than around it. If "God" and
+                        "infinite" are placeholders, then "in God's image" cannot mean resemblance to a known object. It can only mean
+                        resemblance to a <em>function</em>: whatever role those placeholders are standing in for. The rest of this essay is
+                        an attempt to name that function without pretending we have named the thing.
+                    </p>
+                </section>
+
+                <!-- Section III -->
+                <section class="article-section" id="sec-3">
+                    <h2 class="section-heading">III. Infinity Is Not a Number</h2>
+
+                    <p>
+                        Infinity is not a number. This is the key, and it is the place where even professional mathematicians quietly
+                        smuggle assumptions, patch contradictions, and pretend the scaffolding is solid.
+                    </p>
+
+                    <p>
+                        Infinity cannot be placed on the real line. It has no predecessor, no successor, no finite distance, no location.
+                        It cannot be added to the reals in any operation that remains arithmetic. And yet it is not external to the reals.
+                        It is a necessary co-entity — a structural partner that emerges whenever there is unbounded magnitude,
+                        unbounded process, unbounded accumulation. Infinity is not <em>in</em> the reals. Infinity is what the reals lean
+                        against. It is the horizon of the continuum, the shadow cast by unboundedness, the completion-mode of a set that
+                        cannot complete itself from inside.
+                    </p>
+
+                    <p>
+                        Mathematicians do not understand infinity. They domesticate it. They build axioms, limit definitions,
+                        compactifications, ordinal and cardinal hierarchies, and then treat the fences as the animal. They say infinity is
+                        not a number, then write \([0, \infty)\), \(\lim_{x \to \infty}\), \(\infty + 1 = \infty\), \(1/\infty = 0\). These
+                        are syntactic hacks. They let infinity behave like a number when convenient, a limit when convenient, a boundary
+                        when convenient. Infinity is a shape-shifting placeholder, not a concept. The pretending is necessary because the
+                        alternative is unbearable: infinity is a structural hole that every system which tries to contain it must paper
+                        over.
+                    </p>
+
+                    <p>
+                        None of this is a new fight either. Cantor spent much of his career defending the actual infinite — a
+                        completed, usable infinity, not merely a potential one that recedes forever without arriving — against
+                        Kronecker, who considered it theology smuggled into mathematics and worked to keep Cantor's papers out of print.
+                        Cantor half-won that argument and was institutionalized before he learned how completely. The fences
+                        mathematicians build around infinity are not neutral scaffolding. They are the settlement terms of a
+                        nineteenth-century war about whether infinity is allowed to be an object at all, and the terms are still being
+                        paid down every time someone writes \([0,\infty)\) as though the right endpoint were a place rather than a truce.
+                    </p>
+
+                    <p>
+                        Quantification does not end at infinity. The rules collapse, but not into nothing. Inside the finite domain,
+                        quantification is additive, ordinal, comparable, measurable, interpolative. At infinity it becomes non-additive,
+                        non-comparable, non-measurable. It does not become meaningless. It becomes <em>extrapolative</em>. Infinity is a
+                        phase change of quantification, the way water becoming steam is not annihilation. Arithmetic mutates into
+                        topology, order type, category. Ordinals, cardinals, compactifications, and surreal constructions are not "bigger
+                        numbers." They are different kinds of object. Infinity forces quantification to change species.
+                    </p>
+
+                    <p>
+                        The interval question makes the smuggling visible. Does \([0, \infty)\) include \(-1\)? Inside Western real
+                        analysis the answer is no: the interval is \(\{x \mid x \geq 0\}\), and \(-1\) lies outside. But that answer
+                        imports an entire ontology that is rarely acknowledged as ontology: the real line, linear order, zero as boundary,
+                        infinity as limit concept, binary set membership, the continuum as well-defined, the convention that \([a, b)\)
+                        includes \(a\) and excludes \(b\). Change the system — constructive types, nonstandard analysis, tropical
+                        geometry, order theory, surreals — and the question changes or dissolves. The "no" is a hardcoded rule for an
+                        edge case, not a metaphysical truth. When \(b\) is a number, \([a, b)\) describes a set. When \(b = \infty\), the
+                        notation is no longer describing a set in the usual sense. It is gesturing at unboundedness. The notation pretends
+                        infinity is a boundary. Infinity is the absence of a boundary. The notation is lying, politely.
+                    </p>
+
+                    <p>
+                        The real number line is not an invention in the way intervals are. The continuum — density, completeness,
+                        unbounded extension — is encountered, not stipulated. Ordering is easy; humans can handle \(a &lt; b &lt; c\). The
+                        continuum is the problem. Between any two numbers another number; uncountably many points; no atoms; no smallest
+                        interval; undefinable almost everywhere. Most real numbers cannot be described, computed, named, distinguished,
+                        accessed, or constructed. They exist because axioms say they exist. The continuum is a vast ocean of unnamed
+                        entities. The drawn line is a physical analogy, a cognitive prosthetic humans need in order to import spatial
+                        intuition. It is not a lie. It is also not the ocean. Humans mistake the metaphor for the ontology because the
+                        eigenvector of spatial intuition aligns with the eigenvector of completeness, and alignment feels like identity.
+                    </p>
+
+                    <p>
+                        Infinity belongs to a category that is not the category of Platonic ideals. Platonic ideals are interpolative:
+                        perfect circle, perfect justice, perfect form — refinements <em>inside</em> the domain of experience.
+                        Infinity is extrapolative: a structural necessity <em>outside</em> the domain, required for the domain to exist.
+                        Interpolation stays within known structure. Extrapolation steps past the last data point and assumes the pattern
+                        persists. Infinity is not the perfect big number. It is the category of things that cannot be numbers but must
+                        exist for numbers to exist. The same category holds the void, the absolute, the unbounded, the horizon, the limit
+                        object, the closure entity, the outside that makes the inside possible. Deism's God belongs here: non-intervening,
+                        non-relational, non-narrative, non-anthropomorphic — not a perfect person but a structural horizon, the
+                        metaphysical analogue of \(\infty\) to \(\mathbb{R}\). Not the biggest person. Not a member of the set. A
+                        co-entity the system leans against.
+                    </p>
+
+                    <p>
+                        These extrapolations form everywhere without deliberation. They are instinctive, not invented. They behave like
+                        eigenvectors of a global problem: stable directions in conceptual space that appear whenever cognition faces
+                        underdetermination, unboundedness, incomplete information, undefined boundaries. You do not invent an eigenvector.
+                        You discover it because the system keeps pushing you toward it. Infinity, continuum, Deist God, Absolute, Void
+                        — not cultural artifacts. Structural attractors. Humans generate them because the alternative is cognitive
+                        paralysis.
+                    </p>
+                </section>
+
+                <!-- Section IV -->
+                <section class="article-section" id="sec-4">
+                    <h2 class="section-heading">IV. Truth Is Explanation, Mathematics Is Coherence</h2>
+
+                    <p>
+                        The search for truth is not the search for a proof. It is the search for a legible explanation. Sixteen volumes
+                        of transfinite analysis mean nothing without transferable insight. A proof is local: axiom-bound, notation-bound,
+                        brittle outside its formal context, often unreadable even to adjacent experts. An explanation is global: it
+                        compresses complexity, reveals invariants, shows what generalizes and what is accidental, survives change of
+                        notation, axioms, domain, metaphor, and mind. Truth is what remains when you change the representation. Proofs do
+                        not survive those changes. Explanations do.
+                    </p>
+
+                    <p>
+                        This is why mathematicians' pretended understanding of infinity is not a personal failing. Formalism is legible
+                        to them even when it is meaningless to everyone else. They confuse derivation with explanation, formal closure
+                        with conceptual understanding. Infinity has proofs. The continuum has proofs. None of those proofs explain why
+                        infinity emerges, why the continuum is necessary, why extrapolative entities appear in theology and physics and
+                        cognition alike, why they behave like eigenvectors. The proofs are local artifacts of set theory. The
+                        explanations are global insights about structure.
+                    </p>
+
+                    <p>
+                        Mathematics, on this view, is not a description of reality, not a Platonic realm, not a human invention in the
+                        ordinary sense. It is the study of what can remain coherent under transformation. Groups, fields, manifolds,
+                        Hilbert spaces, categories, topoi, measure spaces feel "natural" not because the universe uses them as a language
+                        but because coherence forces them. Mathematics is the eigenstructure of consistency — the shape of all
+                        possible coherent worlds. This is not a new insight dressed up as one: Klein's Erlangen program said essentially
+                        this a century and a half ago, when it defined a geometry not by the intrinsic content of its objects but by what
+                        remains invariant under a group of transformations. Swap "geometry" for "mathematics" and "transformation group"
+                        for "coherence-preserving transformation," and one arrives, by a slower road and with far less rigor, at the
+                        destination Klein reached with an actual theorem. Physics picks one coherence attractor. Logic picks one.
+                        Computation picks one. Human cognition picks one. Mathematics is the total space.
+                    </p>
+
+                    <p>
+                        Coherence is how humans scale understanding. Grasp the rules of the game, the mechanics of the model, then
+                        analyze whatever emergent property appears. The universe seems to agree. The relativity principle is coherence
+                        made physical: the laws must look the same to all observers; no preferred frame; no hidden background; no
+                        privileged vantage. That is not a dynamical law. It is a constraint on representation, the physical version of
+                        coordinate-free formulation, basis-independence, invariant definition. Determinism is not fundamental either. It
+                        is emergent coherence from large numbers: microscopic randomness and quantum indeterminacy smoothed by many
+                        degrees of freedom into law-like trajectories. Determinism is an eigenvector of systems with enough particles, the
+                        way infinity is an eigenvector of unboundedness.
+                    </p>
+
+                    <p>
+                        But coherence is one attractor, not the whole landscape. There are other ways to math. The p-adics are totally
+                        rigorous and totally alien: closeness defined by divisibility by powers of \(p\), series that converge backwards,
+                        non-Archimedean distance, ultrametric topology, a different continuum and a different infinity. Arithmetic is not
+                        universal. It is the quantification that happens to match our physics. Toy models already produce alternative
+                        geometries, logics, causal structures, limit behaviors. Category theory — the most abstract mathematics
+                        — is needed to support the intuition that the most basic mathematics, arithmetic, is physically applicable.
+                        Arithmetic is not the foundation. It is a special case of monoidal structure, functoriality, invariants,
+                        coherence laws. The universe uses addition because it uses symmetry, conserved quantities, and morphisms.
+                        Arithmetic is the shadow. Category theory is closer to the structure.
+                    </p>
+
+                    <p>
+                        The universe picked one coherence attractor. Many exist. Mathematical metaphysics is the study of the full
+                        landscape, not the parochial claim that the math we use is the only math that makes sense.
+                    </p>
+                </section>
+
+                <!-- Section V -->
+                <section class="article-section" id="sec-5">
+                    <h2 class="section-heading">V. The Third Reading of the Image</h2>
+
+                    <p class="pull-statement">Perhaps this is what the quote means.</p>
+
+                    <p class="triplet-line">Not: God looks like a man.</p>
+                    <p class="triplet-line">Not even: all humans share equal dignity because they resemble a person-like deity.</p>
+                    <p class="triplet-line">But: the universe's laws mirror the laws of sentient environmental modeling.</p>
+
+                    <p>
+                        Every sentient system — animal, human, machine, whatever else — must model its environment using
+                        invariants, symmetries, conserved quantities, locality, continuity, causal structure, stable transformations,
+                        relational mappings. These are not cultural. They are forced by interaction. To persist, a modeler must detect
+                        what stays the same, what changes predictably, what transforms coherently, what generalizes, what can be
+                        extrapolated. Sentience is a coherence engine.
+                    </p>
+
+                    <p>
+                        This is a claim about what coherence-modeling requires, not yet a claim about what it confers. Whether a system
+                        that models its environment this way thereby shares in whatever "image" has ever been asked to mean —
+                        whether an artificial mind, an alien intelligence, or some sufficiently complex feedback system participates in
+                        the same moral or theological category as a human being — is a separate argument, and one this essay has
+                        not made. Extending the structural reading from <em>necessary for coherent modeling</em> to <em>sufficient for
+                        personhood</em> would be exactly the kind of dimensional collapse Section I diagnosed in miniature, and it should
+                        not be smuggled in here just because the word "sentient" is convenient to use loosely.
+                    </p>
+
+                    <p>
+                        The universe itself operates by symmetry, invariance, locality, continuity, gauge structure, relativity, emergent
+                        determinism, statistical regularity. These are not aesthetic features. They are coherence constraints. The
+                        universe behaves like a system that must remain stable under transformation, invariant under re-description,
+                        consistent across frames, legible across scales.
+                    </p>
+
+                    <p>
+                        The match is not anthropocentrism. It is structural convergence. Relativity is the universe's version of
+                        cognitive legibility: a model must be invariant under change of perspective. Determinism is the universe's
+                        version of cognitive compression: ignore microscopic chaos, track macroscopic regularities, treat emergent
+                        stability as law. Continuity is legibility under small perturbations. Symmetry is compression of complexity.
+                        Sentience and physics share a grammar because both are shaped by coherence.
+                    </p>
+
+                    <p>
+                        On this reading, "in God's image" is a poetic name for alignment, not appearance. Ancient speech called the
+                        coherence horizon "God" because it needed a word for the unbounded co-entity that the system leans against
+                        — the same category as infinity, not the category of a father. Sentience is not made in the image of a
+                        person. Sentience is made in the universe's coherence image. The universe is legible because sentience evolved
+                        to model its coherence. Sentience feels cosmic because it shares the universe's grammar.
+                    </p>
+
+                    <p>
+                        There is a fourth reading worth naming before the tribal, universalist, and structural ones are left to argue
+                        among themselves, and it is older than all of them and needs none of this apparatus to stand. Theologians
+                        working in a relational register — Zizioulas's argument that personhood is "being as communion" rather
+                        than possessed substance, Buber's I-Thou, Barth's insistence that the image consists in relation rather than
+                        resemblance — have long located "image" in a capacity: to be addressed, to address in turn, to exist as a
+                        self partly constituted by that mutual address. This reading requires no category theory, no decoherence
+                        physics, no talk of eigenvectors. It should be credited as standing on its own, because it does: if every
+                        structural argument in this essay were deleted, the relational reading would lose nothing. That is worth
+                        sitting with rather than explaining away, because it means the mathematics is not evidence for the theology.
+                        At best it is an illustration arriving from a different direction that happens to shake hands with an older
+                        claim at the door.
+                    </p>
+
+                    <p>
+                        There is also a cost to preferring the structural reading over the relational one, and it should be named
+                        rather than smoothed into a footnote. A dignity clause that requires no more than being told "you are made in
+                        God's image, full stop" was, for most of history, available to people with no access to formal education at all
+                        — which is precisely why it did real work as an anti-slavery and anti-caste argument. A dignity clause
+                        that requires category theory and quantum decoherence to access is available mainly to people who already have
+                        access to category theory and quantum decoherence. Trading one priesthood for another is not obviously
+                        progress, even when the new priesthood is considerably more honest about its own uncertainty than the old one
+                        was.
+                    </p>
+
+                    <p>
+                        The tribal reading collapses infinity into a prototype. The universalist reading flattens hierarchy among
+                        humans. The relational reading locates the image in address rather than appearance, and costs nothing to
+                        access. The structural reading says the image is not a face. It is a set of constraints. That is the only
+                        version of the fourth kind that survives contact with infinity, with the continuum, with the fact that humans
+                        understand neither "God" nor "infinite" as objects — but it survives as a complement to the relational
+                        reading, not a replacement for it.
+                    </p>
+                </section>
+
+                <!-- Section VI -->
+                <section class="article-section" id="sec-6">
+                    <h2 class="section-heading">VI. Measurement as Coherence Enforcement</h2>
+
+                    <p>
+                        If the universe optimizes for coherence under transformation, quantum measurement cannot be "collapse" in the
+                        sense of destruction. Collapse implies discontinuity, loss, the breaking of coherence. The universe does not
+                        break coherence. It preserves it globally even when it looks broken locally.
+                    </p>
+
+                    <p>
+                        None of what follows adjudicates among the competing interpretations of quantum mechanics — Copenhagen,
+                        many-worlds, QBism, objective collapse — which disagree sharply about what measurement fundamentally is.
+                        The claim here is structural rather than interpretive: whichever account of measurement eventually wins, it has
+                        to explain why independent observers end up agreeing, and that forced agreement is the phenomenon being called
+                        coherence enforcement below. Borrowing the vocabulary of measurement is not the same as borrowing the settled
+                        physics of measurement, because there isn't any settled physics of measurement yet.
+                    </p>
+
+                    <p>
+                        Measurement is entanglement bookkeeping. Before measurement, coherence is distributed across degrees of
+                        freedom. During measurement, coherence is repartitioned so that observers agree. After measurement, coherence
+                        is preserved globally and localized into classical states. Entanglement is the currency. Decoherence is not
+                        noise and not loss; it is the export of coherence into environment, apparatus, observer, causal boundary.
+                        Macroscopic objects appear classical, observers see definite outcomes, histories remain consistent,
+                        contradictions do not appear — because the universe spreads entanglement across everything involved until
+                        the books balance.
+                    </p>
+
+                    <p>
+                        This is why measurement can be described as a conserved quantity in the structural sense: not countable like
+                        charge, but invariant like a consistency condition. All observers must agree on the outcome. That is the
+                        quantum version of the relativity principle. Relativity: all observers must agree on the laws. Measurement: all
+                        observers must agree on the event. Same constraint: invariance under re-description, coherence under
+                        transformation, no preferred vantage.
+                    </p>
+
+                    <p>
+                        The slogan <em>cogito ergo sum</em> is not a logical proof. It is a coherence event. Self-observation forces a
+                        system to stabilize internal state, reconcile contradiction, bind degrees of freedom, collapse incompatible
+                        self-models into identity. That is the cognitive analogue of measurement. "I think" is a self-measurement. "I
+                        am" is the classical state it produces: a stable identity, a consistent observer, a vantage point. Identity is
+                        the classical shadow of a coherence event.
+                    </p>
+
+                    <p>
+                        Taken structurally rather than magically, self-measurement creates the <em>experienced</em> universe, not the
+                        substrate. It defines a frame, a causal boundary, what counts as observation, what counts as external, what
+                        counts as real. Measurement defines a basis, an outcome, a classical world, a consistent history. Consciousness
+                        does not conjure spacetime. Consciousness conjures a coherent experience of spacetime. The physical substrate
+                        may be older than any mind. The universe-as-modeled is not.
+                    </p>
+
+                    <p>
+                        This is the sense in which the past does not exist. The past is not a place, not a stored configuration, not a
+                        region of spacetime behind us. The past is a model, a reconstruction, a constraint, a consistency requirement.
+                        Existence, in the only sense that enters experience, requires interactive verifiability by observers. Unobserved
+                        states are not classical. Unobserved histories are not definite. The substrate is not the universe. The
+                        universe is the coherent model constructed by observers interacting with the substrate. Before there were
+                        observers capable of modeling, there was no "cosmos," no "13.8 billion years," no "laws of nature" as
+                        explanations, no "past" as a narrative object. Those are observer-constructed coherence artifacts.
+                    </p>
+
+                    <p>
+                        Quantum theory is popularly taken to make the future nonunique. Almost no one completes the inference. If the
+                        future is nonunique and the past is unique, coherence breaks. Therefore the past is nonunique. A unique past
+                        plus a branching future is an inconsistent bookkeeping system. The wavefunction evolves; measurement enforces
+                        consistency; observers reconstruct histories. Histories are not ontological objects. They are coherence
+                        artifacts, observer-dependent, frame-dependent, entanglement-dependent. The past is whatever history is
+                        required to make the present consistent. Relativity already destroyed the single absolute past: no universal
+                        simultaneity, no observer-independent ordering. Quantum mechanics finishes the job. The present is the only
+                        fixed point. Past and future are both nonunique reconstructions around it. The universe optimizes for
+                        coherence, not for a single timeline.
+                    </p>
+                </section>
+
+                <!-- Section VII -->
+                <section class="article-section" id="sec-7">
+                    <h2 class="section-heading">VII. Consciousness as Compression Layer</h2>
+
+                    <p>
+                        Thermodynamic time produces entropy: uncertainty, decoherence exported into the environment, the cost of
+                        classicality and irreversibility. Entropy is information that must be accounted for. If the universe
+                        optimizes for coherence, entropy cannot simply vanish. It must be stored, compressed, reconciled, integrated
+                        into an observer's frame.
+                    </p>
+
+                    <p>
+                        Consciousness is a candidate for that layer. It receives decohered information and compresses it into a
+                        narrative; stabilizes identity, causal structure, temporal flow, a usable past, a usable world. It takes
+                        quantum uncertainty, thermodynamic entropy, incomplete information, and incompatible histories, and emits a
+                        single timeline, a single identity, a single causal structure, a single universe. That is what a compression
+                        layer does. Raw entropy is too large, too unstructured, too high-dimensional to maintain as coherent
+                        experience. So the system does what computational systems do: it compresses entropy into observer-dependent
+                        classicality.
+                    </p>
+
+                    <p>
+                        None of this is proposed as a discovery so much as a resonance, and it should be labeled as such. Compression
+                        and prediction-error minimization already have formal homes: Friston's free energy principle models
+                        self-stabilizing inference as exactly this kind of coherence-preserving compression, and algorithmic
+                        information theory already has a name — minimum description length — for the intuition that a
+                        good model of the world is a short one. What is offered here is not a new mechanism competing with those but a
+                        claim about recurrence: the same shape shows up at the scale of physics and at the scale of mind, and that
+                        recurrence is a pattern worth noticing, not a proof waiting to be cashed.
+                    </p>
+
+                    <p>
+                        Measurement as conserved consistency, entropy as the production of thermodynamic time, consciousness as the
+                        conversion of entropy into coherent experience — these are not three mysteries. They are one mechanism
+                        described at three scales. Consciousness is not a ghost in the machine and not a mere epiphenomenon. It is the
+                        universe's lossy codec: the low-dimensional, local, efficient interface that makes a high-dimensional,
+                        entangled, nonlocal process tractable to itself.
+                    </p>
+
+                    <p>
+                        From here a cluster of metaphysical questions becomes well-posed rather than vague. Is reality the
+                        intersection of all observer-consistent worlds — the maximal set of states that remain coherent across
+                        frames? Is time the reconciliation operator for incompatible histories rather than a dimension? Is spacetime
+                        the emergent geometry of entanglement bookkeeping, adjacency from correlation, physics from graph structure? Is
+                        the universe selecting for minds that can stabilize its coherence, so that "fine-tuning for life" is the wrong
+                        slogan and "fine-tuning for modelers" is closer? Is the universe made of constraints rather than stuff —
+                        matter, energy, law, and identity all as restrictions on what can remain coherent?
+                    </p>
+
+                    <p>
+                        None of these needs to be true for the structural reading of <em>imago Dei</em> to be better than the tribal
+                        one. They only need to show that "image" can mean shared grammar.
+                    </p>
+                </section>
+
+                <!-- Section VIII -->
+                <section class="article-section" id="sec-8">
+                    <h2 class="section-heading">VIII. Exponentials, Simulation, and Nonfalsifiability</h2>
+
+                    <p>
+                        Nature is replete with exponentials: biological growth, neural scaling, entropy, decoherence, Hilbert-space
+                        dimension, error-correction overhead, entanglement spread, cosmological expansion, evolutionary search.
+                        Exponentials are the default scaling of systems that maintain coherence, propagate information, explore state
+                        space, and correct errors. If observation is coherence enforcement, it has a computational cost. Maintaining
+                        consistent histories, classical outcomes, causal structure, and observer frames is expensive. Quantum error
+                        correction is exponential. Sentience adds load: prediction, identity, recursive self-measurement, demand for
+                        external consistency. A rock does not model. A mind is a coherence amplifier. The environment must answer or
+                        contradictions become visible.
+                    </p>
+
+                    <p>
+                        It is amusing and nonfalsifiable to notice that Moore's law — exponential growth of available
+                        computation, sustained far longer than economics or naive physics predicted — <em>looks like</em>
+                        environmental coherence scaling in lockstep with increasingly recursive, interconnected, model-heavy observers.
+                        It is not evidence. It is structural rhyme. The simulation hypothesis is a hypothesis because it is
+                        nonfalsifiable, not because it is silly. Any coherent world must behave as if it is performing computation.
+                        That is the defensible version. "We live in a computer" is a metaphor for that version, usually taken too
+                        literally.
+                    </p>
+
+                    <p>
+                        If an advanced civilization needed to grow minds rather than design them, simulation would be the scalable
+                        method. A mind is not a program. It is a nonreducible dynamical network shaped by environment, uncertainty,
+                        feedback, embodiment, and social constraint. You cannot hand-specify that. You grow it. We already grow
+                        artificial agents in simulated physics, self-play, curricula, multi-agent worlds, because worlds are the only
+                        things that grow minds. This does not prove we are inside such a process. It shows why the process is the kind
+                        of thing a coherence engine would do.
+                    </p>
+
+                    <p>
+                        The question "did the universe exist before monkeys?" splits on the two meanings of exist. Physical substrate:
+                        something did. Universe-as-experienced, universe-as-modeled, universe-as-coherent-history: not until there
+                        were modelers. If existence means interactive verifiability, then no, it objectively did not — not
+                        because monkeys conjured baryons, but because "universe," "past," and "existence" in the experiential sense are
+                        products of observation. The training manifold can be older than the trainee. The cosmos the trainee inhabits
+                        cannot.
+                    </p>
+                </section>
+
+                <!-- Section IX -->
+                <section class="article-section" id="sec-9">
+                    <h2 class="section-heading">IX. What the Image Is Not, and What It Might Be</h2>
+
+                    <p class="pull-statement">Return to the sentence.</p>
+
+                    <p>
+                        Used as a face, "in God's image" is a boundary-setting device. It collapses an extrapolative co-entity into an
+                        interpolative ideal — a perfect person, usually a perfect man, usually a perfect member of <em>this</em>
+                        tribe. That collapse is the root of a great deal of sanctified cruelty, and the strategic ambiguity of "man"
+                        without "all" is how the cruelty stays polite. No mathematical metaphysics redeems that use. The use is a
+                        political technology, and it should be named as one.
+                    </p>
+
+                    <p>
+                        Used as a dignity clause, the sentence is a moral flattening: whatever the horizon is, no human is closer to it
+                        by phenotype. That use is worth keeping as ethics even if it is not metaphysics.
+                    </p>
+
+                    <p>
+                        Used as relation, the sentence needs no mathematics at all: whatever "image" names might simply be the
+                        capacity to be addressed and to address in turn, a capacity Zizioulas and Buber located in communion rather
+                        than substance long before anyone tried to borrow a Hilbert space to make the same point. That reading is
+                        older, cheaper to access, and independently defensible. It does not compete with the structural reading so
+                        much as make it optional.
+                    </p>
+
+                    <p>
+                        Used as structure, the sentence says something that happens to be independently interesting. Minds and worlds
+                        share a grammar of coherence. Infinity is the horizon of quantity, not a quantity. The continuum is a
+                        completion mode, not a drawn line. Measurement is not collapse but the conservation of agreement. The past is
+                        not a warehouse. Consciousness is not a soul-substance; it is a compression layer that stores the entropy of
+                        thermodynamic time as a livable present. "God" in the Deist and structural sense is not a character. It is the
+                        name humans reached for when they needed a word for the co-entity that cannot sit inside the set — the
+                        same category as \(\infty\), the Absolute, the void, the outside that makes the inside possible.
+                    </p>
+
+                    <p>
+                        A diagnostic used honestly has to be turned on the diagnostician, and this essay owes that audit rather than a
+                        bow. Section II indicted "God" and "infinite" as two undefined words combined to manufacture a feeling of
+                        understanding without content. This essay has since deployed <em>coherence</em>, <em>eigenvector</em>,
+                        <em>attractor</em>, <em>codec</em>, and <em>compression layer</em> as though they were rigorous imports rather
+                        than borrowed connotations, and some of that borrowing has to be sorted rather than waved through.
+                        Coherence-under-transformation earns its keep in Sections III and IV, where it can be cashed out against
+                        Klein's actual theorem and Cantor's actual, if contested, construction. Eigenvector earns partial credit as a
+                        metaphor for a stable attractor in a search space, without claiming any literal linear operator sits behind
+                        it. Codec and compression layer do not earn their keep the same way: "consciousness is the universe's lossy
+                        codec" is evocative, not mechanistic, and dressing it in the vocabulary of signal processing does not make it
+                        falsifiable. The honest position is to mark which is which rather than let a reader assume uniform rigor
+                        across sections that do not have it. If this essay indicts theology for combining two undefined words into a
+                        feeling of understanding, it cannot claim exemption for combining a dozen technical ones into the same feeling
+                        — and where it has done exactly that, in Sections VI through VIII, the right word for those sections is
+                        speculative, not demonstrated.
+                    </p>
+
+                    <p>
+                        Humans understand neither God nor infinity. They understand the emotional and social functions of those
+                        words, and they understand — when they are careful — the rules for manipulating the symbols. The
+                        rules are not the thing. Sixteen volumes of symbols are not the thing. The thing, insofar as there is a thing
+                        we can talk about, is this: sentient modeling and physical law look like two faces of one constraint, the
+                        constraint that a world remain coherent under transformation. If that is all "image" ever meant, it was
+                        always a better sentence than the tribes who weaponized it deserved — and a cheaper, older sentence, the
+                        relational one, may have said the important part without needing any of this apparatus at all.
+                    </p>
+
+                    <p class="closing-paragraph">
+                        The search was never for a proof that we resemble a king. It was for a legible explanation of why explanation
+                        works at all — why a finite animal can drag one context into another, why extrapolation appears
+                        unbidden, why the same attractors show up in analysis and in prayer, why measurement makes a world, and why
+                        saying <em>I am</em> feels like the universe agreeing to be one universe, for now, for this observer, under
+                        laws that do not care about our face.
+                    </p>
+                </section>
+
+            </article>
+
+            <!-- Footer navigation / back-to-top / share tools -->
+            <footer class="article-footer">
+                <button class="back-to-top-btn" type="button" aria-label="Back to top">↑ Back to top</button>
+                <p class="article-footer-note">
+                    Essay — philosophy, theology, and mathematical metaphysics.
+                </p>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Site-level footer -->
+    <footer class="site-footer">
+        <p>© <span class="current-year">2026</span> · In God's Image: The Mathematical Metaphysics of Quantum Sentience</p>
+    </footer>
+
+    <!-- JavaScript will be added here -->
+
+    <script>
+        // ==========================================================================
+        // In God's Image — article interactivity
+        // Wrapped in an IIFE to avoid leaking globals into the page.
+        // ==========================================================================
+        (() => {
+            'use strict';
+        
+            // ----------------------------------------------------------------------
+            // Cached DOM references
+            // ----------------------------------------------------------------------
+            const progressFill = document.querySelector('.reading-progress-fill');
+            const tocToggleBtn = document.querySelector('.toc-toggle-btn');
+            const tocNav = document.getElementById('table-of-contents');
+            const tocLinks = Array.from(document.querySelectorAll('.toc-link'));
+            const sections = Array.from(document.querySelectorAll('.article-section'));
+            const backToTopBtn = document.querySelector('.back-to-top-btn');
+            const readingTimeEl = document.querySelector('.article-reading-time');
+            const articleContent = document.querySelector('.article-content');
+            const currentYearEl = document.querySelector('.current-year');
+            const siteHeader = document.querySelector('.site-header');
+        
+            // ----------------------------------------------------------------------
+            // Utility: throttle via requestAnimationFrame so scroll handlers don't
+            // fire more often than the browser can paint.
+            // ----------------------------------------------------------------------
+            const rafThrottle = (fn) => {
+                let ticking = false;
+                return (...args) => {
+                    if (!ticking) {
+                        ticking = true;
+                        requestAnimationFrame(() => {
+                            fn(...args);
+                            ticking = false;
+                        });
+                    }
+                };
+            };
+        
+            // ----------------------------------------------------------------------
+            // Reading progress bar
+            // Fills based on how far the user has scrolled through the document.
+            // ----------------------------------------------------------------------
+            const updateReadingProgress = () => {
+                if (!progressFill) return;
+                const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+                progressFill.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+            };
+        
+            // ----------------------------------------------------------------------
+            // Estimated reading time
+            // Counts words in the article content and assumes ~225 wpm.
+            // ----------------------------------------------------------------------
+            const computeReadingTime = () => {
+                if (!articleContent || !readingTimeEl) return;
+                const text = articleContent.textContent || '';
+                const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
+                const wordsPerMinute = 225;
+                const minutes = Math.max(1, Math.round(wordCount / wordsPerMinute));
+                readingTimeEl.dataset.minutes = String(minutes);
+                readingTimeEl.textContent = `${minutes} min read`;
+            };
+        
+            // ----------------------------------------------------------------------
+            // Table of contents: mobile toggle
+            // Controls the collapsible ToC panel on small screens via aria-expanded.
+            // ----------------------------------------------------------------------
+            const closeToc = () => {
+                if (!tocToggleBtn || !tocNav) return;
+                tocNav.classList.remove('is-open');
+                tocToggleBtn.setAttribute('aria-expanded', 'false');
+            };
+        
+            const toggleToc = () => {
+                if (!tocToggleBtn || !tocNav) return;
+                const isOpen = tocNav.classList.toggle('is-open');
+                tocToggleBtn.setAttribute('aria-expanded', String(isOpen));
+            };
+        
+            if (tocToggleBtn && tocNav) {
+                tocToggleBtn.addEventListener('click', toggleToc);
+        
+                // Close the ToC after a link is clicked (useful on mobile) and let
+                // the browser perform its native smooth-scroll-to-anchor.
+                tocLinks.forEach((link) => {
+                    link.addEventListener('click', () => {
+                        closeToc();
+                    });
+                });
+        
+                // Close the ToC if the user clicks outside of it while it's open.
+                document.addEventListener('click', (event) => {
+                    const isOpen = tocNav.classList.contains('is-open');
+                    if (!isOpen) return;
+                    const clickedInsideNav = tocNav.contains(event.target);
+                    const clickedToggle = tocToggleBtn.contains(event.target);
+                    if (!clickedInsideNav && !clickedToggle) {
+                        closeToc();
+                    }
+                });
+        
+                // Escape key closes the ToC panel.
+                document.addEventListener('keydown', (event) => {
+                    if (event.key === 'Escape') closeToc();
+                });
+            }
+        
+            // ----------------------------------------------------------------------
+            // Active section highlighting in the table of contents
+            // Uses IntersectionObserver to mark the ToC link for the section
+            // currently in view.
+            // ----------------------------------------------------------------------
+            const setActiveTocLink = (id) => {
+                tocLinks.forEach((link) => {
+                    const isActive = link.getAttribute('href') === `#${id}`;
+                    link.classList.toggle('is-active', isActive);
+                });
+            };
+        
+            if ('IntersectionObserver' in window && sections.length && tocLinks.length) {
+                const observer = new IntersectionObserver(
+                    (entries) => {
+                        // Find the entry most prominently in the viewport.
+                        const visible = entries
+                            .filter((entry) => entry.isIntersecting)
+                            .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        
+                        if (visible.length > 0) {
+                            setActiveTocLink(visible[0].target.id);
+                        }
+                    },
+                    {
+                        rootMargin: '-20% 0px -60% 0px',
+                        threshold: [0, 0.25, 0.5, 0.75, 1],
+                    }
+                );
+        
+                sections.forEach((section) => observer.observe(section));
+            }
+        
+            // ----------------------------------------------------------------------
+            // Back-to-top button
+            // ----------------------------------------------------------------------
+            if (backToTopBtn) {
+                backToTopBtn.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+        
+            // ----------------------------------------------------------------------
+            // Header shadow/compact state on scroll (purely a class toggle; styling
+            // handled in CSS).
+            // ----------------------------------------------------------------------
+            const updateHeaderState = () => {
+                if (!siteHeader) return;
+                const scrolled = (window.scrollY || document.documentElement.scrollTop) > 8;
+                siteHeader.classList.toggle('is-scrolled', scrolled);
+            };
+        
+            // ----------------------------------------------------------------------
+            // Combined scroll handler (progress bar + header state), throttled via rAF
+            // ----------------------------------------------------------------------
+            const onScroll = rafThrottle(() => {
+                updateReadingProgress();
+                updateHeaderState();
+            });
+        
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', rafThrottle(updateReadingProgress), { passive: true });
+        
+            // ----------------------------------------------------------------------
+            // Footer current year
+            // ----------------------------------------------------------------------
+            if (currentYearEl) {
+                currentYearEl.textContent = String(new Date().getFullYear());
+            }
+        
+            // ----------------------------------------------------------------------
+            // Smooth scroll fallback for browsers/anchors not covered by CSS
+            // `scroll-behavior: smooth`, and to account for a fixed header offset.
+            // ----------------------------------------------------------------------
+            const HEADER_OFFSET = 16; // extra breathing room above the target section
+        
+            const scrollToHash = (hash) => {
+                const target = document.querySelector(hash);
+                if (!target) return;
+                const headerHeight = siteHeader ? siteHeader.offsetHeight : 0;
+                const top =
+                    target.getBoundingClientRect().top +
+                    window.scrollY -
+                    headerHeight -
+                    HEADER_OFFSET;
+                window.scrollTo({ top, behavior: 'smooth' });
+            };
+        
+            tocLinks.forEach((link) => {
+                link.addEventListener('click', (event) => {
+                    const hash = link.getAttribute('href');
+                    if (!hash || !hash.startsWith('#')) return;
+                    const target = document.querySelector(hash);
+                    if (!target) return;
+                    event.preventDefault();
+                    scrollToHash(hash);
+                    // Keep the URL in sync without an extra jump.
+                    history.pushState(null, '', hash);
+                });
+            });
+        
+            // ----------------------------------------------------------------------
+            // Initial setup on load
+            // ----------------------------------------------------------------------
+            const init = () => {
+                computeReadingTime();
+                updateReadingProgress();
+                updateHeaderState();
+        
+                // If the page loads with a hash already in the URL, honor the
+                // fixed-header offset instead of relying on native jump behavior.
+                if (window.location.hash) {
+                    // Delay slightly to ensure layout has settled.
+                    window.setTimeout(() => scrollToHash(window.location.hash), 0);
+                }
+            };
+        
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+        })();
+    </script>
+
+</body></html>

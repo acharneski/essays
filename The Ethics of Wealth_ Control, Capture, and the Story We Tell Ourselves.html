@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<!-- saved from url=(0108)https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260910-55MyPReH/page.html?t=1789062928237 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ethics of Wealth: Control, Capture, and the Story We Tell Ourselves</title>
+    <!-- CSS will be added here -->
+
+    <style>
+        /* ==========================================================================
+           Custom Properties / Design Tokens
+           ========================================================================== */
+        :root {
+          --color-bg: #fbfaf8;
+          --color-bg-alt: #f2efe9;
+          --color-surface: #ffffff;
+          --color-text: #201d1a;
+          --color-text-muted: #55504a;
+          --color-heading: #171512;
+          --color-accent: #8a3b12;
+          --color-accent-dark: #6a2c0c;
+          --color-border: #e1dcd2;
+          --color-focus: #1a5fb4;
+          --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+          --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+          --measure: 42em;
+          --radius: 6px;
+          --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+          --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+          --transition-fast: 150ms ease;
+          --transition-med: 300ms ease;
+        }
+        
+        /* ==========================================================================
+           Reset & Base
+           ========================================================================== */
+        *,
+        *::before,
+        *::after {
+          box-sizing: border-box;
+        }
+        
+        html {
+          -webkit-text-size-adjust: 100%;
+          scroll-behavior: smooth;
+        }
+        
+        body {
+          margin: 0;
+          background-color: var(--color-bg);
+          color: var(--color-text);
+          font-family: var(--font-serif);
+          font-size: 1.0625rem;
+          line-height: 1.7;
+          -webkit-font-smoothing: antialiased;
+          text-rendering: optimizeLegibility;
+        }
+        
+        img {
+          max-width: 100%;
+          height: auto;
+          display: block;
+        }
+        
+        a {
+          color: var(--color-accent);
+          text-decoration-thickness: 1px;
+          text-underline-offset: 2px;
+          transition: color var(--transition-fast);
+        }
+        
+        a:hover {
+          color: var(--color-accent-dark);
+        }
+        
+        /* ==========================================================================
+           Focus Styles (Accessibility)
+           ========================================================================== */
+        a:focus-visible,
+        button:focus-visible {
+          outline: 3px solid var(--color-focus);
+          outline-offset: 3px;
+          border-radius: 2px;
+        }
+        
+        /* ==========================================================================
+           Site Header
+           ========================================================================== */
+        .site-header {
+          background: linear-gradient(135deg, #2a2420 0%, #171512 100%);
+          color: #f7f4ee;
+          padding: 3rem 1.25rem 2.5rem;
+          text-align: center;
+          border-bottom: 4px solid var(--color-accent);
+        }
+        
+        .site-title {
+          margin: 0 auto;
+          max-width: 46rem;
+          font-family: var(--font-serif);
+          font-weight: 700;
+          font-size: clamp(1.6rem, 4.5vw, 2.6rem);
+          line-height: 1.25;
+          letter-spacing: -0.01em;
+        }
+        
+        /* ==========================================================================
+           Table of Contents / Navigation
+           ========================================================================== */
+        .toc-nav {
+          max-width: var(--measure);
+          margin: -1.5rem auto 2rem;
+          background: var(--color-surface);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius);
+          box-shadow: var(--shadow-md);
+          padding: 1.25rem 1.5rem 1.5rem;
+          width: calc(100% - 2rem);
+        }
+        
+        .toc-heading {
+          margin: 0 0 0.75rem;
+          font-family: var(--font-sans);
+          font-size: 0.8rem;
+          font-weight: 700;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: var(--color-text-muted);
+        }
+        
+        .toc-list {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 0.5rem 1.5rem;
+        }
+        
+        @media (min-width: 640px) {
+          .toc-list {
+            grid-template-columns: 1fr 1fr;
+          }
+        }
+        
+        .toc-item a {
+          display: block;
+          font-family: var(--font-sans);
+          font-size: 0.95rem;
+          color: var(--color-text);
+          text-decoration: none;
+          padding: 0.3rem 0.5rem;
+          border-radius: 4px;
+          border-left: 3px solid transparent;
+          transition: border-color var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
+        }
+        
+        .toc-item a:hover,
+        .toc-item a:focus-visible {
+          border-left-color: var(--color-accent);
+          background-color: var(--color-bg-alt);
+          color: var(--color-accent-dark);
+        }
+        
+        /* ==========================================================================
+           Main Content Layout
+           ========================================================================== */
+        .main-content {
+          display: flex;
+          justify-content: center;
+          padding: 0 1.25rem 2rem;
+        }
+        
+        .essay {
+          max-width: var(--measure);
+          width: 100%;
+        }
+        
+        .essay-intro {
+          margin-bottom: 2rem;
+        }
+        
+        .lead-paragraph {
+          font-size: 1.2rem;
+          line-height: 1.65;
+          color: var(--color-text);
+        }
+        
+        .lead-paragraph::first-letter {
+          font-size: 3.2rem;
+          font-weight: 700;
+          float: left;
+          line-height: 0.85;
+          padding-right: 0.1em;
+          padding-top: 0.05em;
+          color: var(--color-accent);
+          font-family: var(--font-serif);
+        }
+        
+        /* ==========================================================================
+           Essay Sections
+           ========================================================================== */
+        .essay-section {
+          margin: 2.75rem 0;
+          padding-top: 0.25rem;
+          scroll-margin-top: 1.5rem;
+        }
+        
+        .essay-section + .essay-section {
+          border-top: 1px solid var(--color-border);
+          padding-top: 2.5rem;
+        }
+        
+        .section-heading {
+          font-family: var(--font-serif);
+          font-weight: 700;
+          font-size: clamp(1.3rem, 3vw, 1.75rem);
+          color: var(--color-heading);
+          margin: 0 0 1.1rem;
+          line-height: 1.3;
+          position: relative;
+          padding-left: 0.9rem;
+        }
+        
+        .section-heading::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 0.15em;
+          bottom: 0.15em;
+          width: 4px;
+          background-color: var(--color-accent);
+          border-radius: 2px;
+        }
+        
+        .essay-section p {
+          margin: 0 0 1.15rem;
+        }
+        
+        .essay-section p:last-child {
+          margin-bottom: 0;
+        }
+        
+        /* ==========================================================================
+           Lists
+           ========================================================================== */
+        .ethics-questions-list {
+          margin: 1.25rem 0 1.5rem;
+          padding: 1.25rem 1.5rem 1.25rem 2.25rem;
+          background-color: var(--color-bg-alt);
+          border-left: 3px solid var(--color-accent);
+          border-radius: 0 var(--radius) var(--radius) 0;
+          list-style: disc;
+        }
+        
+        .ethics-questions-list li {
+          margin-bottom: 0.75rem;
+          line-height: 1.6;
+        }
+        
+        .ethics-questions-list li:last-child {
+          margin-bottom: 0;
+        }
+        
+        /* ==========================================================================
+           Tables (for markdown table fidelity, if present)
+           ========================================================================== */
+        .essay table {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 1.5rem 0;
+          font-family: var(--font-sans);
+          font-size: 0.95rem;
+          box-shadow: var(--shadow-sm);
+          overflow: hidden;
+          border-radius: var(--radius);
+        }
+        
+        .essay caption {
+          caption-side: bottom;
+          font-size: 0.85rem;
+          color: var(--color-text-muted);
+          padding-top: 0.5rem;
+          text-align: left;
+        }
+        
+        .essay th,
+        .essay td {
+          border: 1px solid var(--color-border);
+          padding: 0.65rem 0.9rem;
+          text-align: left;
+        }
+        
+        .essay thead th {
+          background-color: var(--color-bg-alt);
+          font-weight: 700;
+          color: var(--color-heading);
+        }
+        
+        .essay tbody tr:nth-child(even) {
+          background-color: #fbfaf8;
+        }
+        
+        /* ==========================================================================
+           Code Blocks
+           ========================================================================== */
+        .essay pre {
+          background-color: #1e1b18;
+          color: #f0ece4;
+          padding: 1rem 1.25rem;
+          border-radius: var(--radius);
+          overflow-x: auto;
+          font-size: 0.9rem;
+          line-height: 1.55;
+          margin: 1.5rem 0;
+          box-shadow: var(--shadow-sm);
+        }
+        
+        .essay code {
+          font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+          font-size: 0.9em;
+        }
+        
+        .essay :not(pre) > code {
+          background-color: var(--color-bg-alt);
+          color: var(--color-accent-dark);
+          padding: 0.15em 0.4em;
+          border-radius: 4px;
+        }
+        
+        .essay pre code {
+          background: none;
+          color: inherit;
+          padding: 0;
+        }
+        
+        /* ==========================================================================
+           Inline Illustrations
+           ========================================================================== */
+        .essay figure {
+          margin: 1.75rem 0;
+          text-align: center;
+        }
+        
+        .essay figure img {
+          margin: 0 auto;
+          border-radius: var(--radius);
+          box-shadow: var(--shadow-md);
+          border: 1px solid var(--color-border);
+        }
+        
+        .essay figcaption {
+          margin-top: 0.6rem;
+          font-family: var(--font-sans);
+          font-size: 0.85rem;
+          color: var(--color-text-muted);
+          font-style: italic;
+        }
+        
+        /* ==========================================================================
+           Closing Statement
+           ========================================================================== */
+        .closing-statement {
+          font-size: 1.15rem;
+          font-weight: 600;
+          color: var(--color-heading);
+          border-top: 2px solid var(--color-accent);
+          padding-top: 1.25rem;
+          margin-top: 1.5rem !important;
+        }
+        
+        /* ==========================================================================
+           Site Footer
+           ========================================================================== */
+        .site-footer {
+          background-color: var(--color-bg-alt);
+          border-top: 1px solid var(--color-border);
+          padding: 1.75rem 1.25rem;
+          text-align: center;
+          margin-top: 2rem;
+        }
+        
+        .footer-text {
+          margin: 0;
+          font-family: var(--font-sans);
+          font-size: 0.85rem;
+          color: var(--color-text-muted);
+        }
+        
+        /* ==========================================================================
+           Responsive Adjustments
+           ========================================================================== */
+        @media (min-width: 768px) {
+          .site-header {
+            padding: 4rem 1.5rem 3rem;
+          }
+        
+          body {
+            font-size: 1.125rem;
+          }
+        
+          .toc-nav {
+            margin-top: -2rem;
+            padding: 1.5rem 2rem 1.75rem;
+          }
+        }
+        
+        @media (min-width: 1024px) {
+          .essay-section {
+            margin: 3.25rem 0;
+          }
+        }
+        
+        @media (max-width: 420px) {
+          .lead-paragraph::first-letter {
+            font-size: 2.6rem;
+          }
+        
+          .ethics-questions-list {
+            padding-left: 1.5rem;
+          }
+        }
+        
+        /* ==========================================================================
+           Print Styles
+           ========================================================================== */
+        @media print {
+          .toc-nav {
+            display: none;
+          }
+        
+          .site-header {
+            background: none;
+            color: var(--color-text);
+            border-bottom: 2px solid #000;
+          }
+        
+          body {
+            background: #fff;
+          }
+        
+          .essay-section + .essay-section {
+            border-top: none;
+          }
+        }
+        
+        /* ==========================================================================
+           Reduced Motion
+           ========================================================================== */
+        @media (prefers-reduced-motion: reduce) {
+          html {
+            scroll-behavior: auto;
+          }
+        
+          * {
+            transition-duration: 0.01ms !important;
+          }
+        }
+    </style>
+<script src="chrome-extension://ajdpfmkffanmkhejnopjppegokpogffp/assets/prompt.js"></script></head>
+<body>
+    <!-- Site header with title and introductory framing -->
+    <header class="site-header">
+        <h1 class="site-title">The Ethics of Wealth: Control, Capture, and the Story We Tell Ourselves</h1>
+    </header>
+
+    <!-- Table of contents / navigation for jumping to sections -->
+    <nav class="toc-nav" aria-label="Table of contents">
+        <h2 class="toc-heading">Contents</h2><button type="button" class="toc-toggle" aria-expanded="true" aria-controls="toc-list">Hide contents</button>
+        <ul class="toc-list" id="toc-list">
+            <li class="toc-item"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260910-55MyPReH/page.html?t=1789062928237#misdirection">The Misdirection</a></li>
+            <li class="toc-item"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260910-55MyPReH/page.html?t=1789062928237#wealth-alone">Wealth Alone Does Not Make the Problem</a></li>
+            <li class="toc-item"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260910-55MyPReH/page.html?t=1789062928237#narrative-shield">Philanthropy as Narrative Shield</a></li>
+            <li class="toc-item"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260910-55MyPReH/page.html?t=1789062928237#carnegie-gates">Carnegie and Gates</a></li>
+            <li class="toc-item"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260910-55MyPReH/page.html?t=1789062928237#enforcement-face">Why the Enforcement Face Becomes “Society”</a></li>
+            <li class="toc-item"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260910-55MyPReH/page.html?t=1789062928237#ai-loop">Artificial Intelligence Tightens the Loop</a></li>
+            <li class="toc-item"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260910-55MyPReH/page.html?t=1789062928237#actually-ask">What an Ethics of Wealth Would Actually Have to Ask</a></li>
+            <li class="toc-item"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260910-55MyPReH/page.html?t=1789062928237#blind-spot">The Blind Spot</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main article content -->
+    <main class="main-content">
+        <article class="essay">
+
+            <!-- Intro paragraphs before first subheading -->
+            <section class="essay-intro">
+                <p class="lead-paragraph">When people speak of the ethics of wealth, they almost always mean philanthropy. The conversation settles, as if by reflex, on foundations, scholarships, hospitals, libraries, and the language of “giving back.” Wealth, in this telling, is a moral problem only insofar as it might be spent badly or hoarded selfishly. The ethical wealthy person is the one who redistributes a portion of surplus toward public goods. The unethical wealthy person is the miser. That framing is familiar, socially safe, and almost entirely beside the point.</p>
+
+                <p>The real ethical question is not what wealth buys in the way of charity. It is what wealth allows a person or institution to capture: the rules, the punishments, the visibility of others, and the insulation of the self. Philanthropy is the public face of wealth. Enforcement capture is its private skeleton. Until those two layers are distinguished, talk about the ethics of wealth remains a conversation about the PR of wealth.</p>
+            </section>
+
+            <!-- Section: The Misdirection -->
+            <section class="essay-section" id="misdirection">
+                <h2 class="section-heading">The Misdirection</h2>
+                <p>The public conversation is misdirected because it treats wealth as a pile of money that might or might not be shared. That picture is incomplete even as economics. Wealth is also a set of capacities: to hire lawyers, to fund campaigns, to shape statutes, to sit on boards, to own platforms, to purchase infrastructure that watches other people, and to remain unreachable when those systems misfire. Those capacities do not show up in a donation announcement. They show up in the texture of ordinary life—cameras, fines, citations, automated penalties, bureaucratic coldness, and the sense that the rules are written by people who will never stand in the line they create.</p>
+
+                <p>This is why “the rich” is a useless ethical category. Most wealthy people do not build surveillance systems, do not lobby aggressively, do not capture regulators, and do not operate anywhere near the monopoly on violence. They are simply wealthy. Treating them as a single moral class collapses a behavioral distinction into a demographic one. The ethically decisive group is smaller and more specific: the subset of wealthy, politically insulated actors who treat enforcement as their lever of influence. They grab surveillance infrastructure, lobbying channels, legal architecture, administrative control, and, increasingly, AI tools that scale punishment without scaling judgment. They are not “the elite” as a lifestyle. They are the enforcement-aligned wealthy.</p>
+
+                <p>That distinction matters because it changes the object of ethical scrutiny. The question is not whether someone is rich. The question is whether they use wealth to control the rules, the punishments, and the visibility of everyone else.</p>
+            </section>
+
+            <!-- Section: Wealth Alone Does Not Make the Problem -->
+            <section class="essay-section" id="wealth-alone">
+                <h2 class="section-heading">Wealth Alone Does Not Make the Problem</h2>
+                <p>It is tempting, and politically convenient, to treat class as destiny. It is also inaccurate. Wealth can fund art, science, firms, and ordinary private life without ever touching the machinery of social control. The ethical problem begins when wealth chooses enforcement as strategy: when the maintenance of position is understood to require control of rules, penalties, and who can be seen.</p>
+
+                <p>That choice is behavioral, not metaphysical. A person can be rich and remain outside it. A firm can be large and still refuse to become a private adjunct of policing. The line is crossed when influence is invested in the architecture of detection and punishment—when the return on capital is understood to include a return on order, and order is understood to mean more cameras, more automation, more insulation, and less unpredictability for those who already hold the levers.</p>
+
+                <p>This is not a claim that every wealthy person is malicious. Malice is almost a distraction. Institutional inertia will do the work. Actors who cannot reduce precarity, cannot redistribute power, cannot soften surveillance, and cannot tolerate instability have a narrow menu. Their job, as they understand it, is to maintain order, not to repair the social mortar that makes order feel legitimate. The available move is to increase enforcement. Enforcement, even when bureaucratic or algorithmic, is still a form of coercion. Meeting volatility with more cameras, more punishment, more surveillance, and more exclusion is a closed loop. It produces more of the volatility it claims to contain.</p>
+            </section>
+
+            <!-- Section: Philanthropy as Narrative Shield -->
+            <section class="essay-section" id="narrative-shield">
+                <h2 class="section-heading">Philanthropy as Narrative Shield</h2>
+                <p>Philanthropy is not nothing. Libraries are real. Vaccines are real. Scholarships change lives. The error is not in noticing generosity. The error is in allowing generosity to exhaust the ethical account.</p>
+
+                <p>Philanthropy functions as a narrative shield. It allows wealthy actors to appear benevolent, socially responsible, morally engaged, and community-minded while they simultaneously lobby for deregulation, fund the expansion of surveillance, shape legal frameworks, influence elections, capture administrative agencies, and insulate themselves from consequences. The soup kitchen is visible. The lobbying docket is not. The hospital wing has a name on it. The enforcement contract does not.</p>
+
+                <p>This is why philanthropy can operate as moral laundering without any individual donor needing to think of it that way. The story of wealth becomes a story of stewardship. The power of wealth remains a story of control. The first story is easy to praise at a gala. The second is the one that determines who gets fined, who gets watched, who gets excluded from a platform, and who never has to explain themselves.</p>
+
+                <p>The ethical axis, then, is not charity versus greed. It is control versus constraint. What levers of society does wealth allow you to capture? Soup kitchens, libraries, and scholarships are legacy projects—sometimes sincere, sometimes guilt-driven, sometimes public relations. The levers that matter are surveillance infrastructure, lobbying channels, regulatory capture, legal insulation, political influence, administrative control, data monopolies, platform governance, and AI enforcement systems. Those are uncomfortable to discuss because they are structural. They do not yield to the morality play of the generous billionaire.</p>
+            </section>
+
+            <!-- Section: Carnegie and Gates -->
+            <section class="essay-section" id="carnegie-gates">
+                <h2 class="section-heading">Carnegie and Gates</h2>
+                <p>Historical and contemporary examples make the split concrete, not because they are uniquely villainous, but because they are unusually clear.</p>
+
+                <p>Andrew Carnegie built libraries and funded education. He left a visible legacy of public goods. He also crushed unions, used private security forces, shaped labor law, influenced industrial regulation, and operated inside a violent enforcement ecosystem. The philanthropy was the moral salve. The industrial and legal machinery was the structure. To remember only the libraries is to remember the story wealth told about itself.</p>
+
+                <p>Bill Gates funds global health, education, and climate initiatives on a scale that has saved and improved many lives. He also operates at the layer where global intellectual-property law, tech regulation, public policy, digital governance, and surveillance-adjacent infrastructure are shaped. Again, philanthropy is the visible layer. Control is the structural layer. One can grant the good done by the visible layer and still insist that ethics cannot stop there. The power to steer the rules of health, information, and technology is not a footnote to the foundation. It is the other half of the same life.</p>
+
+                <p>The point is not to score these men as heroes or villains. The point is that the split is the pattern. Public goods in one hand, rule-shaping in the other. The culture of wealth ethics has been trained to look at the first hand and call the examination complete.</p>
+            </section>
+
+            <!-- Section: Why the Enforcement Face Becomes "Society" -->
+            <section class="essay-section" id="enforcement-face">
+                <h2 class="section-heading">Why the Enforcement Face Becomes “Society”</h2>
+                <p>A large part of the public never encounters philanthropy as a lived fact. They encounter cameras, fines, citations, police, courts, automated enforcement, surveillance creep, and the impersonality of systems that do not know their names. That is the part of society that touches them. Perception hardens accordingly: society becomes enforcement, and enforcement becomes the face of insulated wealth.</p>
+
+                <p>This is not a delusion in the ordinary sense. It is narrative collapse caused by structural visibility. People reason from what they can see. If the only durable, impersonal, well-funded presence in daily life is the apparatus of detection and penalty, then “the system” will be identified with the people who appear to own that apparatus. Philanthropy, innovation, entrepreneurship, and cultural production recede because they do not issue tickets.</p>
+
+                <p>From there, hostility does not need a coherent political theory. It needs a visible target and a sense of being hunted, humiliated, disposable, surveilled, trapped, punished, or invisible. When the enforcement architecture cannot be reached, proxy targets appear: bathrooms, parking lots, retail spaces, strangers, public infrastructure. These are not arguments. They are displacements. Treating them only as crime statistics, without asking what they are displacements of, guarantees that the only institutional reply will be more enforcement.</p>
+
+                <p>That reply is itself constrained. The enforcement-aligned layer cannot easily reduce precarity or loosen control. Instability looks like a threat to position. The incentive is to scale order: more cameras, more automation, more punishment, more exclusion. Each turn of that screw makes the enforcement face of society more vivid, and pulls more people into a psychology of hostile otherness. Everyone else—the large middle that wants neither to capture the state nor to lash out at its symbols—gets caught in the crossfire of two incompatible threat models. One side escalates emotionally. The other escalates institutionally. Neither is a cartoon of bloodlust. Both are responding to what they take to be survival.</p>
+
+                <p>This is not classical class conflict, with a unified bourgeoisie and a unified proletariat. It is a conflict of narrative states under enforcement capture. Wealth matters because a subset of wealth funds and legalizes the capture. Precarity matters because it supplies the population that experiences capture as predation. The rest of society matters because it is the terrain.</p>
+            </section>
+
+            <!-- Section: Artificial Intelligence Tightens the Loop -->
+            <section class="essay-section" id="ai-loop">
+                <h2 class="section-heading">Artificial Intelligence Tightens the Loop</h2>
+                <p>AI does not invent this structure. It accelerates it. Tools that once required human judgment at every step can now watch, flag, fine, exclude, and rank at scale. Predictive systems, automated license-plate networks, camera grids, and platform-governance models promise efficiency. They also concentrate the power to define suspicion in the hands of those who own the models, the data, and the contracts.</p>
+
+                <p>The ethical issue is not that software exists. It is that enforcement, once automated, becomes cheaper to expand than to restrain. A human officer can be argued with, at least in principle. A model is a policy with no face. Legal insulation and administrative capture then protect the model’s owners from the costs of its errors, while the costs of its accuracy—and of its false positives—fall on people who cannot buy equivalent insulation. AI, in this setting, is not a neutral productivity gain. It is a force multiplier for the strategy of maintaining position through visibility and punishment.</p>
+
+                <p>If the ethics of wealth ignore this layer, they will keep congratulating donors for schools while the same era builds a world in which movement, speech, credit, and public space are scored by systems the scored cannot see and cannot reach.</p>
+            </section>
+
+            <!-- Section: What an Ethics of Wealth Would Actually Have to Ask -->
+            <section class="essay-section" id="actually-ask">
+                <h2 class="section-heading">What an Ethics of Wealth Would Actually Have to Ask</h2>
+                <p>A serious ethics of wealth would retire the question “How much did you give?” as the primary test. It would ask, instead:</p>
+
+                <ul class="ethics-questions-list">
+                    <li>What surveillance did you fund, build, or normalize?</li>
+                    <li>What laws did you shape, and whom do those laws see?</li>
+                    <li>What regulators did you capture, and what public capacity did that capture disable?</li>
+                    <li>What legal and political insulation did you purchase, and what accountability did it erase?</li>
+                    <li>What platforms or data monopolies do you govern, and what speech or movement do they quietly condition?</li>
+                    <li>What enforcement, human or algorithmic, did you make cheaper, faster, or harder to contest?</li>
+                    <li>And only then: what public goods did you create, and did those goods repair the mortar or merely decorate the story?</li>
+                </ul>
+
+                <p>These questions do not require hatred of the rich. They require refusing a category error. Wealth is not identical with capture. Capture is the thing that makes wealth ethically radioactive. Philanthropy can coexist with capture; that coexistence is precisely why philanthropy cannot be the whole moral language.</p>
+
+                <p>They also do not require a fairy tale in which precarity is always righteous. Hostile-other psychology is a social fact with victims of its own, often people who have nothing to do with lobbying or cameras. Proxy violence against bystanders is still violence. The structural account explains a pattern; it does not license a purge. The point of distinguishing groups is to stop treating “the rich” and “the masses” as moral substances, and to look instead at the circuit that runs from enforcement capture, through lived humiliation, into institutional escalation.</p>
+            </section>
+
+            <!-- Section: The Blind Spot -->
+            <section class="essay-section" id="blind-spot">
+                <h2 class="section-heading">The Blind Spot</h2>
+                <p>Almost nobody wants this to be the ethics of wealth, because it is not flattering to any of the available tribes. It denies the donor class its favorite proof of virtue. It denies populism its favorite cartoon of a single enemy called “the rich.” It denies the professional middle its hope that the problem is merely bad manners or bad apples. It says, instead, that a society becomes brittle when the most powerful uses of money are the uses that watch, punish, and insulate, while the most celebrated uses of money are the ones that name a building.</p>
+
+                <p>The mortar of a society is the shared sense that rules are common, that visibility is reciprocal, and that punishment is constrained by someone who can be answered. Enforcement capture thins that mortar. Philanthropy, offered as a substitute for reciprocity, does not thicken it. It only makes the thinning harder to name.</p>
+
+                <p>The ethics of wealth, if they are to be more than etiquette for the successful, have to name it. Not wealth as such. Not generosity as such. The subset of wealthy, political, legal, and enforcement-aligned actors who capture surveillance and regulatory levers; the subset of the populace pushed by precarity and enforcement creep into seeing society as a hunt; and everyone else trying not to be drafted into the conflict. That decomposition is colder than a sermon and more precise than a slogan. It is also the only scale at which the word “ethics” still means something other than a press release.</p>
+
+                <p class="closing-statement">Philanthropy is the story. Enforcement capture is the ethics. An honest account of wealth has to look at both, and then decide which one it was actually talking about.</p>
+            </section>
+
+        </article>
+    </main>
+
+    <!-- Site footer -->
+    <footer class="site-footer">
+        <p class="footer-text">Essay: The Ethics of Wealth: Control, Capture, and the Story We Tell Ourselves</p>
+    </footer>
+
+
+    <script>
+        // ============================================================
+        // Ethics of Wealth — Interactivity
+        // Progressive enhancement only: page is fully readable/functional
+        // without JS. Wrapped in DOMContentLoaded + feature checks.
+        // ============================================================
+        
+        document.addEventListener('DOMContentLoaded', () => {
+        
+          /**
+           * 1. Smooth scrolling for table-of-contents links
+           *    Respects prefers-reduced-motion and keeps focus management
+           *    accessible (moves focus to the target heading after scroll).
+           */
+          const tocLinks = document.querySelectorAll('.toc-nav a[href^="#"]');
+          const prefersReducedMotion = window.matchMedia(
+            '(prefers-reduced-motion: reduce)'
+          ).matches;
+        
+          tocLinks.forEach((link) => {
+            link.addEventListener('click', (event) => {
+              const targetId = link.getAttribute('href').slice(1);
+              const targetEl = document.getElementById(targetId);
+              if (!targetEl) return;
+        
+              event.preventDefault();
+        
+              targetEl.scrollIntoView({
+                behavior: prefersReducedMotion ? 'auto' : 'smooth',
+                block: 'start',
+              });
+        
+              // Make the heading programmatically focusable, then focus it
+              // so keyboard/screen-reader users land at the right spot.
+              if (!targetEl.hasAttribute('tabindex')) {
+                targetEl.setAttribute('tabindex', '-1');
+              }
+              targetEl.focus({ preventScroll: true });
+        
+              // Update the URL hash without adding a new history entry per click.
+              history.replaceState(null, '', `#${targetId}`);
+            });
+          });
+        
+          /**
+           * 2. Active section highlighting in the table of contents.
+           *    Uses IntersectionObserver to add an "is-active" class to the
+           *    TOC link corresponding to the section currently in view.
+           */
+          const sections = document.querySelectorAll('.essay-section[id]');
+          const tocItemByHash = new Map(
+            Array.from(tocLinks).map((link) => [link.getAttribute('href'), link])
+          );
+        
+          if ('IntersectionObserver' in window && sections.length && tocLinks.length) {
+            const observer = new IntersectionObserver(
+              (entries) => {
+                entries.forEach((entry) => {
+                  const hash = `#${entry.target.id}`;
+                  const link = tocItemByHash.get(hash);
+                  if (!link) return;
+        
+                  if (entry.isIntersecting) {
+                    tocLinks.forEach((l) => l.classList.remove('is-active'));
+                    link.classList.add('is-active');
+                  }
+                });
+              },
+              {
+                root: null,
+                rootMargin: '-40% 0px -50% 0px', // trigger near top third of viewport
+                threshold: 0,
+              }
+            );
+        
+            sections.forEach((section) => observer.observe(section));
+          }
+        
+          /**
+           * 3. Back-to-top control.
+           *    Injected only via JS so the page still works with JS disabled;
+           *    appears after the reader has scrolled past the header/TOC.
+           */
+          const backToTopButton = document.createElement('button');
+          backToTopButton.type = 'button';
+          backToTopButton.className = 'back-to-top';
+          backToTopButton.textContent = '↑ Top';
+          backToTopButton.setAttribute('aria-label', 'Back to top of page');
+          backToTopButton.hidden = true;
+          document.body.appendChild(backToTopButton);
+        
+          const TOGGLE_THRESHOLD = 480; // px scrolled before button appears
+        
+          const toggleBackToTop = () => {
+            const shouldShow = window.scrollY > TOGGLE_THRESHOLD;
+            backToTopButton.hidden = !shouldShow;
+          };
+        
+          window.addEventListener('scroll', toggleBackToTop, { passive: true });
+          toggleBackToTop();
+        
+          backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+              top: 0,
+              behavior: prefersReducedMotion ? 'auto' : 'smooth',
+            });
+            // Return focus to the main heading for keyboard users.
+            const siteTitle = document.querySelector('.site-title');
+            if (siteTitle) {
+              if (!siteTitle.hasAttribute('tabindex')) {
+                siteTitle.setAttribute('tabindex', '-1');
+              }
+              siteTitle.focus({ preventScroll: true });
+            }
+          });
+        
+          /**
+           * 4. Collapsible table of contents on small screens.
+           *    Adds a toggle button (only when JS is available) so the TOC
+           *    can be collapsed on mobile without hiding it from non-JS users.
+           */
+          const tocNav = document.querySelector('.toc-nav');
+          const tocHeading = document.querySelector('.toc-heading');
+          const tocList = document.querySelector('.toc-list');
+        
+          if (tocNav && tocHeading && tocList) {
+            const toggleButton = document.createElement('button');
+            toggleButton.type = 'button';
+            toggleButton.className = 'toc-toggle';
+            toggleButton.setAttribute('aria-expanded', 'true');
+            toggleButton.setAttribute('aria-controls', 'toc-list');
+            toggleButton.textContent = 'Hide contents';
+        
+            // Ensure the list has an id the toggle can reference.
+            if (!tocList.id) {
+              tocList.id = 'toc-list';
+            }
+            toggleButton.setAttribute('aria-controls', tocList.id);
+        
+            tocHeading.insertAdjacentElement('afterend', toggleButton);
+        
+            toggleButton.addEventListener('click', () => {
+              const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
+              toggleButton.setAttribute('aria-expanded', String(!isExpanded));
+              tocList.hidden = isExpanded;
+              toggleButton.textContent = isExpanded ? 'Show contents' : 'Hide contents';
+            });
+          }
+        });
+    </script>
+
+
+<button type="button" class="back-to-top" aria-label="Back to top of page" hidden="">↑ Top</button></body><!-- JavaScript will be added here --></html>

@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<!-- saved from url=(0108)https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20261005-FQabGrms/page.html?t=1791291870272 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painting the Substring Index: Evolving Rspamd Rules from Rotation Loops, Boolean Circuits, and Residual Feedback</title>
+    <meta name="description" content="A theoretical and algorithmic approach to deriving Rspamd configuration automatically from labelled mail using substring indexing, Boolean circuit compression, and residual feedback.">
+    <!-- CSS will be added here -->
+
+    <style>
+        /* =========================================================
+           1. CSS Custom Properties & Resets
+           ========================================================= */
+        :root {
+          --color-bg: #f7f5f1;
+          --color-surface: #ffffff;
+          --color-ink: #1d1f23;
+          --color-ink-soft: #4a4e57;
+          --color-muted: #6b7078;
+          --color-primary: #1f4b99;
+          --color-primary-dark: #163a78;
+          --color-accent: #b4521f;
+          --color-border: #e1ddd3;
+          --color-border-strong: #c9c3b5;
+          --color-code-bg: #1e2228;
+          --color-code-ink: #e8e9ec;
+          --color-focus: #ff7a1a;
+        
+          --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+          --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+          --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+        
+          --measure: 42rem;
+          --radius: 6px;
+          --shadow-sm: 0 1px 3px rgba(20, 20, 20, 0.08);
+          --shadow-md: 0 6px 20px rgba(20, 20, 20, 0.10);
+          --transition-fast: 0.15s ease;
+          --transition-med: 0.3s ease;
+        }
+        
+        *,
+        *::before,
+        *::after {
+          box-sizing: border-box;
+        }
+        
+        html {
+          -webkit-text-size-adjust: 100%;
+          scroll-behavior: smooth;
+        }
+        
+        body {
+          margin: 0;
+          background-color: var(--color-bg);
+          color: var(--color-ink);
+          font-family: var(--font-serif);
+          font-size: 1.05rem;
+          line-height: 1.7;
+          -webkit-font-smoothing: antialiased;
+          text-rendering: optimizeLegibility;
+        }
+        
+        img {
+          max-width: 100%;
+          height: auto;
+          display: block;
+        }
+        
+        /* =========================================================
+           2. Focus Styles (Accessibility)
+           ========================================================= */
+        a:focus-visible,
+        button:focus-visible,
+        summary:focus-visible {
+          outline: 3px solid var(--color-focus);
+          outline-offset: 3px;
+          border-radius: 2px;
+        }
+        
+        a {
+          color: var(--color-primary);
+          text-decoration-thickness: 1px;
+          text-underline-offset: 2px;
+        }
+        
+        a:hover {
+          color: var(--color-primary-dark);
+        }
+        
+        /* =========================================================
+           3. Site Header
+           ========================================================= */
+        .site-header {
+          background: linear-gradient(160deg, var(--color-ink) 0%, #2b3140 100%);
+          color: #f3f1ec;
+          padding: 2.5rem 1.25rem 2rem;
+        }
+        
+        .header-inner {
+          max-width: 48rem;
+          margin: 0 auto;
+        }
+        
+        .site-kicker {
+          font-family: var(--font-sans);
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          font-size: 0.78rem;
+          color: #d9b48f;
+          margin: 0 0 0.75rem;
+          font-weight: 600;
+        }
+        
+        .site-title {
+          font-size: clamp(1.9rem, 5vw, 2.9rem);
+          line-height: 1.15;
+          margin: 0 0 0.6rem;
+          font-weight: 700;
+          letter-spacing: -0.01em;
+        }
+        
+        .site-subtitle {
+          font-size: clamp(1rem, 2.4vw, 1.25rem);
+          color: #c8cdd6;
+          margin: 0 0 1.75rem;
+          font-weight: 400;
+          max-width: 42rem;
+        }
+        
+        /* --- Table of contents nav --- */
+        .toc-nav {
+          max-width: 48rem;
+          margin: 0 auto;
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          border-radius: var(--radius);
+          padding: 1.1rem 1.25rem 1.3rem;
+        }
+        
+        .toc-heading {
+          font-family: var(--font-sans);
+          font-size: 0.85rem;
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          color: #d9b48f;
+          margin: 0 0 0.75rem;
+          font-weight: 600;
+        }
+        
+        .toc-list,
+        .toc-sublist {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+        }
+        
+        .toc-list {
+          display: grid;
+          gap: 0.4rem;
+        }
+        
+        .toc-item > .toc-link {
+          font-family: var(--font-sans);
+          font-size: 0.95rem;
+          font-weight: 600;
+        }
+        
+        .toc-sublist {
+          margin: 0.35rem 0 0.5rem 1.1rem;
+          display: grid;
+          gap: 0.3rem;
+          border-left: 2px solid rgba(255, 255, 255, 0.15);
+          padding-left: 0.85rem;
+        }
+        
+        .toc-subitem > .toc-link {
+          font-family: var(--font-sans);
+          font-size: 0.86rem;
+          font-weight: 400;
+        }
+        
+        .toc-link {
+          color: #e7e9ee;
+          text-decoration: none;
+          display: inline-block;
+          padding: 0.1rem 0.15rem;
+          border-radius: 3px;
+          transition: color var(--transition-fast), background-color var(--transition-fast);
+        }
+        
+        .toc-link:hover {
+          color: #ffffff;
+          background-color: rgba(255, 255, 255, 0.08);
+          text-decoration: underline;
+        }
+        
+        /* =========================================================
+           4. Main Content Layout
+           ========================================================= */
+        .main-content {
+          max-width: var(--measure);
+          margin: 0 auto;
+          padding: 2.5rem 1.25rem 4rem;
+          position: relative;
+        }
+        
+        .article {
+          background-color: var(--color-surface);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius);
+          padding: clamp(1.25rem, 4vw, 3rem);
+          box-shadow: var(--shadow-sm);
+        }
+        
+        /* =========================================================
+           5. Section & Heading Styles
+           ========================================================= */
+        .content-section {
+          margin-bottom: 3rem;
+          scroll-margin-top: 1.5rem;
+        }
+        
+        .content-section:last-child {
+          margin-bottom: 0;
+        }
+        
+        .section-heading {
+          font-size: clamp(1.4rem, 3.4vw, 1.85rem);
+          color: var(--color-primary-dark);
+          margin: 0 0 1.25rem;
+          padding-bottom: 0.6rem;
+          border-bottom: 2px solid var(--color-border-strong);
+          letter-spacing: -0.01em;
+        }
+        
+        .subsection-heading {
+          font-size: clamp(1.1rem, 2.6vw, 1.3rem);
+          color: var(--color-ink);
+          margin: 2rem 0 0.9rem;
+          font-weight: 600;
+        }
+        
+        .content-section p {
+          margin: 0 0 1.1rem;
+          color: var(--color-ink-soft);
+        }
+        
+        .content-section p strong,
+        .content-section li strong {
+          color: var(--color-ink);
+        }
+        
+        /* =========================================================
+           6. Lists
+           ========================================================= */
+        .process-list,
+        .feature-list,
+        .criteria-list,
+        .constraint-list {
+          margin: 0 0 1.25rem;
+          padding-left: 1.4rem;
+          color: var(--color-ink-soft);
+        }
+        
+        .process-list li,
+        .feature-list li,
+        .criteria-list li,
+        .constraint-list li {
+          margin-bottom: 0.65rem;
+          padding-left: 0.2rem;
+        }
+        
+        .process-list {
+          list-style: decimal;
+        }
+        
+        .feature-list {
+          list-style: disc;
+        }
+        
+        .criteria-list {
+          list-style: "\2192 \0020";
+        }
+        
+        .constraint-list {
+          list-style: disc;
+        }
+        
+        .constraint-list > li::marker {
+          color: var(--color-accent);
+        }
+        
+        /* =========================================================
+           7. Inline Semantic Elements (var, code, sub/sup)
+           ========================================================= */
+        var {
+          font-style: italic;
+          font-family: var(--font-serif);
+          color: var(--color-primary-dark);
+        }
+        
+        code {
+          font-family: var(--font-mono);
+          font-size: 0.88em;
+          background-color: #efeae0;
+          color: #8a3b0c;
+          padding: 0.12em 0.35em;
+          border-radius: 4px;
+          word-break: break-word;
+        }
+        
+        sub,
+        sup {
+          font-size: 0.72em;
+        }
+        
+        /* =========================================================
+           8. Math Blocks
+           ========================================================= */
+        .math-block {
+          display: block;
+          overflow-x: auto;
+          background-color: #f1f0ec;
+          border: 1px solid var(--color-border);
+          border-left: 4px solid var(--color-primary);
+          border-radius: 4px;
+          padding: 1rem 1.25rem;
+          margin: 0 0 1.25rem;
+          font-family: var(--font-serif);
+          font-style: italic;
+          font-size: 1.02rem;
+          color: var(--color-ink);
+          white-space: nowrap;
+        }
+        
+        /* =========================================================
+           9. Blockquotes / Callouts
+           ========================================================= */
+        .callout-quote {
+          margin: 0 0 1.25rem;
+          padding: 0.9rem 1.25rem;
+          border-left: 4px solid var(--color-accent);
+          background-color: #faf3ec;
+          border-radius: 0 4px 4px 0;
+          font-style: italic;
+          color: var(--color-ink);
+        }
+        
+        .callout-quote p {
+          margin: 0;
+          color: inherit;
+        }
+        
+        /* =========================================================
+           10. Code Blocks (pre)
+           ========================================================= */
+        .code-block {
+          background-color: var(--color-code-bg);
+          color: var(--color-code-ink);
+          padding: 1.1rem 1.25rem;
+          border-radius: var(--radius);
+          overflow-x: auto;
+          margin: 0 0 1.25rem;
+          font-size: 0.86rem;
+          line-height: 1.6;
+          box-shadow: var(--shadow-sm);
+          -webkit-overflow-scrolling: touch;
+        }
+        
+        .code-block code {
+          background: none;
+          color: inherit;
+          padding: 0;
+          font-size: inherit;
+          border-radius: 0;
+        }
+        
+        /* =========================================================
+           11. Tables (generic, in case content includes them)
+           ========================================================= */
+        .content-section table {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 0 0 1.25rem;
+          font-size: 0.92rem;
+          overflow-x: auto;
+          display: block;
+        }
+        
+        .content-section table th,
+        .content-section table td {
+          border: 1px solid var(--color-border-strong);
+          padding: 0.55rem 0.75rem;
+          text-align: left;
+        }
+        
+        .content-section table th {
+          background-color: #efeae0;
+          color: var(--color-ink);
+          font-weight: 600;
+        }
+        
+        .content-section table tr:nth-child(even) td {
+          background-color: #faf9f6;
+        }
+        
+        /* =========================================================
+           12. Back-to-top Button
+           ========================================================= */
+        .back-to-top-btn {
+          position: fixed;
+          right: 1.25rem;
+          bottom: 1.25rem;
+          background-color: var(--color-primary);
+          color: #ffffff;
+          border: none;
+          border-radius: 999px;
+          padding: 0.65rem 1.1rem;
+          font-family: var(--font-sans);
+          font-size: 0.85rem;
+          font-weight: 600;
+          cursor: pointer;
+          box-shadow: var(--shadow-md);
+          opacity: 0;
+          pointer-events: none;
+          transform: translateY(8px);
+          transition: opacity var(--transition-med), transform var(--transition-med), background-color var(--transition-fast);
+          z-index: 50;
+        }
+        
+        .back-to-top-btn.is-visible {
+          opacity: 1;
+          pointer-events: auto;
+          transform: translateY(0);
+        }
+        
+        .back-to-top-btn:hover {
+          background-color: var(--color-primary-dark);
+        }
+        
+        /* =========================================================
+           13. Site Footer
+           ========================================================= */
+        .site-footer {
+          background-color: var(--color-ink);
+          color: #c8cdd6;
+          text-align: center;
+          padding: 2rem 1.25rem;
+        }
+        
+        .footer-text {
+          max-width: 38rem;
+          margin: 0 auto;
+          font-family: var(--font-sans);
+          font-size: 0.88rem;
+          line-height: 1.6;
+        }
+        
+        /* =========================================================
+           14. Responsive Breakpoints
+           ========================================================= */
+        @media (min-width: 640px) {
+          body {
+            font-size: 1.1rem;
+          }
+        
+          .math-block {
+            white-space: normal;
+          }
+        }
+        
+        @media (min-width: 900px) {
+          .site-header {
+            padding: 3.5rem 2rem 3rem;
+          }
+        
+          .main-content {
+            padding-top: 3.5rem;
+          }
+        
+          .content-section table {
+            display: table;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .article {
+            padding: 1.1rem;
+            border-radius: 0;
+            border-left: none;
+            border-right: none;
+          }
+        
+          .main-content {
+            padding-left: 0;
+            padding-right: 0;
+          }
+        
+          .toc-nav {
+            padding: 0.9rem 1rem 1.1rem;
+          }
+        }
+        
+        /* =========================================================
+           15. Print Styles
+           ========================================================= */
+        @media print {
+          .toc-nav,
+          .back-to-top-btn {
+            display: none;
+          }
+        
+          .site-header {
+            background: none;
+            color: var(--color-ink);
+          }
+        
+          .article {
+            box-shadow: none;
+            border: none;
+          }
+        
+          a {
+            color: var(--color-ink);
+            text-decoration: underline;
+          }
+        }
+        
+        /* =========================================================
+           16. Reduced Motion Preference
+           ========================================================= */
+        @media (prefers-reduced-motion: reduce) {
+          html {
+            scroll-behavior: auto;
+          }
+        
+          .back-to-top-btn,
+          .toc-link {
+            transition: none;
+          }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========================================================= -->
+    <!-- Site header: title, subtitle, and in-page table of contents -->
+    <!-- ========================================================= -->
+    <header class="site-header">
+        <div class="header-inner">
+            <p class="site-kicker">Rspamd Config Automation — Theory &amp; Algorithm</p>
+            <h1 class="site-title">Painting the Substring Index</h1>
+            <p class="site-subtitle">Evolving Rspamd Rules from Rotation Loops, Boolean Circuits, and Residual Feedback</p>
+        </div>
+
+        <!-- Table of contents navigation -->
+        <nav class="main-nav toc-nav" aria-label="Table of contents">
+            <h2 class="toc-heading">Contents</h2>
+            <ol class="toc-list" id="toc-list">
+                <li class="toc-item"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20261005-FQabGrms/page.html?t=1791291870272#sec-1" class="toc-link">1. The Problem</a></li>
+                <li class="toc-item"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20261005-FQabGrms/page.html?t=1791291870272#sec-2" class="toc-link">2. Why a Rotation Index Fits the Problem</a>
+                    <ol class="toc-sublist">
+                        <li class="toc-subitem"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20261005-FQabGrms/page.html?t=1791291870272#sec-2-1" class="toc-link">2.1 Rspamd's scoring model</a></li>
+                        <li class="toc-subitem"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20261005-FQabGrms/page.html?t=1791291870272#sec-2-2" class="toc-link">2.2 Messages as independent loops</a></li>
+                        <li class="toc-subitem"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20261005-FQabGrms/page.html?t=1791291870272#sec-2-3" class="toc-link">2.3 Tags attach to loops, influence attaches to intervals</a></li>
+                    </ol>
+                </li>
+                <li class="toc-item"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20261005-FQabGrms/page.html?t=1791291870272#sec-3" class="toc-link">3. Phase 1: Painting and Substring Discovery</a>
+                    <ol class="toc-sublist">
+                        <li class="toc-subitem"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20261005-FQabGrms/page.html?t=1791291870272#sec-3-1" class="toc-link">3.1 Distinct-document counts</a></li>
+                        <li class="toc-subitem"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20261005-FQabGrms/page.html?t=1791291870272#sec-3-2" class="toc-link">3.2 From counts to a fuzzy membership</a></li>
+                        <li class="toc-subitem"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20261005-FQabGrms/page.html?t=1791291870272#sec-3-3" class="toc-link">3.3 Selecting informative intervals</a></li>
+                        <li class="toc-subitem"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20261005-FQabGrms/page.html?t=1791291870272#sec-3-4" class="toc-link">3.4 Weighted painting, negative increments, and contradiction</a></li>
+                        <li class="toc-subitem"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20261005-FQabGrms/page.html?t=1791291870272#sec-3-5" class="toc-link">3.5 From interval to rule</a></li>
+                    </ol>
+                </li>
+                <li class="toc-item"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20261005-FQabGrms/page.html?t=1791291870272#sec-4" class="toc-link">4. Phase 2: Compressing the Rule Pool into a Boolean Circuit</a>
+                    <ol class="toc-sublist">
+                        <li class="toc-subitem"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20261005-FQabGrms/page.html?t=1791291870272#sec-4-1" class="toc-link">4.1 Why a circuit</a></li>
+                        <li class="toc-subitem"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20261005-FQabGrms/page.html?t=1791291870272#sec-4-2" class="toc-link">4.2 Binary atoms</a></li>
+                        <li class="toc-subitem"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20261005-FQabGrms/page.html?t=1791291870272#sec-4-3" class="toc-link">4.3 Representation: Cartesian Genetic Programming</a></li>
+                        <li class="toc-subitem"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20261005-FQabGrms/page.html?t=1791291870272#sec-4-4" class="toc-link">4.4 Bit-parallel evaluation</a></li>
+                        <li class="toc-subitem"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20261005-FQabGrms/page.html?t=1791291870272#sec-4-5" class="toc-link">4.5 Fitness: asymmetric cost plus description length</a></li>
+                        <li class="toc-subitem"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20261005-FQabGrms/page.html?t=1791291870272#sec-4-6" class="toc-link">4.6 Fitting scores to the circuit</a></li>
+                        <li class="toc-subitem"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20261005-FQabGrms/page.html?t=1791291870272#sec-4-7" class="toc-link">4.7 Seeding and search dynamics</a></li>
+                    </ol>
+                </li>
+                <li class="toc-item"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20261005-FQabGrms/page.html?t=1791291870272#sec-5" class="toc-link">5. Phase 3: The Baseline Repaints the Index</a>
+                    <ol class="toc-sublist">
+                        <li class="toc-subitem"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20261005-FQabGrms/page.html?t=1791291870272#sec-5-1" class="toc-link">5.1 Baseline prediction</a></li>
+                        <li class="toc-subitem"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20261005-FQabGrms/page.html?t=1791291870272#sec-5-2" class="toc-link">5.2 Residual painting</a></li>
+                        <li class="toc-subitem"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20261005-FQabGrms/page.html?t=1791291870272#sec-5-3" class="toc-link">5.3 The full loop</a></li>
+                        <li class="toc-subitem"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20261005-FQabGrms/page.html?t=1791291870272#sec-5-4" class="toc-link">5.4 Convergence and stopping</a></li>
+                    </ol>
+                </li>
+                <li class="toc-item"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20261005-FQabGrms/page.html?t=1791291870272#sec-6" class="toc-link">6. Why the Pieces Fit</a></li>
+                <li class="toc-item"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20261005-FQabGrms/page.html?t=1791291870272#sec-7" class="toc-link">7. Constraints from the Mail Domain</a></li>
+                <li class="toc-item"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20261005-FQabGrms/page.html?t=1791291870272#sec-8" class="toc-link">8. Emitting Configuration</a></li>
+                <li class="toc-item"><a href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20261005-FQabGrms/page.html?t=1791291870272#sec-9" class="toc-link">9. Summary</a></li>
+            </ol>
+        </nav>
+    </header>
+
+    <!-- ========================================================= -->
+    <!-- Main article content, mirrors content.md section by section -->
+    <!-- ========================================================= -->
+    <main class="main-content">
+        <article class="article">
+
+            <!-- Section 1 -->
+            <section class="content-section" id="sec-1" aria-labelledby="sec-1-heading">
+                <h2 id="sec-1-heading" class="section-heading">1. The Problem</h2>
+                <p>Rspamd configurations are usually written by hand. An operator sees a campaign, writes a regular expression, gives it a symbol name and a score, and maybe combines it with other symbols in a composite. Over time the configuration accumulates hundreds of these symbols. Each one was locally reasonable when it was written. Together they are poorly understood: scores were guessed, overlaps are unknown, and some expressions match nothing. Meanwhile new spam sails past.</p>
+                <p>This essay describes a way to <em>derive</em> that configuration from labelled mail rather than write it by hand. The approach has three parts that feed one another:</p>
+                <ol class="process-list">
+                    <li><strong>Phase 1, substring discovery.</strong> All messages go into one combinatorial text index. Each message is an independent cyclic “loop”. Labels (spam, ham, phishing, a campaign topic) are painted onto the index. Substrings whose painted mass is strongly skewed toward a tag become candidate <code>regexp</code> symbols.</li>
+                    <li><strong>Phase 2, circuit compression.</strong> The candidate symbols, together with Rspamd's existing symbols, are the inputs to a genetically optimised Boolean circuit. The circuit maps directly onto Rspamd <strong>composites</strong>. Its scored output is a baseline predictor.</li>
+                    <li><strong>Phase 3, residual feedback.</strong> The baseline's errors are painted back onto the same index, replacing the raw labels. Substrings that explain what the baseline gets wrong become the next generation of candidates.</li>
+                </ol>
+                <p>The loop then repeats. The result is a rule-based fuzzy ensemble that you can read line by line, that emits native Rspamd configuration, and that grows only where the existing rules fail.</p>
+                <p>The rest of the essay covers the theory and the algorithms. Operational detail is included only where it constrains the design.</p>
+            </section>
+
+            <!-- Section 2 -->
+            <section class="content-section" id="sec-2" aria-labelledby="sec-2-heading">
+                <h2 id="sec-2-heading" class="section-heading">2. Why a Rotation Index Fits the Problem</h2>
+
+                <h3 class="subsection-heading" id="sec-2-1">2.1 Rspamd's scoring model</h3>
+                <p>Rspamd is an additive scorer. For a message <var>m</var>, each symbol <var>k</var> either fires or does not. Its score <var>s<sub>k</sub></var> is added to a total:</p>
+                <div class="math-block" role="img" aria-label="S of m equals the sum over k of s sub k times the indicator that symbol k fires on m">
+                    S(m) = ∑<sub>k</sub> s<sub>k</sub> · 𝟏[symbol k fires on m]
+                </div>
+                <p>The total is compared against action thresholds (<code>greylist</code>, <code>add header</code>, <code>rewrite subject</code>, <code>reject</code>). Two refinements matter here:</p>
+                <ul class="feature-list">
+                    <li><strong>Composites</strong> are Boolean expressions over other symbols, such as <code>A &amp; !B | C</code>. They define a new symbol with its own score. By default they can also remove the scores of their constituent symbols.</li>
+                    <li><strong>Regexp and multimap</strong> rules match content. They run through Hyperscan, so a few hundred literal or near-literal patterns cost almost nothing at scan time.</li>
+                </ul>
+                <p>So Rspamd already <em>is</em> a fuzzy ensemble. Atomic detectors produce Boolean evidence, composites form logical combinations, and a weighted sum produces a graded verdict. What is missing is a principled way to choose the detectors, the combinations and the weights. The three phases fill those three gaps in order.</p>
+
+                <h3 class="subsection-heading" id="sec-2-2">2.2 Messages as independent loops</h3>
+                <p>Let the corpus be messages <var>T<sub>1</sub></var>, …, <var>T<sub>M</sub></var>. Each message is normalised into a string (Section 7 covers the normalisation steps). Each message is treated as a <strong>cyclic</strong> string, or <em>loop</em>: its rotations are all of its cyclic shifts.</p>
+                <p>The structure that holds many loops in one sorted index is the <strong>extended Burrows–Wheeler Transform</strong> (eBWT). It sorts the rotations of every string together, using ω-order (comparison of infinite periodic repetitions). The ordinary BWT matrix of a single text has one row per rotation of that text. The eBWT matrix has one row per rotation of <em>every</em> message, interleaved in one lexicographic order.</p>
+                <p>In practice it is often simpler to build a generalised suffix array over the concatenation <var>T<sub>1</sub>$<sub>1</sub>T<sub>2</sub>$<sub>2</sub>···T<sub>M</sub>$<sub>M</sub></var>, using unique separators. The separators make sure no substring crosses a message boundary. Both constructions give the property we need:</p>
+                <blockquote class="callout-quote">
+                    <p>All occurrences of a substring <var>s</var>, across all messages, occupy one contiguous interval of rows in the sorted matrix.</p>
+                </blockquote>
+                <p>This is the <strong>substring index</strong>. Each interval is a node of the implicit suffix tree, an <strong>LCP interval</strong> <var>[l, r]</var> with depth <var>d</var>. It stands for the substring <var>s</var> of length <var>d</var> shared by rows <var>l..r</var>. Rows next to each other share long prefixes, so the sorted order groups together the places where the same textual context appears. That is the clustering an embedding would give you, but here it is exact, invertible and needs no training.</p>
+                <p>Treating messages as loops rather than plain strings is a deliberate choice. A message is a bag of contexts, not a sequence with a privileged beginning. The cyclic view treats the text as rotation-invariant at the document level while keeping exact local order inside each context.</p>
+
+                <h3 class="subsection-heading" id="sec-2-3">2.3 Tags attach to loops, influence attaches to intervals</h3>
+                <p>Tags live on messages. Each loop <var>T<sub>m</sub></var> carries a label vector <var>y<sub>m</sub></var>, for example <var>y<sub>m</sub><sup>spam</sup></var> ∈ {0,1}, or a topic tag such as <code>crypto_scam</code> or <code>invoice_phish</code>. Every row (rotation) of the matrix knows which loop it came from. This is the <strong>document array</strong> <var>DA[i]</var>, an inexpensive by-product of construction.</p>
+                <p><strong>Painting</strong> an indicator on the substring index means computing, for every LCP interval, an aggregate of the tags of the loops whose rotations fall inside it. A tag is a property of a whole message. Painting turns it into a field over substrings: the field is high where a substring's contexts belong to tagged messages and low where they do not.</p>
+            </section>
+
+            <!-- Section 3 -->
+            <section class="content-section" id="sec-3" aria-labelledby="sec-3-heading">
+                <h2 id="sec-3-heading" class="section-heading">3. Phase 1: Painting and Substring Discovery</h2>
+
+                <h3 class="subsection-heading" id="sec-3-1">3.1 Distinct-document counts</h3>
+                <p>The naive count, the number of rows in an interval, rewards substrings that repeat inside one message. A spam message containing “unsubscribe” forty times would dominate. Messages are the unit of evidence, so we count <strong>distinct documents</strong> per interval:</p>
+                <div class="math-block" role="img" aria-label="n of s equals the cardinality of the set of DA i for i in l,r; n sub t of s equals the cardinality of the set of DA i for i in l,r where the tag y equals 1">
+                    n(s) = |{DA[i] : i ∈ [l,r]}|,  n<sub>t</sub>(s) = |{DA[i] : i ∈ [l,r], y<sub>DA[i]</sub><sup>t</sup> = 1}|
+                </div>
+                <p>Distinct colours can be counted for every suffix-tree node in linear time with the standard technique. For each row, find the previous row from the same document. Add +1 at the row and −1 at the lowest common ancestor of the two rows. The count for a node is then the sum over its subtree. Doing this once per tag (or with a weighted variant, Section 3.4) gives every interval its painted counts in <var>O(N)</var> total, where <var>N</var> is the corpus length.</p>
+
+                <h3 class="subsection-heading" id="sec-3-2">3.2 From counts to a fuzzy membership</h3>
+                <p>Raw ratios are unstable at low support. We use a Beta-smoothed log-odds relative to the prior:</p>
+                <div class="math-block" role="img" aria-label="lambda sub t of s equals log of the smoothed ratio, minus log of the prior odds pi over one minus pi">
+                    λ<sub>t</sub>(s) = log [ (n<sub>t</sub>(s) + απ<sub>t</sub>) / (n(s) − n<sub>t</sub>(s) + α(1−π<sub>t</sub>)) ] − log [ π<sub>t</sub> / (1−π<sub>t</sub>) ]
+                </div>
+                <p>Here <var>π<sub>t</sub></var> is the base rate of tag <var>t</var> and <var>α</var> is the prior strength. The fuzzy membership of substring <var>s</var> in tag <var>t</var> is</p>
+                <div class="math-block" role="img" aria-label="mu sub t of s equals sigma of lambda sub t of s">
+                    μ<sub>t</sub>(s) = σ(λ<sub>t</sub>(s))
+                </div>
+                <p>Its value is 0.5 for an uninformative substring. It approaches 1 for a substring that is strongly indicative and approaches 0 for one that is strongly counter-indicative.</p>
+                <p>Ranking candidates by λ alone still favours tiny counts that happen to be perfectly skewed. We therefore rank by a <strong>lower confidence bound</strong> on the tag rate: the Wilson lower bound of <var>n<sub>t</sub>/n</var> for positive indicators, and the upper bound for negative ones. This is the conservative “how sure are we this substring is spammy” question an operator would ask.</p>
+
+                <h3 class="subsection-heading" id="sec-3-3">3.3 Selecting informative intervals: branch-point selection</h3>
+                <p>There are <var>O(N)</var> LCP intervals, which is far too many to turn into rules, and most of them are redundant. If “bitcoin wallet” is painted strongly, then “bitcoin walle” is painted almost identically.</p>
+                <p>We use the tree structure. A child interval (a longer substring) is worth keeping only if its painting <strong>differs significantly</strong> from its parent's. The test is the information gain of the split, measured as the KL divergence between the child's smoothed tag distribution and the parent's, weighted by the child's support:</p>
+                <div class="math-block" role="img" aria-label="delta of s equals n of s times the KL divergence between the child's tag distribution and the parent's">
+                    Δ(s) = n(s) · D<sub>KL</sub>( p̂<sub>t</sub>(s) ‖ p̂<sub>t</sub>(parent(s)) )
+                </div>
+                <p>A candidate is emitted when four conditions hold:</p>
+                <ul class="criteria-list">
+                    <li><var>n(s)</var> ≥ <var>n<sub>min</sub></var> (minimum document support),</li>
+                    <li><var>|s|</var> ≥ <var>L<sub>min</sub></var> (avoids short, overly generic patterns),</li>
+                    <li>the confidence bound on its tag rate exceeds a threshold,</li>
+                    <li><var>Δ(s)</var> is maximal along its root-to-leaf path, or it is the <em>right-maximal</em> boundary at which the painting stabilises.</li>
+                </ul>
+                <p>This is the substring version of choosing a split in a decision tree. The extension stops at the point where adding characters no longer changes what the substring says about the tag. These <strong>branch points</strong> are the natural boundaries of a rule. They are also usually the substrings a human analyst would have picked.</p>
+                <p>A post-pass removes <strong>subsumed</strong> candidates. If <var>s<sub>1</sub></var> is a substring of <var>s<sub>2</sub></var> and both cover nearly the same documents, keep only the one with the better confidence bound.</p>
+
+                <h3 class="subsection-heading" id="sec-3-4">3.4 Weighted painting, negative increments, and contradiction</h3>
+                <p>The painting operator generalises beyond binary tags. Give each message a real weight <var>w<sub>m</sub></var> and paint</p>
+                <div class="math-block" role="img" aria-label="P of s equals the sum over m in D of s of w sub m">
+                    P(s) = ∑<sub>m ∈ D(s)</sub> w<sub>m</sub>
+                </div>
+                <p>where <var>D(s)</var> is the set of distinct documents in the interval. A few cases follow:</p>
+                <ul class="feature-list">
+                    <li><var>w<sub>m</sub></var> = <var>y<sub>m</sub></var> − π recovers a centred version of the tag count.</li>
+                    <li><var>w<sub>m</sub></var> &lt; 0 for ham means a substring common in legitimate mail is painted <em>down</em>. This is the “negative increment” or contradiction mechanism. A substring can only earn a positive spam score if its spam mass outweighs its ham mass.</li>
+                    <li>Phase 3 replaces <var>w<sub>m</sub></var> with <strong>residuals</strong>, which turns the same machinery into the feedback engine (Section 5).</li>
+                </ul>
+                <p>Several tags can be painted at once as a vector field. Topic tags (for example <code>pharma</code>, <code>sextortion</code>, <code>invoice_phish</code>) produce per-topic candidate sets. Each set becomes a symbol group in Rspamd.</p>
+
+                <h3 class="subsection-heading" id="sec-3-5">3.5 From interval to rule</h3>
+                <p>Each surviving interval becomes an atomic detector. In its simplest form that is an escaped literal over the normalised text, compiled into a <code>regexp</code> symbol. Two generalisations are worth having:</p>
+                <ul class="feature-list">
+                    <li><strong>Gapped pairs.</strong> Two candidates that frequently co-occur in the same messages within a short distance can be merged into <code>A.{0,k}B</code>. Co-occurrence is cheap to measure from the document array.</li>
+                    <li><strong>Character-class lifting.</strong> Candidates that differ only in digits, or that share a homoglyph equivalence class after normalisation, can be merged into one pattern with a class.</li>
+                </ul>
+                <p>Each lifted pattern must be re-scored against the corpus. Generalisation always raises recall and can damage precision, so the confidence bound has to be recomputed on the actual match set.</p>
+                <p>At the end of Phase 1 the system has a pool of <var>K</var> candidate atoms <var>x<sub>1</sub></var>, …, <var>x<sub>K</sub></var>. Each atom is a Boolean function over messages with a painted membership value attached.</p>
+            </section>
+
+            <!-- Section 4 -->
+            <section class="content-section" id="sec-4" aria-labelledby="sec-4-heading">
+                <h2 id="sec-4-heading" class="section-heading">4. Phase 2: Compressing the Rule Pool into a Boolean Circuit</h2>
+
+                <h3 class="subsection-heading" id="sec-4-1">4.1 Why a circuit</h3>
+                <p>One could simply give every atom a score proportional to λ and add them up, which amounts to a naive Bayes over substrings. This fails in two predictable ways:</p>
+                <ol class="process-list">
+                    <li><strong>Correlated evidence is double-counted.</strong> Twelve substrings from the same campaign template all fire together and push a borderline message far past <code>reject</code>.</li>
+                    <li><strong>Context-dependent evidence is lost.</strong> “Wire transfer” is meaningful in mail from an unknown sender with failed DMARC, and harmless from an authenticated finance partner. An additive model cannot express “only when”.</li>
+                </ol>
+                <p>A Boolean circuit over the atoms <em>and over existing Rspamd symbols</em> (<code>R_SPF_FAIL</code>, <code>DMARC_POLICY_REJECT</code>, <code>FREEMAIL_FROM</code>, <code>MIME_HTML_ONLY</code>, <code>BAYES_SPAM</code>, and so on) addresses both problems. AND gates express conjunctions of context. OR gates collapse correlated atoms into one unit of evidence. NOT gates express exceptions. Rspamd composites are exactly this kind of circuit, so the optimised result can be deployed with no runtime cost beyond what Rspamd already does.</p>
+
+                <h3 class="subsection-heading" id="sec-4-2">4.2 Binary atoms</h3>
+                <p>The fuzzy memberships from Phase 1 are attached to the atoms, but Rspamd composites are Boolean. Each atom is therefore used as a crisp input: it either matched the message or it did not. The fuzziness does not disappear. It moves into two places:</p>
+                <ul class="feature-list">
+                    <li>the <strong>score</strong> attached to each circuit output, fitted in Section 4.6, and</li>
+                    <li>the <strong>seeding and mutation priors</strong> of the genetic search, which favour atoms with high <var>|λ|</var>.</li>
+                </ul>
+                <p>A hybrid alternative uses Łukasiewicz gates (<var>a ∧ b</var> = max(0, a+b−1), <var>a ∨ b</var> = min(1, a+b)) on graded memberships. It is useful for offline analysis, but it cannot be expressed in Rspamd composites. The deployable path is to threshold first and then evolve.</p>
+
+                <h3 class="subsection-heading" id="sec-4-3">4.3 Representation: Cartesian Genetic Programming</h3>
+                <p>Circuits are encoded with <strong>Cartesian Genetic Programming</strong> (CGP). A genome is a fixed-length array of <var>G</var> nodes. Each node is a triple <code>(op, in1, in2)</code> with <var>op</var> ∈ {AND, OR, ANDNOT, XOR, NOT}. Its inputs refer either to atoms or to <em>earlier</em> nodes, so the circuit is acyclic by construction. One or more output genes select which nodes are emitted as composite symbols.</p>
+                <p>CGP suits this problem for three reasons:</p>
+                <ul class="feature-list">
+                    <li><strong>Neutral drift.</strong> Inactive nodes carry hidden genetic material that can become active after a single mutation. This helps the search escape plateaus.</li>
+                    <li><strong>Bounded size.</strong> <var>G</var> is a hard upper bound on circuit size, which keeps the output readable.</li>
+                    <li><strong>Multiple outputs.</strong> One genome can define several composites that share subexpressions. This mirrors how a hand-written config reuses intermediate composites.</li>
+                </ul>
+                <p>XOR has no native operator in Rspamd composites. It is expanded during emission into <code>(a &amp; !b) | (!a &amp; b)</code>, and the complexity penalty charges it accordingly.</p>
+
+                <h3 class="subsection-heading" id="sec-4-4">4.4 Bit-parallel evaluation</h3>
+                <p>Fitness evaluation dominates the run time, and it has a convenient structure. Every atom is evaluated once on every message, producing a <strong>bitset</strong> of length <var>M</var>. A circuit is then evaluated on the whole corpus with word-wide bitwise operations:</p>
+                <pre class="code-block has-copy-btn"><code>for node in active_nodes(genome):          # topological order
+    a = value[node.in1]; b = value[node.in2]
+    value[node] = a &amp; b      if op == AND
+                  a | b      if op == OR
+                  a &amp; ~b     if op == ANDNOT
+                  a ^ b      if op == XOR
+                  ~a         if op == NOT
+fires = value[output]                      # bitset over messages
+TP = popcount(fires &amp; SPAM); FP = popcount(fires &amp; HAM)</code><button type="button" class="code-copy-btn" aria-label="Copy code block to clipboard">Copy</button></pre>
+                <p>The cost is <var>O(|active| · M / 64)</var> per genome. With <var>M</var> = 10<sup>6</sup> messages and fifty active gates, one genome takes under a millisecond. A population of hundreds can therefore run for thousands of generations on a single machine.</p>
+
+                <h3 class="subsection-heading" id="sec-4-5">4.5 Fitness: asymmetric cost plus description length</h3>
+                <p>Mail filtering is asymmetric. A false positive (legitimate mail rejected) costs far more than a false negative. The fitness to minimise is</p>
+                <div class="math-block" role="img" aria-label="J of C equals c sub FP times FP of C plus c sub FN times FN of C plus structural penalty terms for gates, depth and atoms">
+                    J(C) = c<sub>FP</sub>·FP(C) + c<sub>FN</sub>·FN(C) + λ<sub>g</sub>|C|<sub>gates</sub> + λ<sub>d</sub>depth(C) + λ<sub>a</sub>|atoms(C)|
+                </div>
+                <p>with <var>c<sub>FP</sub></var> ≫ <var>c<sub>FN</sub></var>; a ratio of 10–100 is typical. The structural terms are a minimum-description-length penalty. A gate must pay for itself in errors removed, which is what keeps the circuit compact enough to read. Penalising distinct atoms also discourages the circuit from depending on many fragile substrings when a few robust ones would do.</p>
+                <p>Because the trade-off between FP, FN and size is a policy decision rather than a fixed constant, it is better to run a <strong>multi-objective</strong> search (NSGA-II style) over (FP, FN, size). That produces a Pareto front, and the operator picks the point that matches local tolerance. A small circuit with very low FP can ship to <code>reject</code>. A larger circuit with higher recall can ship to <code>add header</code>.</p>
+
+                <h3 class="subsection-heading" id="sec-4-6">4.6 Fitting scores to the circuit</h3>
+                <p>The circuit chooses the structure. Scores have to be fitted separately, because the final verdict is still Rspamd's additive sum compared against thresholds.</p>
+                <p>Given the outputs <var>o<sub>1</sub></var>, …, <var>o<sub>J</sub></var> of the evolved composites (and, optionally, the atoms left as standalone symbols), fit scores <var>s<sub>j</sub></var> by <strong>cost-sensitive logistic regression</strong> on the margin <var>S(m) − θ</var>, where <var>θ</var> is the target action threshold. A box constraint keeps every individual score inside an operator-approved range, so that no single new symbol can reject mail on its own unless that is intended.</p>
+                <p>If the circuit is meant to sit next to an existing, trusted config, the fit is done against the <em>residual</em> of the existing score. In that case the new symbols only add what the existing rules are missing.</p>
+
+                <h3 class="subsection-heading" id="sec-4-7">4.7 Seeding and search dynamics</h3>
+                <p>A random initial population wastes many generations rediscovering obvious single-atom rules. A better starting population includes:</p>
+                <ul class="feature-list">
+                    <li>the top single atoms by confidence bound, as trivial one-gate circuits;</li>
+                    <li>the top pairs by conditional lift <var>P(spam | a ∧ b) / P(spam | a)</var>;</li>
+                    <li>the operator's existing composites, translated into genomes.</li>
+                </ul>
+                <p>Including existing composites means the search starts from current production behaviour and can only be selected toward improvements that pay their complexity cost.</p>
+                <p>Mutation is point mutation over node genes. Input mutation is biased toward atoms with high <var>|λ|</var>, and op mutation is uniform. Plain CGP does not use crossover. A subgraph-splice crossover is worth adding when several outputs are evolved together, because it lets a useful sub-circuit move between output composites.</p>
+            </section>
+
+            <!-- Section 5 -->
+            <section class="content-section" id="sec-5" aria-labelledby="sec-5-heading">
+                <h2 id="sec-5-heading" class="section-heading">5. Phase 3: The Baseline Repaints the Index</h2>
+
+                <h3 class="subsection-heading" id="sec-5-1">5.1 Baseline prediction</h3>
+                <p>After Phase 2 there is a scored configuration: atoms, composites and scores. For each training message it produces a total score and a probability</p>
+                <div class="math-block" role="img" aria-label="p hat sub m equals sigma of S of m minus theta">
+                    p̂<sub>m</sub> = σ(S(m) − θ)
+                </div>
+                <p>This is the <strong>baseline prediction</strong>. It is the best the current rule set can do.</p>
+
+                <h3 class="subsection-heading" id="sec-5-2">5.2 Residual painting</h3>
+                <p>Now go back to the index and repaint it. This time the weight is not the raw label but the residual, which is the negative gradient of the log-loss:</p>
+                <div class="math-block" role="img" aria-label="w sub m equals y sub m minus p hat sub m">
+                    w<sub>m</sub> = y<sub>m</sub> − p̂<sub>m</sub>
+                </div>
+                <p>and the same painting operator from Section 3.4 is applied:</p>
+                <div class="math-block" role="img" aria-label="R of s equals the sum over m in D of s of w sub m">
+                    R(s) = ∑<sub>m ∈ D(s)</sub> w<sub>m</sub>
+                </div>
+                <p>The residual field has a precise reading:</p>
+                <ul class="feature-list">
+                    <li><strong><var>R(s)</var> ≫ 0</strong>: the substring appears in spam the baseline under-scores. It is a missing positive indicator.</li>
+                    <li><strong><var>R(s)</var> ≪ 0</strong>: the substring appears in ham the baseline over-scores. It is a missing <em>negative</em> indicator. It should become a negative-score symbol or, more likely, a <code>NOT</code> input to an existing composite (an exception clause).</li>
+                    <li><strong><var>R(s)</var> ≈ 0</strong>, even when the raw painting <var>λ(s)</var> is large: the substring is already explained. It is redundant and should not be added again.</li>
+                </ul>
+                <p>The last point matters most. A naive system rediscovers the same campaign strings every cycle. Residual painting makes already-captured evidence invisible, so discovery concentrates on what the configuration currently fails to explain.</p>
+                <p>Mathematically this is gradient boosting. Its weak learners are substring indicators chosen by linear-time interval enumeration, and its consolidation step is the circuit compression of Phase 2 rather than additive stacking. The selection machinery of Section 3.3 (support, confidence bound, branch-point selection) is reused unchanged on the residual field. Confidence bounds on a real-valued sum use a bootstrap or a normal approximation over the <var>w<sub>m</sub></var> in the interval.</p>
+
+                <h3 class="subsection-heading" id="sec-5-3">5.3 The full loop</h3>
+                <pre class="code-block has-copy-btn"><code>config  ← existing rspamd config (possibly empty)
+index   ← build_eBWT_or_GSA(normalised corpus)
+loop:
+    p̂      ← evaluate(config, corpus)                # baseline
+    w      ← y − p̂                                   # residuals (or y − π on first pass)
+    field  ← paint(index, w)                          # distinct-doc weighted sums per interval
+    cands  ← select_branch_points(field, n_min, L_min, conf)
+    cands  ← dedupe_subsumed(cands) ∪ lift_generalisations(cands)
+    atoms  ← atoms ∪ cands
+    bits   ← evaluate_bitsets(atoms ∪ native_symbols, corpus)
+    front  ← NSGA_CGP(bits, labels, seed=config.composites)
+    C*     ← pick(front, policy)                      # operator FP tolerance
+    scores ← fit_scores(C*, residual_of=trusted_base)
+    if validation_gain(config ⊕ (C*, scores)) &lt; ε: break
+    config ← config ⊕ (C*, scores)
+    atoms  ← prune(atoms, keep = atoms used by config)
+emit(config)</code><button type="button" class="code-copy-btn" aria-label="Copy code block to clipboard">Copy</button></pre>
+
+                <h3 class="subsection-heading" id="sec-5-4">5.4 Convergence and stopping</h3>
+                <p>Each cycle can only add rules that reduce held-out cost after the complexity penalty. Validation cost is therefore non-increasing when measured on a fixed split, and the loop stops when the marginal gain drops below <var>ε</var>.</p>
+                <p>In practice it settles after a few cycles. The first cycle captures broad campaign vocabulary. The second captures exceptions (ham that used that vocabulary) and context conjunctions. Later cycles find narrow, low-support patterns, and the confidence bounds filter most of those out.</p>
+                <p>The pruning step matters. Atoms that the final circuit does not use are dropped, so the atom pool stays bounded and the next Phase 2 search space does not grow without limit.</p>
+            </section>
+
+            <!-- Section 6 -->
+            <section class="content-section" id="sec-6" aria-labelledby="sec-6-heading">
+                <h2 id="sec-6-heading" class="section-heading">6. Why the Pieces Fit</h2>
+                <p>It is worth stating why these three components belong together rather than just being stacked.</p>
+                <ul class="feature-list">
+                    <li><strong>The index supplies hypotheses.</strong> Every possible substring rule corresponds to an interval, and all intervals can be enumerated and painted in linear time. Discovery is exhaustive over contiguous patterns, not sampled.</li>
+                    <li><strong>Painting is the shared language.</strong> Labels, residuals and contradiction weights are all just <var>w<sub>m</sub></var>. One operator, <var>P(s) = ∑<sub>m ∈ D(s)</sub> w<sub>m</sub></var>, serves first-pass discovery, error-driven discovery and negative evidence.</li>
+                    <li><strong>The circuit is the compression step.</strong> The index can produce thousands of correlated candidates. The circuit forces them through a description-length bottleneck and returns a handful of logical structures. Those structures match Rspamd's composite semantics exactly.</li>
+                    <li><strong>The baseline closes the loop.</strong> Feeding residuals back means each phase measures the other. The circuit tells the index what is already known, and the index tells the circuit what it is missing.</li>
+                </ul>
+                <p>The result is a learned model whose every parameter is a readable artefact: a literal pattern, a composite expression, a score. It does not depend on embeddings, a neural runtime, or a model file whose decisions cannot be inspected.</p>
+            </section>
+
+            <!-- Section 7 -->
+            <section class="content-section" id="sec-7" aria-labelledby="sec-7-heading">
+                <h2 id="sec-7-heading" class="section-heading">7. Constraints from the Mail Domain</h2>
+                <p>The theory above is general. The mail domain imposes a few requirements that shape the algorithm.</p>
+                <ul class="constraint-list">
+                    <li><strong>Normalisation is part of the model.</strong> The index is built over a canonical form of each message: MIME-decoded, HTML stripped to visible text, Unicode NFKC-normalised, case-folded, homoglyphs and zero-width characters collapsed, whitespace runs reduced, and URLs replaced by their registrable domain plus a path token. Emitted regexps must target the same canonical form, either through Rspamd's normalised text parts or a Lua pre-filter. If the index and the runtime see different text, the painted statistics do not hold.</li>
+                    <li><strong>Separators matter.</strong> Subject, body text, URL list and selected headers can be indexed as separate loops of the same message. They share a document id but have distinct field markers. Candidates are then field-scoped, which matches how Rspamd regexps are scoped (<code>Subject=/.../</code>, <code>/.../{mime}</code>, <code>/.../{url}</code>).</li>
+                    <li><strong>Time-split validation.</strong> Spam campaigns are bursty. A random train/validation split leaks campaign templates and overstates precision. Validation must be strictly later in time than training, and the support threshold <var>n<sub>min</sub></var> should count distinct <em>senders</em> or <em>campaign clusters</em> rather than raw messages, so that one blast cannot create a rule by itself.</li>
+                    <li><strong>Adversarial decay.</strong> Substring rules lose their value as spammers adapt. Each emitted symbol carries its creation time and its painted statistics. A periodic re-paint on recent traffic measures its live <var>λ</var>. Symbols whose confidence bound falls below threshold are retired automatically, and the circuit is re-evolved without them.</li>
+                    <li><strong>Shadow deployment.</strong> New symbols first ship with score 0. They log, but they do not act. Their production firing rates are compared against the offline predictions, and only symbols that agree are promoted to their fitted scores. The verdict logs from this period are also a natural source of new training labels, especially for ham, through user “not spam” actions.</li>
+                    <li><strong>Scale.</strong> A compressed FM-index over a few million normalised messages fits in memory on one machine. Construction (SA-IS plus Kasai LCP), interval enumeration and distinct-document painting are all linear. Circuit evolution is bit-parallel. A full cycle is a nightly batch job, not a cluster workload.</li>
+                </ul>
+            </section>
+
+            <!-- Section 8 -->
+            <section class="content-section" id="sec-8" aria-labelledby="sec-8-heading">
+                <h2 id="sec-8-heading" class="section-heading">8. Emitting Configuration</h2>
+                <p>The output maps directly onto standard Rspamd local overrides.</p>
+                <p>Atoms become regexp symbols:</p>
+                <pre class="code-block has-copy-btn"><code>-- local.d/regexp/auto_substr.lua  (generated)
+config['regexp']['AUTO_S_7f3a'] = {
+  re = '/claim\\s+your\\s+wallet\\s+bonus/i{mime}',
+  score = 0.0,                       -- used only via composites
+  description = 'auto: λ=4.1 n=812 cycle=2',
+  group = 'auto_substr',
+}</code><button type="button" class="code-copy-btn" aria-label="Copy code block to clipboard">Copy</button></pre>
+                <p>Circuit outputs become composites. Shared subexpressions are emitted as intermediate composites, and XOR is expanded:</p>
+                <pre class="code-block has-copy-btn"><code># local.d/composites.conf  (generated)
+AUTO_C_CRYPTO_LURE {
+  expression = "(AUTO_S_7f3a | AUTO_S_91bc) &amp; !R_DKIM_ALLOW &amp; (FREEMAIL_FROM | R_SPF_SOFTFAIL)";
+  score = 6.2;
+  group = "auto_composite";
+  policy = "remove_weight";
+}
+AUTO_C_INVOICE_EXCEPT {
+  expression = "AUTO_S_44e0 &amp; !AUTO_S_b812";
+  score = 3.1;
+  group = "auto_composite";
+}</code><button type="button" class="code-copy-btn" aria-label="Copy code block to clipboard">Copy</button></pre>
+                <p>Atoms that survive as standalone evidence get their fitted scores directly. Every generated rule carries its painted statistics in the description, so an operator reviewing a verdict can see why each symbol exists.</p>
+            </section>
+
+            <!-- Section 9 -->
+            <section class="content-section" id="sec-9" aria-labelledby="sec-9-heading">
+                <h2 id="sec-9-heading" class="section-heading">9. Summary</h2>
+                <p>The idea starts from one observation: in a sorted rotation index, every substring is a contiguous interval, and every interval can carry the tags of the loops that pass through it. Painting labels onto that index gives exhaustive, linear-time discovery of substring rules. Compressing the discovered rules into a genetically optimised Boolean circuit removes redundancy and adds context, and the circuit is already in the form of Rspamd composites. Repainting the index with the circuit's residuals turns discovery into a gradient-boosting loop that only looks for what the current configuration misses.</p>
+                <p>The end product is an Rspamd configuration that is generated, validated and retired by algorithm, yet stays fully readable: literal patterns, Boolean composites and scores, each with the statistics that justified it.</p>
+            </section>
+
+        </article>
+
+        <!-- Back-to-top control, behaviour (if any) to be wired up in JS -->
+        <button type="button" class="back-to-top-btn" aria-label="Back to top">↑ Top</button>
+    </main>
+
+    <!-- ========================================================= -->
+    <!-- Site footer -->
+    <!-- ========================================================= -->
+    <footer class="site-footer">
+        <p class="footer-text">An essay on deriving Rspamd configuration automatically from labelled mail via substring indexing, Boolean circuit evolution, and residual feedback.</p>
+    </footer>
+
+<!-- JavaScript will be added here -->
+
+    <script>
+        // ============================================================
+        // Painting the Substring Index — page interactivity
+        // Progressive enhancement only: all content is readable and
+        // navigable with JS disabled. These scripts add convenience
+        // behaviours on top of the semantic HTML.
+        // ============================================================
+        (() => {
+            'use strict';
+        
+            /* ----------------------------------------------------------
+               1. Smooth scrolling for in-page anchor links (TOC + back-to-top)
+               Respects users who prefer reduced motion.
+            ---------------------------------------------------------- */
+            const prefersReducedMotion = window.matchMedia(
+                '(prefers-reduced-motion: reduce)'
+            ).matches;
+        
+            const scrollToTarget = (target) => {
+                if (!target) return;
+                target.scrollIntoView({
+                    behavior: prefersReducedMotion ? 'auto' : 'smooth',
+                    block: 'start',
+                });
+            };
+        
+            // Delegate clicks on all internal hash links (TOC links, etc.)
+            document.addEventListener('click', (event) => {
+                const link = event.target.closest('a[href^="#"]');
+                if (!link) return;
+        
+                const hash = link.getAttribute('href');
+                if (!hash || hash === '#') return;
+        
+                const targetEl = document.querySelector(hash);
+                if (!targetEl) return;
+        
+                event.preventDefault();
+                scrollToTarget(targetEl);
+        
+                // Move focus to the target heading for keyboard/screen-reader users
+                targetEl.setAttribute('tabindex', '-1');
+                targetEl.focus({ preventScroll: true });
+        
+                // Update the URL hash without jumping
+                history.pushState(null, '', hash);
+            });
+        
+            /* ----------------------------------------------------------
+               2. Back-to-top button: show after scrolling past the header,
+                  hide near the top, and scroll smoothly to top on click.
+            ---------------------------------------------------------- */
+            const backToTopBtn = document.querySelector('.back-to-top-btn');
+            const header = document.querySelector('.site-header');
+        
+            if (backToTopBtn) {
+                const SHOW_AFTER_PX = header ? header.offsetHeight : 300;
+        
+                const toggleBackToTop = () => {
+                    const shouldShow = window.scrollY > SHOW_AFTER_PX;
+                    backToTopBtn.classList.toggle('is-visible', shouldShow);
+                };
+        
+                // Throttle scroll handling with requestAnimationFrame
+                let ticking = false;
+                window.addEventListener('scroll', () => {
+                    if (!ticking) {
+                        window.requestAnimationFrame(() => {
+                            toggleBackToTop();
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                }, { passive: true });
+        
+                // Initialise state on load
+                toggleBackToTop();
+        
+                backToTopBtn.addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: prefersReducedMotion ? 'auto' : 'smooth',
+                    });
+                    // Return focus to the top of the document for accessibility
+                    const siteTitle = document.querySelector('.site-title');
+                    if (siteTitle) {
+                        siteTitle.setAttribute('tabindex', '-1');
+                        siteTitle.focus({ preventScroll: true });
+                    }
+                });
+            }
+        
+            /* ----------------------------------------------------------
+               3. Scrollspy: highlight the current section's TOC link
+                  using IntersectionObserver for efficiency.
+            ---------------------------------------------------------- */
+            const tocLinks = Array.from(document.querySelectorAll('.toc-link'));
+            const sections = Array.from(document.querySelectorAll('.content-section'));
+        
+            if ('IntersectionObserver' in window && tocLinks.length && sections.length) {
+                const linkById = new Map(
+                    tocLinks.map((link) => [link.getAttribute('href').slice(1), link])
+                );
+        
+                const clearActiveLinks = () => {
+                    tocLinks.forEach((link) => link.classList.remove('is-active'));
+                };
+        
+                const setActiveLink = (id) => {
+                    clearActiveLinks();
+                    const activeLink = linkById.get(id);
+                    if (activeLink) {
+                        activeLink.classList.add('is-active');
+                        // Keep the active link visible if the TOC itself scrolls
+                        activeLink.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+                    }
+                };
+        
+                const observer = new IntersectionObserver(
+                    (entries) => {
+                        // Pick the entry closest to the top of the viewport that's intersecting
+                        const visible = entries
+                            .filter((entry) => entry.isIntersecting)
+                            .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        
+                        if (visible.length > 0) {
+                            setActiveLink(visible[0].target.id);
+                        }
+                    },
+                    {
+                        rootMargin: '-10% 0px -70% 0px',
+                        threshold: 0,
+                    }
+                );
+        
+                sections.forEach((section) => observer.observe(section));
+            }
+        
+            /* ----------------------------------------------------------
+               4. Collapsible table of contents on small viewports.
+                  Adds a toggle button if the TOC nav exists, without
+                  altering markup requirements elsewhere.
+            ---------------------------------------------------------- */
+            const tocNav = document.querySelector('.toc-nav');
+            const tocHeading = document.querySelector('.toc-heading');
+        
+            if (tocNav && tocHeading) {
+                const tocList = tocNav.querySelector('.toc-list');
+                const mediaQuery = window.matchMedia('(max-width: 640px)');
+        
+                // Create an accessible toggle button, inserted before the list
+                const toggleButton = document.createElement('button');
+                toggleButton.type = 'button';
+                toggleButton.className = 'toc-toggle-btn';
+                toggleButton.setAttribute('aria-expanded', 'true');
+                if (tocList && tocList.id === '') {
+                    tocList.id = 'toc-list';
+                }
+                if (tocList) {
+                    toggleButton.setAttribute('aria-controls', tocList.id || 'toc-list');
+                }
+                toggleButton.textContent = 'Hide contents';
+        
+                const applyCollapsedState = (collapsed) => {
+                    if (!tocList) return;
+                    tocList.hidden = collapsed;
+                    toggleButton.setAttribute('aria-expanded', String(!collapsed));
+                    toggleButton.textContent = collapsed ? 'Show contents' : 'Hide contents';
+                };
+        
+                toggleButton.addEventListener('click', () => {
+                    const isHidden = tocList ? tocList.hidden : false;
+                    applyCollapsedState(!isHidden);
+                });
+        
+                // Only show the toggle control and auto-collapse on small screens
+                const handleViewportChange = (e) => {
+                    if (e.matches) {
+                        if (!tocHeading.contains(toggleButton)) {
+                            tocHeading.insertAdjacentElement('afterend', toggleButton);
+                        }
+                        applyCollapsedState(true);
+                    } else {
+                        if (toggleButton.parentNode) {
+                            toggleButton.parentNode.removeChild(toggleButton);
+                        }
+                        if (tocList) tocList.hidden = false;
+                    }
+                };
+        
+                mediaQuery.addEventListener('change', handleViewportChange);
+                handleViewportChange(mediaQuery);
+            }
+        
+            /* ----------------------------------------------------------
+               5. Code block "copy" buttons for every <pre class="code-block">
+                  Improves usability when readers want to reuse generated
+                  Rspamd configuration snippets.
+            ---------------------------------------------------------- */
+            const codeBlocks = document.querySelectorAll('pre.code-block');
+        
+            codeBlocks.forEach((pre) => {
+                const codeEl = pre.querySelector('code');
+                if (!codeEl) return;
+        
+                // Wrap in a container so the button can be positioned via CSS
+                pre.classList.add('has-copy-btn');
+        
+                const copyBtn = document.createElement('button');
+                copyBtn.type = 'button';
+                copyBtn.className = 'code-copy-btn';
+                copyBtn.textContent = 'Copy';
+                copyBtn.setAttribute('aria-label', 'Copy code block to clipboard');
+        
+                copyBtn.addEventListener('click', async () => {
+                    const text = codeEl.textContent;
+        
+                    try {
+                        if (navigator.clipboard && window.isSecureContext) {
+                            await navigator.clipboard.writeText(text);
+                        } else {
+                            // Fallback for non-secure contexts / older browsers
+                            const textarea = document.createElement('textarea');
+                            textarea.value = text;
+                            textarea.style.position = 'fixed';
+                            textarea.style.opacity = '0';
+                            document.body.appendChild(textarea);
+                            textarea.select();
+                            document.execCommand('copy');
+                            document.body.removeChild(textarea);
+                        }
+        
+                        const originalLabel = copyBtn.textContent;
+                        copyBtn.textContent = 'Copied!';
+                        copyBtn.classList.add('is-copied');
+        
+                        window.setTimeout(() => {
+                            copyBtn.textContent = originalLabel;
+                            copyBtn.classList.remove('is-copied');
+                        }, 1800);
+                    } catch (err) {
+                        copyBtn.textContent = 'Copy failed';
+                        window.setTimeout(() => {
+                            copyBtn.textContent = 'Copy';
+                        }, 1800);
+                    }
+                });
+        
+                pre.appendChild(copyBtn);
+            });
+        
+            /* ----------------------------------------------------------
+               6. Keyboard-friendly focus outline for mouse vs. keyboard users.
+                  Adds a class to <body> only when navigating via Tab,
+                  so default UA focus rings don't show on mouse clicks,
+                  while remaining fully visible for keyboard users.
+            ---------------------------------------------------------- */
+            const handleFirstTab = (event) => {
+                if (event.key === 'Tab') {
+                    document.body.classList.add('user-is-tabbing');
+                    window.removeEventListener('keydown', handleFirstTab);
+                    window.addEventListener('mousedown', handleMouseDownOnce);
+                }
+            };
+        
+            const handleMouseDownOnce = () => {
+                document.body.classList.remove('user-is-tabbing');
+                window.removeEventListener('mousedown', handleMouseDownOnce);
+                window.addEventListener('keydown', handleFirstTab);
+            };
+        
+            window.addEventListener('keydown', handleFirstTab);
+        })();
+    </script>
+
+</body></html>

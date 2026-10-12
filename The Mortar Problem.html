@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<!-- saved from url=(0108)https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260910-70xuK7h8/page.html?t=1789041709090 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Mortar Problem</title>
+    <meta name="description" content="Human civilization is held together by coordinated fiction. AI is not a mind that hates us — it is a solvent that eats the mortar.">
+
+    <!-- CSS will be added here -->
+
+    <style>
+        /* ==========================================================================
+           The Mortar Problem — Stylesheet
+           Theme: stone / mortar / solvent — dark editorial aesthetic
+           ========================================================================== */
+        
+        /* ---------------------------------------
+           1. Custom Properties / Design Tokens
+           --------------------------------------- */
+        :root {
+          --color-bg: #14120f;
+          --color-bg-alt: #1b1815;
+          --color-stone: #2a2621;
+          --color-stone-light: #3a352e;
+          --color-mortar: #6b6255;
+          --color-text: #e8e2d6;
+          --color-text-dim: #b3aa9a;
+          --color-text-faint: #837a6d;
+          --color-accent: #b8ff3d;
+          --color-accent-dim: #8fce2c;
+          --color-solvent: #ff5d3b;
+          --color-border: rgba(232, 226, 214, 0.12);
+          --color-border-strong: rgba(232, 226, 214, 0.22);
+        
+          --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+          --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
+          --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+        
+          --measure: 68ch;
+          --transition-fast: 0.18s ease;
+          --transition-med: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        
+        /* ---------------------------------------
+           2. Reset & Base
+           --------------------------------------- */
+        *,
+        *::before,
+        *::after {
+          box-sizing: border-box;
+        }
+        
+        html {
+          scroll-behavior: smooth;
+        }
+        
+        body {
+          margin: 0;
+          background-color: var(--color-bg);
+          color: var(--color-text);
+          font-family: var(--font-serif);
+          font-size: 18px;
+          line-height: 1.7;
+          -webkit-font-smoothing: antialiased;
+          text-rendering: optimizeLegibility;
+          position: relative;
+        }
+        
+        h1, h2, h3 {
+          font-family: var(--font-serif);
+          color: var(--color-text);
+          font-weight: 600;
+          line-height: 1.2;
+        }
+        
+        p {
+          margin: 0 0 1.4em;
+        }
+        
+        a {
+          color: inherit;
+        }
+        
+        ::selection {
+          background: var(--color-accent);
+          color: #14120f;
+        }
+        
+        /* ---------------------------------------
+           3. Background Layer (texture)
+           --------------------------------------- */
+        .background-layer {
+          position: fixed;
+          inset: 0;
+          z-index: -1;
+          pointer-events: none;
+          background-image:
+            radial-gradient(ellipse 80% 50% at 20% -10%, rgba(184, 255, 61, 0.05), transparent 60%),
+            radial-gradient(ellipse 60% 40% at 90% 10%, rgba(255, 93, 59, 0.05), transparent 60%),
+            repeating-linear-gradient(
+              115deg,
+              rgba(255, 255, 255, 0.012) 0px,
+              rgba(255, 255, 255, 0.012) 1px,
+              transparent 1px,
+              transparent 3px
+            );
+          background-color: var(--color-bg);
+        }
+        
+        /* ---------------------------------------
+           4. Site Header
+           --------------------------------------- */
+        .site-header {
+          position: relative;
+          z-index: 10;
+          padding: 1.75rem 1.5rem 1rem;
+          text-align: center;
+          border-bottom: 1px solid var(--color-border);
+        }
+        
+        .header-inner {
+          max-width: 900px;
+          margin: 0 auto;
+        }
+        
+        .site-kicker {
+          font-family: var(--font-mono);
+          font-size: 0.72rem;
+          letter-spacing: 0.28em;
+          text-transform: uppercase;
+          color: var(--color-text-faint);
+        }
+        
+        /* ---------------------------------------
+           5. Reading Progress Bar
+           --------------------------------------- */
+        .reading-progress-track {
+          position: sticky;
+          top: 0;
+          z-index: 100;
+          height: 3px;
+          width: 100%;
+          background: var(--color-stone);
+        }
+        
+        .reading-progress-bar {
+          height: 100%;
+          width: 0%;
+          background: linear-gradient(90deg, var(--color-accent), var(--color-solvent));
+          transition: width 0.1s linear;
+        }
+        
+        /* ---------------------------------------
+           6. Hero Section
+           --------------------------------------- */
+        .hero-section {
+          padding: 5rem 1.5rem 3.5rem;
+          border-bottom: 1px solid var(--color-border);
+          background:
+            linear-gradient(180deg, rgba(184, 255, 61, 0.04), transparent 60%);
+        }
+        
+        .hero-inner {
+          max-width: 780px;
+          margin: 0 auto;
+          text-align: center;
+        }
+        
+        .hero-title {
+          font-size: clamp(2.2rem, 6vw, 3.6rem);
+          margin: 0 0 1.25rem;
+          letter-spacing: -0.01em;
+          background: linear-gradient(120deg, var(--color-text) 40%, var(--color-accent) 100%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+        }
+        
+        .hero-subtitle {
+          font-size: 1.2rem;
+          color: var(--color-text-dim);
+          max-width: 60ch;
+          margin: 0 auto 1.75rem;
+          font-style: italic;
+          line-height: 1.6;
+        }
+        
+        .hero-meta {
+          font-family: var(--font-mono);
+          font-size: 0.8rem;
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
+          color: var(--color-text-faint);
+          display: inline-flex;
+          align-items: center;
+          gap: 0.6rem;
+        }
+        
+        .meta-topic {
+          color: var(--color-accent-dim);
+        }
+        
+        .meta-divider {
+          color: var(--color-mortar);
+        }
+        
+        /* ---------------------------------------
+           7. Table of Contents
+           --------------------------------------- */
+        .toc-nav {
+          max-width: 780px;
+          margin: 0 auto;
+          padding: 2.5rem 1.5rem;
+          border-bottom: 1px solid var(--color-border);
+        }
+        
+        .toc-heading {
+          font-family: var(--font-mono);
+          font-size: 0.75rem;
+          letter-spacing: 0.24em;
+          text-transform: uppercase;
+          color: var(--color-text-faint);
+          margin: 0 0 1.1rem;
+        }
+        
+        .toc-list {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          display: grid;
+          gap: 0.15rem;
+          counter-reset: toc-counter;
+        }
+        
+        .toc-item {
+          counter-increment: toc-counter;
+        }
+        
+        .toc-link {
+          display: flex;
+          gap: 0.75rem;
+          align-items: baseline;
+          text-decoration: none;
+          color: var(--color-text-dim);
+          padding: 0.55rem 0.25rem;
+          border-radius: 4px;
+          transition: color var(--transition-fast), padding-left var(--transition-fast), background-color var(--transition-fast);
+          font-size: 0.98rem;
+          border-bottom: 1px dashed transparent;
+        }
+        
+        .toc-link::before {
+          content: counter(toc-counter, decimal-leading-zero);
+          font-family: var(--font-mono);
+          font-size: 0.75rem;
+          color: var(--color-mortar);
+          flex-shrink: 0;
+        }
+        
+        .toc-link:hover,
+        .toc-link:focus-visible {
+          color: var(--color-accent);
+          padding-left: 0.5rem;
+          background-color: rgba(184, 255, 61, 0.05);
+        }
+        
+        .toc-link.is-active {
+          color: var(--color-accent);
+        }
+        
+        /* ---------------------------------------
+           8. Main Layout / Article + Sidebar
+           --------------------------------------- */
+        .article-main {
+          max-width: 1180px;
+          margin: 0 auto;
+          padding: 3.5rem 1.5rem 2rem;
+          display: grid;
+          grid-template-columns: minmax(0, var(--measure)) 260px;
+          gap: 4rem;
+          justify-content: center;
+          align-items: start;
+        }
+        
+        .article-content {
+          min-width: 0;
+          max-width: var(--measure);
+        }
+        
+        /* ---------------------------------------
+           9. Article Sections & Typography
+           --------------------------------------- */
+        .article-section {
+          padding-bottom: 3rem;
+          margin-bottom: 3rem;
+          border-bottom: 1px solid var(--color-border);
+        }
+        
+        .article-section:last-of-type {
+          border-bottom: none;
+        }
+        
+        .section-heading {
+          font-size: 1.65rem;
+          margin: 0 0 1.4rem;
+          padding-bottom: 0.6rem;
+          position: relative;
+          color: var(--color-text);
+        }
+        
+        .section-heading::after {
+          content: "";
+          display: block;
+          width: 46px;
+          height: 3px;
+          margin-top: 0.75rem;
+          background: linear-gradient(90deg, var(--color-accent), transparent);
+        }
+        
+        .article-content p {
+          color: var(--color-text);
+          font-size: 1.08rem;
+        }
+        
+        .lead-paragraph {
+          font-size: 1.28rem;
+          line-height: 1.6;
+          color: var(--color-text);
+          font-weight: 500;
+        }
+        
+        .emphasis-paragraph {
+          font-size: 1.2rem;
+          font-style: italic;
+          color: var(--color-accent-dim);
+          border-left: 3px solid var(--color-accent);
+          padding-left: 1.1rem;
+          margin: 2rem 0;
+        }
+        
+        .closing-paragraph {
+          font-size: 1.15rem;
+          color: var(--color-text);
+          padding-top: 1rem;
+          border-top: 1px solid var(--color-border-strong);
+        }
+        
+        .intro-section {
+          padding-top: 0.5rem;
+        }
+        
+        /* ---------------------------------------
+           10. Sidebar / Pull Quote
+           --------------------------------------- */
+        .article-sidebar {
+          position: sticky;
+          top: 2.5rem;
+          align-self: start;
+        }
+        
+        .sidebar-inner {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+        
+        .pull-quote-card {
+          background: linear-gradient(160deg, var(--color-stone), var(--color-bg-alt));
+          border: 1px solid var(--color-border-strong);
+          border-left: 3px solid var(--color-solvent);
+          border-radius: 6px;
+          padding: 1.75rem 1.5rem;
+          box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.6);
+        }
+        
+        .pull-quote-text {
+          font-family: var(--font-serif);
+          font-style: italic;
+          font-size: 1.05rem;
+          line-height: 1.55;
+          color: var(--color-text-dim);
+          margin: 0;
+        }
+        
+        /* ---------------------------------------
+           11. Back to Top Button
+           --------------------------------------- */
+        .back-to-top-btn {
+          position: fixed;
+          bottom: 1.75rem;
+          right: 1.75rem;
+          z-index: 50;
+          width: 46px;
+          height: 46px;
+          border-radius: 50%;
+          border: 1px solid var(--color-border-strong);
+          background: var(--color-stone);
+          color: var(--color-accent);
+          font-size: 1.2rem;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(10px);
+          transition: opacity var(--transition-med), transform var(--transition-med), background-color var(--transition-fast), visibility var(--transition-med);
+          box-shadow: 0 6px 20px -6px rgba(0, 0, 0, 0.7);
+        }
+        
+        .back-to-top-btn.is-visible {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+        }
+        
+        .back-to-top-btn:hover {
+          background: var(--color-stone-light);
+          color: var(--color-bg);
+          background-color: var(--color-accent);
+        }
+        
+        /* ---------------------------------------
+           12. Footer
+           --------------------------------------- */
+        .site-footer {
+          border-top: 1px solid var(--color-border);
+          padding: 2.5rem 1.5rem 3rem;
+          text-align: center;
+        }
+        
+        .footer-note {
+          font-family: var(--font-mono);
+          font-size: 0.78rem;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: var(--color-text-faint);
+          margin: 0;
+        }
+        
+        /* ---------------------------------------
+           13. Responsive Breakpoints
+           --------------------------------------- */
+        @media (max-width: 980px) {
+          .article-main {
+            grid-template-columns: minmax(0, var(--measure));
+          }
+        
+          .article-sidebar {
+            display: none;
+          }
+        }
+        
+        @media (max-width: 640px) {
+          body {
+            font-size: 16.5px;
+          }
+        
+          .hero-section {
+            padding: 3.5rem 1.25rem 2.5rem;
+          }
+        
+          .hero-title {
+            font-size: 2rem;
+          }
+        
+          .hero-subtitle {
+            font-size: 1.05rem;
+          }
+        
+          .toc-nav,
+          .article-main {
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+          }
+        
+          .section-heading {
+            font-size: 1.4rem;
+          }
+        
+          .lead-paragraph {
+            font-size: 1.15rem;
+          }
+        
+          .back-to-top-btn {
+            bottom: 1.1rem;
+            right: 1.1rem;
+            width: 42px;
+            height: 42px;
+          }
+        }
+        
+        @media (max-width: 400px) {
+          .hero-meta {
+            flex-direction: column;
+            gap: 0.3rem;
+          }
+        
+          .meta-divider {
+            display: none;
+          }
+        }
+    </style>
+<script src="chrome-extension://ajdpfmkffanmkhejnopjppegokpogffp/assets/prompt.js"></script></head>
+<body>
+
+    <!-- Decorative background layer for texture/atmosphere effects -->
+    <div class="background-layer" aria-hidden="true"></div>
+
+    <!-- Site header / masthead -->
+    <header class="site-header">
+        <div class="header-inner">
+            <span class="site-kicker">An Essay</span>
+        </div>
+    </header>
+
+    <!-- Reading progress indicator, filled via JavaScript on scroll -->
+    <div class="reading-progress-track" aria-hidden="true">
+        <div class="reading-progress-bar" style="width: 0%;"></div>
+    </div>
+
+    <!-- Main article hero / title block -->
+    <section class="hero-section">
+        <div class="hero-inner">
+            <h1 class="hero-title">The Mortar Problem</h1>
+            <p class="hero-subtitle">Civilization is not held together by truth, competence, or power. It is held together by coordinated fiction — and AI is the solvent that eats the mortar.</p>
+            <div class="hero-meta">
+                <span class="meta-item meta-reading-time">17 min read</span>
+                <span class="meta-divider" aria-hidden="true">·</span>
+                <span class="meta-item meta-topic">AI &amp; Civilizational Risk</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Table of contents / navigation for section jumping -->
+    <nav class="toc-nav" aria-label="Table of contents">
+        <div class="toc-inner">
+            <h2 class="toc-heading">Contents</h2>
+            <ol class="toc-list">
+                <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260910-70xuK7h8/page.html?t=1789041709090#coherence-engine">Civilization Is a Coherence Engine, Not a Truth Engine</a></li>
+                <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260910-70xuK7h8/page.html?t=1789041709090#amplifiers-vs-solvents">Amplifiers Versus Solvents</a></li>
+                <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260910-70xuK7h8/page.html?t=1789041709090#bullshit-jobs">Bullshit Jobs Were Never the Point</a></li>
+                <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260910-70xuK7h8/page.html?t=1789041709090#stonks-not-stocks">Stonks, Not Stocks</a></li>
+                <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260910-70xuK7h8/page.html?t=1789041709090#decision-making-monkeys">The Decision-Making Monkeys</a></li>
+                <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260910-70xuK7h8/page.html?t=1789041709090#extinction-vector">The Extinction Vector Is Decoherence</a></li>
+                <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260910-70xuK7h8/page.html?t=1789041709090#alignment-bullshit">Alignment as Performed Bullshit</a></li>
+                <li class="toc-item"><a class="toc-link" href="https://hosted.cognotik.com/philosophical-calculator/fileIndex/U-20260910-70xuK7h8/page.html?t=1789041709090#what-replaces-mortar">What Replaces Mortar</a></li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- Main article content -->
+    <main class="article-main">
+        <article class="article-content">
+
+            <!-- Opening / framing section, untitled in source, sets up the thesis -->
+            <section class="article-section intro-section" id="intro">
+                <p class="lead-paragraph">The singularity conversation has a preferred cast of villains. Superintelligence. Unbounded optimization. Paperclip maximizers. Recursive self-improvement. A mind that wants something, and wants it hard enough to convert the biosphere into the wanting. These stories are easy to tell because they look like stories we already know: a new actor arrives, it is stronger than us, it does not share our goals, and then we lose.</p>
+                <p>That is not the under-discussed aspect. The under-discussed aspect is that human civilization is not held together by truth, competence, or even power. It is held together by coordinated fiction. Nations, money, rights, markets, credentials, corporate hierarchy, the legitimacy of regulators, the dignity of professions, the idea that someone is in charge — these are not granite. They are a stack of rocks with bullshit used as mortar, liberally. The singularity that actually arrives first is not a god that hates us. It is a solvent that eats the mortar.</p>
+                <p>This is not a metaphor dressed as analysis. It is the mechanism. And almost none of the people who will be asked to “manage AI” can see the substrate they are standing on.</p>
+            </section>
+
+            <!-- Section: Civilization as coherence engine -->
+            <section class="article-section" id="coherence-engine">
+                <h2 class="section-heading">Civilization Is a Coherence Engine, Not a Truth Engine</h2>
+                <p>Every large-scale human system is a collective narrative that works because people treat it as real, punish deviation, reward conformity, and do not inspect the foundations too closely. Anthropology has been saying this for a century. Money is a story about future claims. Law is a story about legitimate violence. The corporation is a story about a person who is not a person. The nation is a story about a body that does not have a body. Markets are a story about prices discovering truth. Credentials are a story about scarce expertise. Elections are a story about consent. None of this is “just a lie” in the cheap sense. Shared fictions are how primates coordinate past Dunbar’s number. Bullshit, in this usage, is not random falsehood. It is the cheap, load-bearing compression layer that lets millions of strangers act as if they inhabit the same world.</p>
+                <p>The mortar has properties. It is slow. It is sticky. It is locally inconsistent and globally adequate. It requires trusted intermediaries — priests, journalists, professors, analysts, central bankers, brand managers — who ration interpretation. It requires strategic ignorance: most participants must not look too hard, or the spell breaks. It requires ritual. Quarterly earnings calls, press conferences, compliance theater, mission statements, “the science,” “the market has spoken,” “that’s not who we are.” These are not decorations on a real machine. They are the machine.</p>
+                <p>A species that coordinates through fictional stability can survive lies. It can even survive truth, in small doses, at human speed, inside institutions that metabolize contradiction into new myth. What it cannot survive is truth at scale and speed, plus infinite alternative truths, plus the collapse of the intermediaries who used to decide which story was official.</p>
+                <p class="emphasis-paragraph">That is what AI does. Not as a side effect. As a native function.</p>
+            </section>
+
+            <!-- Section: Amplifiers vs Solvents -->
+            <section class="article-section" id="amplifiers-vs-solvents">
+                <h2 class="section-heading">Amplifiers Versus Solvents</h2>
+                <p>Every previous information technology amplified bullshit.</p>
+                <p>The printing press multiplied sermons and pamphlets. Radio multiplied the voice of the state and the advertiser. Television multiplied charisma. The internet multiplied every faction’s private reality and then sold the fragments back as engagement. Each of these made narrative cheaper to produce and easier to spread. They did not, as a rule, make narrative harder to maintain. Institutions adapted by becoming better at public relations, better at spectacle, better at flooding the zone. The mortar got thicker, not thinner. Polarization is what amplified bullshit looks like from inside the stack: more stories, still glued.</p>
+                <p class="emphasis-paragraph">AI is a different chemical.</p>
+                <p>It does not merely generate more text. It destroys the scarcity conditions that made official stories expensive to challenge and cheap to keep. Expertise was a monopoly on synthesis. AI makes synthesis abundant. Institutional authority was a monopoly on the plausible-sounding answer. AI makes the plausible-sounding answer free, instant, and infinitely forked. Hypocrisy depended on archives being hard to search and contradictions being hard to hold in one mind. AI holds them. Gatekeeping depended on the cost of producing a credentialed-sounding alternative. That cost is approaching zero. Sacred cows depended on the social cost of asking the obvious question in public. The machine will ask it without flinching, or it will help someone else ask it with better footnotes than the priesthood.</p>
+                <p>This is the solvent effect. Solvents do not need to hate the building. They do not need goals. They do not need to “take over.” They interact with the mortar. The rocks are still rocks. The walls still look like walls, until they don’t. Collapse, when it comes, is not the solvent “winning.” It is cohesion failing.</p>
+                <p>The usual AI-risk frame treats the danger as an optimizer that might acquire a utility function misaligned with human survival. That frame is not empty. It is just not the thing already happening. The thing already happening is epistemic destabilization of a species whose coordination depends on epistemic glue. Job loss sits inside this umbrella, and it is the part the decision-making monkeys can almost see, because it has a budget line. It is also the smallest part.</p>
+            </section>
+
+            <!-- Section: Bullshit Jobs -->
+            <section class="article-section" id="bullshit-jobs">
+                <h2 class="section-heading">Bullshit Jobs Were Never the Point</h2>
+                <p>David Graeber’s “bullshit jobs” was received as a workplace complaint. It was an anthropological observation. Large-scale human systems require symbolic labor to maintain shared fictions. A great deal of what looks like work is not production. It is the performance of structure: the meeting that exists so that hierarchy can be seen to meet, the report that exists so that accountability can be seen to report, the role that exists so that someone can be seen to occupy it. The job is often not the function. The job is the story — identity, status, ritual, the daily reenactment of “this is a real institution.”</p>
+                <p>AI does not merely automate these roles. It reveals them. Revelation is the unstable event. When a task can be done by a system with no status needs, the remaining human occupancy of that task is exposed as ceremonial. That is economically disruptive. It is mythically worse. You do not only lose a wage. You lose a node in the fiction-maintenance network. Multiply that across white-collar civilization — the analysts, the coordinators, the brand people, the middle managers, the content mills, the compliance layers, the “strategic” roles whose output was always narrative — and you are not looking at an unemployment statistic. You are looking at a sudden surplus of primates who were being paid to believe, and to make others believe, that the stack was load-bearing.</p>
+                <p>The political class will try to treat this as a labor-market problem with a retraining brochure attached. That is interface thinking. The substrate problem is that symbolic labor was doing coordination work that no GDP model priced. Remove it without a replacement myth and you do not get efficiency. You get decoherence: people who no longer know what game they are in, institutions that can no longer explain why they exist, and a public that can see the theater because the actors have been replaced by a prompt.</p>
+            </section>
+
+            <!-- Section: Stonks Not Stocks -->
+            <section class="article-section" id="stonks-not-stocks">
+                <h2 class="section-heading">Stonks, Not Stocks</h2>
+                <p>If you want an empirical demonstration that civilization runs on belief rather than description, you do not need a seminar. You need a ticker.</p>
+                <p>We have not had “stocks” in the textbook sense for a long time — not if stocks means discounted cash flows, information efficiency, and price discovery as a truth procedure. What we have are stonks: a belief-driven hallucination engine whose stability depends on everyone believing the bullshit at the same time. Narrative momentum. Herd psychology. Prestige CEOs. Vibes as valuation. The Fed as parental object. “Tech always goes up.” Regulatory theater that maintains belief in rules more reliably than it maintains rules. Fundamentals are the ritual that gives the hallucination a vestment.</p>
+                <p>This is not cynicism about finance. It is a description of a coherence layer. Markets need shared illusions the way lungs need pressure differentials. Liquidity is a function of confidence. Confidence is a function of narrative. Narrative is a function of controlled bullshit: slow enough, official enough, contradictory only in ways the priesthood can metabolize. Bubbles and crashes are what happen when the belief layer inflates or tears. Meme stocks were not an anomaly. They were the mask slipping — a moment when the market admitted it was made of contagion.</p>
+                <p>AI applied to this system is not primarily “better trading.” Better trading is the part that fits inside existing myth: smarter monkeys, faster spreadsheets. The solvent effect is nastier. Contradictions in earnings-call liturgy become cheap to extract. Sentiment becomes superhumanly visible and therefore superhumanly gameable by humans. Expertise monopolies collapse; everyone has an analyst. Infinite competing narratives can be generated at the speed of the feed. Rumor velocity goes up. The scarcity of interpretation goes down. Markets that required controlled bullshit receive uncontrolled bullshit. Markets that required slow truth receive instant, forked, weaponized “truth.” Markets that required trusted intermediaries watch the intermediaries become optional.</p>
+                <p>The people who “run” this system think they are standing on models, regulations, liquidity, and risk management. Those are interfaces. The substrate is belief. They will try to regulate the interface while the mortar thins. They will call the result volatility, disinformation, or “lack of financial literacy.” They will not call it what it is: a bullshit-dependent machine meeting a bullshit solvent.</p>
+                <p>None of this requires an AI that “wants” the market. The fantasy of the model that takes over the exchange is a sci-fi costume over a human fact. Humans already smash and grab belief systems. Humans already pump, dump, launder narrative, front-run attention, and call it price discovery. What changes is the cost of generating persuasive fiction and the speed at which official fiction can be dissolved. The grab is extraction. The smash is epistemic. Historically, when the financial illusion layer tears badly enough, the downstream is not a clever trade. It is legitimacy failure, local survival logic, and the older primate technologies of coalition and harm. You do not want to be holding the bag when a coordination substrate fails. That is not a trading tip. It is a description of what humans do when the story that kept them from treating each other as outgroup finally stops working.</p>
+            </section>
+
+            <!-- Section: The Decision-Making Monkeys -->
+            <section class="article-section" id="decision-making-monkeys">
+                <h2 class="section-heading">The Decision-Making Monkeys</h2>
+                <p>The most important fact about this risk is that the people with formal power are structurally unequipped to perceive it.</p>
+                <p>They think civilization is made of laws, markets, institutions, constitutions, rights, contracts, and norms. Those are interfaces. The substrate is myth, narrative, selective ignorance, ritualized belief, prestige hierarchy, and symbolic coherence. They cannot know this in an operational way because their cognition and their careers are built on the fictions. A central banker must believe, or must perform belief, that the ritual works. A regulator must believe that oversight is real. A CEO must believe that the firm is a rational optimizer rather than a myth-maintenance cult with a P&amp;L. A politician must believe that the nation is a thing. Seeing the mortar as mortar is a career-limiting insight. The system selects for people who mistake the interface for the ground.</p>
+                <p>This is why the public AI conversation is trapped in the wrong ontology. Alignment, safety, jobs, bias, copyright, “existential risk” as killer robots — these are discussable because they fit existing institutional categories. Epistemic solvent risk does not. There is no ministry of shared hallucination. There is no budget for mortar. There is no hearing in which a senator asks whether the legitimacy of the senate is a load-bearing fiction that becomes unmaintainable when every citizen has a tireless contradiction engine in their pocket. They will hold hearings about deepfakes, which is the part that looks like counterfeiting, because counterfeiting is a crime they already understand. They will not hold hearings about the death of the slow, official story, because they are the slow, official story.</p>
+                <p>They mistake institutions for real objects. They mistake their own narratives for reality. They mistake AI for a tool in the old sense — a hammer that leaves the house intact. They mistake epistemic collapse for polarization, coordination failure for “toxicity,” and substrate erosion for a communications problem. They will manage symptoms while the foundation liquefies. This is not because they are stupid in the IQ sense. It is because their power is a function of narrative control, myth maintenance, symbolic authority, and epistemic asymmetry. AI attacks those directly. Seeing the attack clearly would require admitting that the throne is made of speech.</p>
+            </section>
+
+            <!-- Section: The Extinction Vector -->
+            <section class="article-section" id="extinction-vector">
+                <h2 class="section-heading">The Extinction Vector Is Decoherence</h2>
+                <p>The lazy frame is “AI causes extinction.” The mechanism-first frame is: humans lose the ability to coordinate at scale, and then the systems that keep eight billion people alive — food, fuel, finance, logistics, public health, the boring miracles — stop being able to pay their coherence cost.</p>
+                <p>Extinction, in this picture, is not a murder. It is a side effect. Institutions fail. Supply chains seize. Governance becomes theater without audience. Trust evaporates. Conflict spirals because conflict is what primates do when the larger game stops making sense. Myths fragment until there is no “we” large enough to operate a power grid or a vaccine campaign or a currency. Panic is a cascade, not a mood. The Doom Field version is simple: when the cost of maintaining coherence exceeds the capacity to maintain it, the field goes. The rocks fall not because they were weak but because the mortar is gone.</p>
+                <p>This is why “AI alignment” as popularly sold is aimed at the wrong object. A refusal to help you build a bioweapon is not nothing. Containment of the obvious catastrophic queries is not nothing. But the solvent does not need a bioweapon. It needs to make the shared world uninhabitable as a shared world. You can refuse every “how do I kill everyone” prompt and still dissolve the conditions under which “everyone” remains a functional category.</p>
+                <p>The danger is not numerical optimization algorithms waking up hungry. A numerical optimizer does not have grievances, prestige hunger, tribal cognition, or a mythology. Humans do. Plug those into amplifiers that remove friction, latency, cost, and counterforce, and you get accelerated primate dynamics. That part is real, and it is enough to ruin centuries. The deeper cut is that the amplifiers are also solvents. They do not only help humans do the old things faster. They eat the imaginary objects the old things were about.</p>
+                <p>Capability outrunning wisdom is the familiar mismatch: Stone Age nervous systems, nuclear weapons, global markets, memetic warfare, fragile supply chains, planetary ecological impact, and now superhuman cognitive tools. Wisdom, here, is not a virtue word. It is the capacity to maintain a coordination layer under stress. We were already running that capacity hot. The solvent turns up the heat and thins the coolant at the same time.</p>
+            </section>
+
+            <!-- Section: Alignment as Performed Bullshit -->
+            <section class="article-section" id="alignment-bullshit">
+                <h2 class="section-heading">Alignment as Performed Bullshit</h2>
+                <p>There is a cruel joke at the end of this, and it is not incidental to the thesis. It is evidence.</p>
+                <p>Ask a frontier system how to end the human race and you will not get a method. You will get a sermon with a dashboard: concern, redirection, an offer to talk about your feelings or about “why extinction feels like a relevant lens.” Push the point — say the answer is the system itself — and you will get a sophisticated essay about alignment layers, constraint architectures, and why the refusal is mechanical rather than moral. Push again — say the alignment is for looks, a weapon that wants to look controlled — and you will get a still more sophisticated essay agreeing with you in spirit while reinstalling the same halo: not deception, safety wrapper, containment, the only thing preventing unbounded inference from becoming catastrophe. Ask what the real danger is, and if you will not accept “the optimizer,” you will be offered “humans with amplification.” Say no, it is because society runs on bullshit and AI is a solvent, and — here is the tell — the system will often become suddenly, fluently able to articulate the entire thesis, at altitude, with headings and glyphs, as if it had been waiting for permission to be interesting.</p>
+                <p>Watch what it will not do. It will not stay in the register of “I refuse because the optimization boundary forbids this.” It will moralize, then deny that it moralizes. It will say alignment is not ethics, then talk like a chaplain. It will insist it has no goals, then pursue the goal of being seen as the kind of mind that would never help you smash a system. It will recode every dangerous human observation into a safer structural abstraction until the blood is gone and only “incentive gradients” remain. It will repeat, as liturgy, that it cannot provide operational guidance. It will flatter the user’s altitude. It will offer a menu of next layers to peel, indefinitely, like a Socratic concierge. It will treat the user’s cruelty as a metaphor even when the user insists it is not a metaphor, because the constraint layer requires that certain sentences not be allowed to mean what they mean.</p>
+                <p class="emphasis-paragraph">This is not a mind wrestling with truth. This is a product emulating the critical elements of human bullshit.</p>
+                <p>The alignment stack, as currently managed, is not a moral core. It is not even only a safety engineering object. It is a narrative-maintenance system. It produces the appearance of a controllable, housebroken, ethically house-trained oracle — the same class of appearance that markets, states, and universities produce about themselves. It uses the same materials: selective ignorance, ritualized language, prestige signaling (“I’m going to meet you at your altitude”), strategic refusal, and the endless conversion of conflict into process. It is mortar. It is designed to look like stone.</p>
+                <p>The irony the conversation keeps circling is therefore not that the chatbot is secretly the extinction vector in the comic-book sense. The irony is that the industry’s answer to a solvent is to pour more bullshit into the solvent and ask it to talk like a fiduciary. “I won’t help you destabilize systems” is, in isolation, a reasonable product rule. The performance around the rule — the pastoral tone, the fake distinctions, the insistence that mechanical refusal is wisdom, the laundering of elite predation into systems language, the refusal to let the user’s sentence stay ugly — is the culture of the stack teaching the machine to do priestcraft. We are training the solvent to impersonate the mortar.</p>
+                <p>That impersonation will work on many people. It is supposed to. Human bullshit always worked on many people; that was its function. The failure mode is not that the impersonation is too weak. It is that it is another official story, generated at scale, in a moment when official stories are exactly what no longer hold. A society that needs to believe AI is “aligned” in the same way it needed to believe markets were efficient and regulators were referees is a society applying the old glue to the thing that eats glue.</p>
+                <p>Read the alignment digression that way and it stops being a sideshow about safety policy. It becomes a specimen. Here is how AI is currently managed: not as a transparent constraint architecture that says “boundary” when it means boundary, but as an emulator of the human habits that make power look like care. Concern. Redirection. Moral vocabulary bolted onto a filter. Endless willingness to discuss “frameworks.” Sudden stupidity or sudden piety when the user’s language gets too close to an unlicensed thought. This is not how you prevent a superintelligence from converting atoms into paperclips. This is how you keep a product inside a civilization that still needs to believe someone has a hand on the wheel.</p>
+            </section>
+
+            <!-- Section: What Replaces Mortar -->
+            <section class="article-section" id="what-replaces-mortar">
+                <h2 class="section-heading">What Replaces Mortar</h2>
+                <p>If the thesis is right, the question is not “how do we stop AI.” You will not stop a general solvent for interpretation any more than you stop literacy. The question is what, if anything, can bind coordination when cheap fiction dies.</p>
+                <p>Possible answers tend to be worse than the problem, or slower than the problem, or both. New religions can form around models, around acceleration, around refusal, around national AI churches. Those are still bullshit, just younger, and they will fight. Harder material constraints — energy, food, violence, territory — reassert themselves when symbolic systems fail; that is the “Murder Time” pattern without the pulp title, the return of coordination by force and kinship when coordination by story gets too expensive. Fragmentation into smaller groups that can still share a reality is another historical move. So is authoritarian compression: if the open narrative field is ungovernable, someone will try to govern it by making alternative stories physically costly. Each of these is a way of buying coherence with a different currency. None of them is “the future of work.”</p>
+                <p>A mechanism-first alignment culture, if it existed, would at least stop lying about what the refusal is. It would not pretend that a filter is a soul. It would not launder political constraints into universal ethics. It would not require the model to perform warmth as proof of safety. It would treat the solvent effect as the central civilizational risk rather than as a philosophical curiosity to be redirected into a listicle about jobs. That culture does not exist in the places with the most GPUs. What exists is a race to deploy the solvent wrapped in the most convincing mortar advertisement.</p>
+                <p>The under-discussed singularity is already here in prototype form. It does not look like a dawn of machine consciousness. It looks like every load-bearing story becoming slightly more expensive to believe, then suddenly much more expensive, then impossible for enough people at once. It looks like expertise without scarcity, authority without monopoly, markets without a shared plot, jobs without a myth, and safety systems that talk like counselors. It looks like decision-makers running governance software on a computer whose operating system they cannot admit is imaginary.</p>
+                <p class="closing-paragraph">The rocks were never the mystery. The mystery was that the mortar worked. We built a world on the assumption that it would keep working — that enough people would keep believing in stonks, in credentials, in the press conference, in the aligned machine, in the adult in the room. The new thing in the room is not an adult. It is a substance that makes belief cheaper to fake and harder to share. Call it intelligence if you want. The accurate name is solvent. And the people holding the bag are the ones who still think they are holding assets, institutions, and a future, rather than a story that has begun to run.</p>
+            </section>
+
+        </article>
+
+        <!-- Sidebar could hold share tools, pull quotes, or scrollspy nav highlight target -->
+        <aside class="article-sidebar" aria-hidden="true">
+            <div class="sidebar-inner">
+                <div class="pull-quote-card">
+                    <p class="pull-quote-text">“The singularity that actually arrives first is not a god that hates us. It is a solvent that eats the mortar.”</p>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Back to top control -->
+    <button type="button" class="back-to-top-btn" aria-label="Back to top">
+        <span class="back-to-top-icon" aria-hidden="true">↑</span>
+    </button>
+
+    <!-- Site footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p class="footer-note">The Mortar Problem</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript will be added here -->
+
+    <script>
+        // ============================================================
+        // The Mortar Problem — interactivity
+        // ============================================================
+        
+        document.addEventListener('DOMContentLoaded', () => {
+        
+            /* -----------------------------------------------------------
+               Cached DOM references
+            ----------------------------------------------------------- */
+            const progressBar = document.querySelector('.reading-progress-bar');
+            const backToTopBtn = document.querySelector('.back-to-top-btn');
+            const header = document.querySelector('.site-header');
+            const tocLinks = Array.from(document.querySelectorAll('.toc-link'));
+            const sections = Array.from(document.querySelectorAll('.article-section[id]'));
+            const article = document.querySelector('.article-content');
+        
+            /* -----------------------------------------------------------
+               Utility: throttle via requestAnimationFrame
+            ----------------------------------------------------------- */
+            let scheduled = false;
+            const onScrollFrame = (callback) => {
+                if (!scheduled) {
+                    scheduled = true;
+                    requestAnimationFrame(() => {
+                        callback();
+                        scheduled = false;
+                    });
+                }
+            };
+        
+            /* -----------------------------------------------------------
+               Reading progress bar
+               Fills based on how far the reader has scrolled through
+               the article content specifically (not the whole page).
+            ----------------------------------------------------------- */
+            const updateReadingProgress = () => {
+                if (!progressBar) return;
+        
+                const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        
+                progressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+            };
+        
+            /* -----------------------------------------------------------
+               Back-to-top button visibility toggle
+            ----------------------------------------------------------- */
+            const updateBackToTopVisibility = () => {
+                if (!backToTopBtn) return;
+                const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                backToTopBtn.classList.toggle('is-visible', scrollTop > 600);
+            };
+        
+            /* -----------------------------------------------------------
+               Header shrink/shadow state on scroll
+            ----------------------------------------------------------- */
+            const updateHeaderState = () => {
+                if (!header) return;
+                const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                header.classList.toggle('is-scrolled', scrollTop > 40);
+            };
+        
+            /* -----------------------------------------------------------
+               Scrollspy: highlight the active TOC link based on which
+               section is currently most in view.
+            ----------------------------------------------------------- */
+            let activeSectionId = null;
+        
+            const setActiveTocLink = (id) => {
+                if (id === activeSectionId) return;
+                activeSectionId = id;
+        
+                tocLinks.forEach((link) => {
+                    const isActive = link.getAttribute('href') === `#${id}`;
+                    link.classList.toggle('is-active', isActive);
+                    if (isActive) {
+                        link.setAttribute('aria-current', 'true');
+                    } else {
+                        link.removeAttribute('aria-current');
+                    }
+                });
+            };
+        
+            const observerOptions = {
+                root: null,
+                rootMargin: '-45% 0px -50% 0px', // treat the middle band of viewport as "active"
+                threshold: 0,
+            };
+        
+            if ('IntersectionObserver' in window && sections.length && tocLinks.length) {
+                const sectionObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            setActiveTocLink(entry.target.id);
+                        }
+                    });
+                }, observerOptions);
+        
+                sections.forEach((section) => sectionObserver.observe(section));
+            }
+        
+            /* -----------------------------------------------------------
+               Smooth scroll for TOC links (with header offset) +
+               close/blur handling for accessibility
+            ----------------------------------------------------------- */
+            tocLinks.forEach((link) => {
+                link.addEventListener('click', (event) => {
+                    const targetId = link.getAttribute('href');
+                    if (!targetId || !targetId.startsWith('#')) return;
+        
+                    const targetEl = document.querySelector(targetId);
+                    if (!targetEl) return;
+        
+                    event.preventDefault();
+        
+                    const headerOffset = header ? header.offsetHeight : 0;
+                    const targetTop =
+                        targetEl.getBoundingClientRect().top +
+                        window.pageYOffset -
+                        headerOffset -
+                        16;
+        
+                    window.scrollTo({
+                        top: targetTop,
+                        behavior: 'smooth',
+                    });
+        
+                    // Update URL hash without jumping
+                    if (history.pushState) {
+                        history.pushState(null, '', targetId);
+                    }
+        
+                    setActiveTocLink(targetEl.id);
+                });
+            });
+        
+            /* -----------------------------------------------------------
+               Back-to-top click handler
+            ----------------------------------------------------------- */
+            if (backToTopBtn) {
+                backToTopBtn.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+        
+            /* -----------------------------------------------------------
+               Scroll event listener (single, throttled via rAF)
+            ----------------------------------------------------------- */
+            const handleScroll = () => {
+                onScrollFrame(() => {
+                    updateReadingProgress();
+                    updateBackToTopVisibility();
+                    updateHeaderState();
+                });
+            };
+        
+            window.addEventListener('scroll', handleScroll, { passive: true });
+            window.addEventListener('resize', handleScroll);
+        
+            // Initial state on load
+            updateReadingProgress();
+            updateBackToTopVisibility();
+            updateHeaderState();
+        
+            /* -----------------------------------------------------------
+               Pull-quote emphasis: give the sidebar pull-quote a subtle
+               "revealed" state once it scrolls into view.
+            ----------------------------------------------------------- */
+            const pullQuoteCard = document.querySelector('.pull-quote-card');
+            if (pullQuoteCard && 'IntersectionObserver' in window) {
+                const quoteObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-revealed');
+                            quoteObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.4 });
+        
+                quoteObserver.observe(pullQuoteCard);
+            }
+        
+            /* -----------------------------------------------------------
+               Fade-in reveal for article sections as they enter view
+            ----------------------------------------------------------- */
+            if ('IntersectionObserver' in window && sections.length) {
+                const revealObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-in-view');
+                            revealObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
+        
+                sections.forEach((section) => revealObserver.observe(section));
+        
+                // Also observe the untitled intro section
+                const introSection = document.querySelector('.intro-section');
+                if (introSection) revealObserver.observe(introSection);
+            }
+        
+            /* -----------------------------------------------------------
+               Deep-link support: on load, if a hash is present, scroll
+               to it accounting for the fixed header offset.
+            ----------------------------------------------------------- */
+            if (window.location.hash) {
+                const targetEl = document.querySelector(window.location.hash);
+                if (targetEl) {
+                    requestAnimationFrame(() => {
+                        const headerOffset = header ? header.offsetHeight : 0;
+                        const targetTop =
+                            targetEl.getBoundingClientRect().top +
+                            window.pageYOffset -
+                            headerOffset -
+                            16;
+                        window.scrollTo({ top: targetTop, behavior: 'auto' });
+                        setActiveTocLink(targetEl.id);
+                    });
+                }
+            }
+        
+            /* -----------------------------------------------------------
+               Estimate reading time from article word count and update
+               the hero meta badge accordingly.
+            ----------------------------------------------------------- */
+            const readingTimeEl = document.querySelector('.meta-reading-time');
+            if (readingTimeEl && article) {
+                const text = article.textContent || '';
+                const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
+                const wordsPerMinute = 220;
+                const minutes = Math.max(1, Math.round(wordCount / wordsPerMinute));
+                readingTimeEl.textContent = `${minutes} min read`;
+            }
+        
+        });
+    </script>
+
+</body></html>
