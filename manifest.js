@@ -34,7 +34,10 @@
     f('The Status-Bonding Sentence_ Sycophancy Disguised as Insight.html', 'The Status-Bonding Sentence: Sycophancy Disguised as Insight'),
     f('The Water Mob_ On Panic, Class, and the Authoritarian Reflex.html', 'The Water Mob: On Panic, Class, and the Authoritarian Reflex'),
     f('The-Collapse-of-Authority-Guilds.md', 'The Collapse of Authority Guilds'),
-    f('Unwrapping-Christmas-The-Myth-and-Honesty.md', 'Unwrapping Christmas: The Myth and Honesty')
+    f('Unwrapping-Christmas-The-Myth-and-Honesty.md', 'Unwrapping Christmas: The Myth and Honesty'),
+    f('genocide_of_fathers.md', 'Genocide of Fathers'),
+    f('least_entropy_morality.md', 'Least Entropy Morality'),
+    f('local_physics.md', 'Local Physics'),
   ];
 
   const isMarkdown = (file) => /\.md$/i.test(file);
