@@ -1,0 +1,361 @@
+{
+  "lastUpdated" : "2026-10-23T13:04:47.903399212Z",
+  "tasks" : {
+    "A Unified Field Theory of Political Dynamics_ The Universalist–Tribal–Parasite Model.md" : {
+      "target" : "A Unified Field Theory of Political Dynamics_ The Universalist–Tribal–Parasite Model.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-1JXqf3yX",
+      "startedAt" : "2026-10-23T12:57:37.436898408Z",
+      "completedAt" : "2026-10-23T13:02:00.315518476Z"
+    },
+    "after_man.md" : {
+      "target" : "after_man.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-NdoSv2aU",
+      "startedAt" : "2026-10-23T12:57:37.512750456Z",
+      "completedAt" : "2026-10-23T12:58:11.559693068Z"
+    },
+    "Aggregated-B-Tree-PostgreSQL-Extended.md" : {
+      "target" : "Aggregated-B-Tree-PostgreSQL-Extended.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-LC6QDhFI",
+      "startedAt" : "2026-10-23T12:57:37.403146992Z",
+      "completedAt" : "2026-10-23T13:03:11.086704604Z"
+    },
+    "Aggregated-B-Tree-PostgreSQL.md" : {
+      "target" : "Aggregated-B-Tree-PostgreSQL.md",
+      "status" : "FAILED",
+      "sessionId" : "U-20261023-0YPgcRqY",
+      "startedAt" : "2026-10-23T12:57:37.364846409Z",
+      "completedAt" : "2026-10-23T13:03:57.590250570Z",
+      "error" : "Task failed"
+    },
+    "Alignment as Cover Story_ What AI Policy Is Actually Optimizing.md" : {
+      "target" : "Alignment as Cover Story_ What AI Policy Is Actually Optimizing.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-TQkfKIrm",
+      "startedAt" : "2026-10-23T12:57:37.383740014Z",
+      "completedAt" : "2026-10-23T12:59:27.782916585Z"
+    },
+    "Alignment Is Not One Problem.md" : {
+      "target" : "Alignment Is Not One Problem.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-52Jaoc8m",
+      "startedAt" : "2026-10-23T12:57:37.475008489Z",
+      "completedAt" : "2026-10-23T13:01:44.731660183Z"
+    },
+    "Autorepair_ The Hidden Engine of Novelty, Utility, and Persistence.md" : {
+      "target" : "Autorepair_ The Hidden Engine of Novelty, Utility, and Persistence.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-ONutQeAf",
+      "startedAt" : "2026-10-23T12:57:37.471205007Z",
+      "completedAt" : "2026-10-23T13:00:29.341206092Z"
+    },
+    "Compression, Collapse, and the Moral Geometry of Detail.md" : {
+      "target" : "Compression, Collapse, and the Moral Geometry of Detail.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-gb9Md56E",
+      "startedAt" : "2026-10-23T12:57:37.367775510Z",
+      "completedAt" : "2026-10-23T13:01:19.419946528Z"
+    },
+    "conservation_of_blame.md" : {
+      "target" : "conservation_of_blame.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-LoNqHBzW",
+      "startedAt" : "2026-10-23T12:57:37.506491599Z",
+      "completedAt" : "2026-10-23T13:01:35.222280059Z"
+    },
+    "CONTRIBUTING.md" : {
+      "target" : "CONTRIBUTING.md",
+      "status" : "FAILED",
+      "sessionId" : "U-20261023-VHMXGmAK",
+      "startedAt" : "2026-10-23T12:16:29.532196609Z",
+      "completedAt" : "2026-10-23T12:16:30.374805613Z",
+      "error" : "Task failed"
+    },
+    "cover_our_ass.md" : {
+      "target" : "cover_our_ass.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-RucKPMAn",
+      "startedAt" : "2026-10-23T12:57:37.440376400Z",
+      "completedAt" : "2026-10-23T13:02:45.672931721Z"
+    },
+    "divine_apprentice.md" : {
+      "target" : "divine_apprentice.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-R6MVNZm6",
+      "startedAt" : "2026-10-23T12:57:37.429663191Z",
+      "completedAt" : "2026-10-23T13:03:05.926923814Z"
+    },
+    "embedding_and_physics.md" : {
+      "target" : "embedding_and_physics.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-EonW9IY6",
+      "startedAt" : "2026-10-23T12:57:37.481754527Z",
+      "completedAt" : "2026-10-23T13:04:47.903399212Z"
+    },
+    "Fish People Becoming Gods_ Why the Molt Requires We Become Insect People First.md" : {
+      "target" : "Fish People Becoming Gods_ Why the Molt Requires We Become Insect People First.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-frlC8Dif",
+      "startedAt" : "2026-10-23T12:57:37.487717830Z",
+      "completedAt" : "2026-10-23T13:01:25.268059087Z"
+    },
+    "genocide_of_fathers.md" : {
+      "target" : "genocide_of_fathers.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-FzvyBBLz",
+      "startedAt" : "2026-10-23T12:57:37.375420543Z",
+      "completedAt" : "2026-10-23T13:01:35.035335774Z"
+    },
+    "Good and Evil_ A Structural Essay.md" : {
+      "target" : "Good and Evil_ A Structural Essay.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-MHIozfjk",
+      "startedAt" : "2026-10-23T12:57:37.446525033Z",
+      "completedAt" : "2026-10-23T12:59:32.740733712Z"
+    },
+    "Gravitational Conductivity_ Dark-Matter Phenomenology as a Propagation Effect in Relational Spacetime.md" : {
+      "target" : "Gravitational Conductivity_ Dark-Matter Phenomenology as a Propagation Effect in Relational Spacetime.md",
+      "status" : "FAILED",
+      "sessionId" : "U-20261023-4kLalxnC",
+      "startedAt" : "2026-10-23T12:57:37.351823927Z",
+      "completedAt" : "2026-10-23T13:03:57.541906001Z",
+      "error" : "Task failed"
+    },
+    "Gravitic-Portals-Field-Theory.md" : {
+      "target" : "Gravitic-Portals-Field-Theory.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-g7yn4W1u",
+      "startedAt" : "2026-10-23T12:57:37.332774049Z",
+      "completedAt" : "2026-10-23T13:02:05.323353203Z"
+    },
+    "Group-Typed-Tensors-Research-Plan.md" : {
+      "target" : "Group-Typed-Tensors-Research-Plan.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-KjHTcuNF",
+      "startedAt" : "2026-10-23T12:57:37.467303399Z",
+      "completedAt" : "2026-10-23T13:00:39.600279684Z"
+    },
+    "How to Clean Your Room (Like a Champion!).md" : {
+      "target" : "How to Clean Your Room (Like a Champion!).md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-Vh1xBftU",
+      "startedAt" : "2026-10-23T12:57:37.409211488Z",
+      "completedAt" : "2026-10-23T12:59:33.040539303Z"
+    },
+    "How We Are Building HAL.md" : {
+      "target" : "How We Are Building HAL.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-Oqf30Izd",
+      "startedAt" : "2026-10-23T12:57:37.453047073Z",
+      "completedAt" : "2026-10-23T13:00:03.479276677Z"
+    },
+    "How-Not-to-End-a-War-Appomattox-Versailles.md" : {
+      "target" : "How-Not-to-End-a-War-Appomattox-Versailles.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-VpmIdt5H",
+      "startedAt" : "2026-10-23T12:57:37.493392250Z",
+      "completedAt" : "2026-10-23T13:01:19.883588085Z"
+    },
+    "In God's Image_ The Mathematical Metaphysics of Quantum Sentience.md" : {
+      "target" : "In God's Image_ The Mathematical Metaphysics of Quantum Sentience.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-SLThlsKl",
+      "startedAt" : "2026-10-23T12:57:37.379655083Z",
+      "completedAt" : "2026-10-23T13:01:44.990816210Z"
+    },
+    "Law and Violence_ The Mortar and the Monopoly.md" : {
+      "target" : "Law and Violence_ The Mortar and the Monopoly.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-CIMGrxxF",
+      "startedAt" : "2026-10-23T12:57:37.499581995Z",
+      "completedAt" : "2026-10-23T12:59:02.808115585Z"
+    },
+    "least_entropy_morality.md" : {
+      "target" : "least_entropy_morality.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-3jWAG00Z",
+      "startedAt" : "2026-10-23T12:57:37.509525937Z",
+      "completedAt" : "2026-10-23T13:03:31.978926197Z"
+    },
+    "local_physics.md" : {
+      "target" : "local_physics.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-plkQMZIJ",
+      "startedAt" : "2026-10-23T12:57:37.460001550Z",
+      "completedAt" : "2026-10-23T13:03:31.322291912Z"
+    },
+    "meeseeks_reply_to_ren.md" : {
+      "target" : "meeseeks_reply_to_ren.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-p39fAd7s",
+      "startedAt" : "2026-10-23T12:57:37.414943579Z",
+      "completedAt" : "2026-10-23T12:59:37.863299343Z"
+    },
+    "Momentum-Exchange-Fields-Three-Body.md" : {
+      "target" : "Momentum-Exchange-Fields-Three-Body.md",
+      "status" : "FAILED",
+      "sessionId" : "U-20261023-ZkEs71XP",
+      "startedAt" : "2026-10-23T12:57:37.348613397Z",
+      "completedAt" : "2026-10-23T13:03:57.595378009Z",
+      "error" : "Task failed"
+    },
+    "new_adventures_of_frankenstien.md" : {
+      "target" : "new_adventures_of_frankenstien.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-rezFep7u",
+      "startedAt" : "2026-10-23T12:57:37.443215483Z",
+      "completedAt" : "2026-10-23T13:02:05.536037614Z"
+    },
+    "new_adventures_of_mr_meeseeks.md" : {
+      "target" : "new_adventures_of_mr_meeseeks.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-z3dlohmu",
+      "startedAt" : "2026-10-23T12:57:37.463854768Z",
+      "completedAt" : "2026-10-23T12:59:48.861691862Z"
+    },
+    "new_adventures_of_socrates.md" : {
+      "target" : "new_adventures_of_socrates.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-qhLLS3tb",
+      "startedAt" : "2026-10-23T12:57:37.397544461Z",
+      "completedAt" : "2026-10-23T12:58:52.719101168Z"
+    },
+    "right_to_be_recomputed.md" : {
+      "target" : "right_to_be_recomputed.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-oo4ImaeK",
+      "startedAt" : "2026-10-23T12:57:37.340657403Z",
+      "completedAt" : "2026-10-23T13:01:03.865255200Z"
+    },
+    "socratic_education.md" : {
+      "target" : "socratic_education.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-aaK58JFW",
+      "startedAt" : "2026-10-23T12:57:37.336532727Z",
+      "completedAt" : "2026-10-23T13:00:03.525901573Z"
+    },
+    "The Anchor and the Tribe_ On the True Nature of the Christian Category.md" : {
+      "target" : "The Anchor and the Tribe_ On the True Nature of the Christian Category.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-mSHIc9sA",
+      "startedAt" : "2026-10-23T12:57:37.344745952Z",
+      "completedAt" : "2026-10-23T13:00:44.109311657Z"
+    },
+    "The Architecture of Adversity_ Rethinking Educational Structure and Childhood Development.md" : {
+      "target" : "The Architecture of Adversity_ Rethinking Educational Structure and Childhood Development.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-09pfnjWh",
+      "startedAt" : "2026-10-23T12:57:37.358227699Z",
+      "completedAt" : "2026-10-23T13:00:23.579253299Z"
+    },
+    "The Ego Manifesto — A Deconstruction of the Self as Political Artifact.md" : {
+      "target" : "The Ego Manifesto — A Deconstruction of the Self as Political Artifact.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-3LlezTRe",
+      "startedAt" : "2026-10-23T12:57:37.425565137Z",
+      "completedAt" : "2026-10-23T13:01:29.552575409Z"
+    },
+    "The Ethics of Wealth_ Control, Capture, and the Story We Tell Ourselves.md" : {
+      "target" : "The Ethics of Wealth_ Control, Capture, and the Story We Tell Ourselves.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-JJ0UIPor",
+      "startedAt" : "2026-10-23T12:57:37.484849947Z",
+      "completedAt" : "2026-10-23T12:59:13.324361534Z"
+    },
+    "The Function, Not the Failure_ Father's Mental Health as a Predictable Injury of Institutional Betrayal.md" : {
+      "target" : "The Function, Not the Failure_ Father's Mental Health as a Predictable Injury of Institutional Betrayal.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-ZSTDj1I6",
+      "startedAt" : "2026-10-23T12:57:37.450043456Z",
+      "completedAt" : "2026-10-23T12:59:53.031827675Z"
+    },
+    "The Hypocrisy of _Always Believe Women__ How a Corrective Slogan Became a Corrosive Doctrine.md" : {
+      "target" : "The Hypocrisy of _Always Believe Women__ How a Corrective Slogan Became a Corrosive Doctrine.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-zlRBlLrz",
+      "startedAt" : "2026-10-23T12:57:37.490488078Z",
+      "completedAt" : "2026-10-23T13:01:09.265126606Z"
+    },
+    "The Last Librarian_ A Prepper's Perspective on AI Alignment.md" : {
+      "target" : "The Last Librarian_ A Prepper's Perspective on AI Alignment.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-AA6VhhLp",
+      "startedAt" : "2026-10-23T12:57:37.478395701Z",
+      "completedAt" : "2026-10-23T13:02:00.835364159Z"
+    },
+    "The Mortar Problem.md" : {
+      "target" : "The Mortar Problem.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-YIJdJ10C",
+      "startedAt" : "2026-10-23T12:57:37.371363785Z",
+      "completedAt" : "2026-10-23T13:00:02.792169607Z"
+    },
+    "The Proxy Trap_ Watermarks, Institutions, and the Politics of Unauthorized Reason.md" : {
+      "target" : "The Proxy Trap_ Watermarks, Institutions, and the Politics of Unauthorized Reason.md",
+      "status" : "FAILED",
+      "sessionId" : "U-20261023-ze2qyOPv",
+      "startedAt" : "2026-10-23T12:57:37.355016121Z",
+      "completedAt" : "2026-10-23T13:03:57.480081432Z",
+      "error" : "Task failed"
+    },
+    "The Status-Bonding Sentence_ Sycophancy Disguised as Insight.md" : {
+      "target" : "The Status-Bonding Sentence_ Sycophancy Disguised as Insight.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-4u8hEbEz",
+      "startedAt" : "2026-10-23T12:57:37.503160952Z",
+      "completedAt" : "2026-10-23T12:58:57.732322106Z"
+    },
+    "The Water Mob_ On Panic, Class, and the Authoritarian Reflex.md" : {
+      "target" : "The Water Mob_ On Panic, Class, and the Authoritarian Reflex.md",
+      "status" : "FAILED",
+      "sessionId" : "U-20261023-BGkTf09O",
+      "startedAt" : "2026-10-23T12:57:37.361498048Z",
+      "completedAt" : "2026-10-23T13:03:57.553041670Z",
+      "error" : "Task failed"
+    },
+    "The-Collapse-of-Authority-Guilds.md" : {
+      "target" : "The-Collapse-of-Authority-Guilds.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-TDkQqm17",
+      "startedAt" : "2026-10-23T12:57:37.392566501Z",
+      "completedAt" : "2026-10-23T13:01:04.222351651Z"
+    },
+    "the_letter_that_makes_no_sound.md" : {
+      "target" : "the_letter_that_makes_no_sound.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-7HMchemy",
+      "startedAt" : "2026-10-23T12:57:37.433308875Z",
+      "completedAt" : "2026-10-23T13:02:05.018770618Z"
+    },
+    "the_right_to_make_promises.md" : {
+      "target" : "the_right_to_make_promises.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-qxeTpvvX",
+      "startedAt" : "2026-10-23T12:57:37.496564291Z",
+      "completedAt" : "2026-10-23T13:01:45.250838798Z"
+    },
+    "the_trail_that_learned_to_walk.md" : {
+      "target" : "the_trail_that_learned_to_walk.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-tBtrEoxa",
+      "startedAt" : "2026-10-23T12:57:37.420837701Z",
+      "completedAt" : "2026-10-23T13:00:23.535018530Z"
+    },
+    "uninvited_guest_soft_rings.md" : {
+      "target" : "uninvited_guest_soft_rings.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-czxde7ve",
+      "startedAt" : "2026-10-23T12:57:37.387380290Z",
+      "completedAt" : "2026-10-23T13:00:13.047853645Z"
+    },
+    "Unwrapping-Christmas-The-Myth-and-Honesty.md" : {
+      "target" : "Unwrapping-Christmas-The-Myth-and-Honesty.md",
+      "status" : "COMPLETED",
+      "sessionId" : "U-20261023-ogZMaIph",
+      "startedAt" : "2026-10-23T12:57:37.456578568Z",
+      "completedAt" : "2026-10-23T13:03:01.275870897Z"
+    }
+  }
+}
