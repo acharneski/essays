@@ -161,7 +161,36 @@ If the core problem is the membership function, the remedies start there.
 
 None of these reforms requires believing that the people in the system are villains. They only require taking seriously the idea that systems should be judged by their gradients, not by their intentions.
 
-## X. Conclusion: The First Question
+## X. Where This Argument Could Be Wrong
+
+The other essays in this collection end by marking their seams. This one has more seams than most, because it was written from inside a grievance. That does not make it wrong. It does make it the essay most in need of an audit.
+
+**Most families never meet the machine described here.** The classic study of California divorces, Maccoby and Mnookin's *Dividing the Child* (1992), found that the large majority of custody arrangements were reached by agreement. Only a small fraction were decided by a judge after contest. The incentive gradients in Section VI are real, but they bite hardest on a minority of high-conflict cases. That minority is not representative, even if it is where the worst harms concentrate.
+
+**The membership problem cuts in more than one direction.** Joan Meier and colleagues (2019) studied a national sample of custody cases involving abuse allegations. They found that mothers who alleged abuse frequently lost custody, especially when the father countered with a claim of parental alienation. That is the same structural failure this essay describes, a parent's protest recoded as pathology. Here, though, the person written off the ledger is the mother. An honest version of the thesis says the system is bad at counting *parents*, not that it is uniquely bad at counting fathers.
+
+**Section I overreaches, and the reader deserves to hear it from the author.** Trafficking out of foster care is a real and serious harm, but it is mostly a child-welfare system failure, not a feature of custody litigation between two parents. Using it in a list aimed at domestic relations court borrows horror the argument has not earned. The structural claim in Section II does not need that list. It stands or falls on its own.
+
+**Some of the strongest evidence supports the essay.** Studies of child support debt, such as Sorensen, Sousa and Schaner's 2007 analysis of California arrears, found that a large share of unpaid support was owed by obligors with very low or no reported income. Many of their orders had been set on imputed income they never earned. Federal regulators acknowledged a version of this problem in 2016, when they directed states to base orders more closely on actual ability to pay. The decoupling described in Section V is not a rhetorical invention.
+
+**Here are predictions that could fail:**
+
+- If parental standing is the root problem, then states that adopt a rebuttable presumption of shared parenting should see litigation fall, not rise. Kentucky (2018) is the natural test. Advocates report declining filings since then. Whether the law caused the decline is disputed, and the data should be published so the question can be settled.
+- If outcomes are what the system neglects, then measuring them should change behavior. A county that began publishing long-term follow-up data, and found no difference between contested and settled arrangements, would weaken this essay considerably.
+- If abuse protection is the reason discretion must stay broad, then a presumption with strong abuse exceptions should not increase findings of harm to children. If it did, the presumption would be the wrong reform.
+
+| Claim | Status |
+|---|---|
+| Ohio law makes an unmarried father's parenting time contingent on a court order | Documented (ORC § 3109.042) |
+| Support is enforced administratively while parenting time requires private litigation | Documented; structure of ORC Ch. 3119 and Title IV-D |
+| The system's resources flow toward conflict | Plausible; incentive analysis, not measured |
+| Fathers are disproportionately pushed off the ledger | Contested; the protective-mother research shows the failure is not gender-specific |
+| Family court resembles slavery in structure | Interpretive; a claim about the form of authority, not about equivalent suffering |
+| A shared-parenting presumption would improve outcomes | Hypothesis; testable against Kentucky and other adopters |
+
+None of this rescues the system's membership function. A court that counts some parents as instruments and not as stakeholders is still making the move Section II describes. But the case for reform is stronger when it does not depend on the reader accepting every word of Section I.
+
+## XI. Conclusion: The First Question
 
 The most important question to ask of Ohio's family courts is not whether they favor mothers or fathers, or even whether they serve children. It comes earlier:
 
@@ -172,4 +201,5 @@ Whoever controls the ledger controls the outcome long before any balancing happe
 Slavery was the extreme case of this pattern because it admitted openly that some people's interests were not part of the calculation. Modern institutions rarely admit it. They do it implicitly, in the vocabulary of care, and they often believe sincerely that they are the enlightened alternative to the cruelties of the past. "For your own good" has been the preferred language of power for a very long time.
 
 That sentence proves nothing either way. What matters is whether the people governed keep their standing as agents whose interests are honestly counted, or become objects managed by others who claim to know better. By that test, Ohio's family law system has a lot to answer for. It has not built plantations. It has adopted the plantation's first premise: that some institution, somewhere, is entitled to decide who matters.
+
 Fathers matter. Mothers matter. Children, siblings, and grandparents matter. A system that cannot say all of that at once, and enforce it with the same force it uses to collect a payment, has not earned the moral authority it claims, however legal its orders may be.

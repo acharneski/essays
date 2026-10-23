@@ -136,7 +136,30 @@ Ants do this with chemistry. We will have to do it with judgment, which is slowe
 
 ---
 
-## VIII. The Ball in the Air
+## VIII. Where the Metaphor Leaks
+
+An essay about trails that harden into circles should check whether it has walked into one. Here is where this one leaks.
+
+**Language is not only pheromone.** Ants follow a gradient without modeling the ant that laid it. Humans almost never do that. Developmental psychologists such as Michael Tomasello argue that even infants learn words by tracking what the speaker *intends*: where she is looking, what she is trying to share. The trail is real, but the fish-brain that reads faces is not a separate layer sitting on top of it. It is how the trail gets read at all. "We became insect people the day we started talking" is half true. We became both at once.
+
+**Evaporation online is not zero.** Section III says the internet brought evaporation close to zero. The archive says otherwise. A 2024 Pew Research Center study found that roughly 38 percent of web pages that existed in 2013 were no longer accessible a decade later. What the internet changed is not the rate of forgetting. It is the *selectivity*. Pages vanish at random while scraped copies, cached quotes and repeated claims survive, so the scent that persists is not the scent that led to food. That is arguably worse than total recall, and it is a sharper claim than the one the essay made.
+
+**Model collapse is conditional.** The lab results in Section V, such as Shumailov and colleagues' 2024 paper in *Nature*, come mostly from setups where each generation *replaces* its training data with the previous model's output. Work by Gerstgrasser and colleagues the same year found that when synthetic data *accumulates* alongside the original human data, instead of replacing it, the collapse largely does not happen. In ant terms, the mill forms when the old trail is wiped and only the circling ants lay scent. Keep the original trail and the circle has somewhere to break. That supports the essay's prescription more precisely than its alarm: the danger is not machine-written trail, it is losing the human-written trail underneath.
+
+**The ant mill story is better than its sources.** Beebe's twelve-hundred-foot circle is a naturalist's field report from the 1920s, not a measurement. T. C. Schneirla studied mills more carefully in the 1940s and found them real but usually smaller and shorter-lived. The image holds. The numbers should be read as illustration.
+
+| Claim | Status |
+|---|---|
+| Ant colonies solve shortest-path problems through pheromone reinforcement | Documented (double-bridge experiments, late 1980s) |
+| Pheromone evaporation prevents lock-in on stale routes | Documented in ants and in ant colony optimization |
+| The dead outnumber the living roughly thirteen to one | Demographic estimate (about 117 billion ever born) |
+| Language is a stigmergic system | Partial; misses intention-reading |
+| The internet stopped forgetting | Overstated; it forgets unevenly, which is the real problem |
+| Recursive training on model output degrades models | Documented under replacement; largely avoided under accumulation |
+
+---
+
+## IX. The Ball in the Air
 
 There's an old game that predates every human institution, every language, possibly every hominid. One animal throws something. Another animal goes and gets it and brings it back.
 

@@ -56,8 +56,6 @@ Here is a fact that, once you notice it, is impossible to unsee: **Santa's works
 
 The modern Santa is not medieval. He is not a folk figure with roots in the deep past, the way people assume. He is largely the invention of a handful of nineteenth-century American and British writers and illustrators:
 
-- **1823** — "A Visit from St. Nicholas" (better known as "'Twas the Night Before Christmas") gives Santa his modern silhouette: sleigh, reindeer, chimney entry, the whole apparatus.
-- **1840s–1860s** — the first illustrations depicting Santa's workshop appear, right alongside the expansion of factory production in both Britain and the United States.
 - **Late 1800s** — Santa becomes fused, in popular imagery, with mass manufacture, standardized goods, and global distribution.
 
 This is not a coincidence of timeline. It's a response to a genuine crisis of conscience.
@@ -143,6 +141,37 @@ That is the version of Christmas this book is arguing for. Not a colder one. A m
 
 ---
 
+## Part Eight: Where This Argument Could Be Wrong
+
+The other essays in this collection end by marking their seams. This one has been the most confident of them, which is a good reason to be the most suspicious of it. A book that asks parents to stop asserting things as fact owes its readers the same courtesy.
+
+**Elves are older than factories.** Scandinavian *nisse* and *tomte*, household spirits who guarded farms and expected a bowl of porridge in return, long predate the nineteenth century. What is new in the 1800s is their reassignment. The Swedish *jultomte* becomes a gift-bringer in the second half of the century, and American elves acquire a workbench. So the thesis survives only in a narrower form. Industrial anxiety did not invent elves. At most, it gave them a job.
+
+**Timing is not motive.** Workshops enter the iconography in the same decades as factories. They also arrive alongside railroads, cheap color printing, mass-market magazines, and the first department stores. Nast and *Godey's* needed images that sold copies. A correlation in the 1860s is compatible with guilt. It is equally compatible with advertising, or with simple delight in the new, and nobody wrote down the motive. Part Three is an interpretation, not a finding.
+
+**There are rival histories.** Stephen Nissenbaum's *The Battle for Christmas* (1996) offers a different account. He argues that the domestic, child-centered Christmas was partly a project to tame rowdy street celebrations, in which the poor went wassailing and made demands on the rich, and to redirect them indoors. That is a story about class and public order, not factories. Both stories can be partly true, and a careful reader should hold more than one.
+
+**Children may not experience Santa the way Part One implies.** Developmental psychologists, including Jacqueline Woolley and others, find that young children move fluidly between fantasy and reality and actively test claims about Santa. They check handwriting, stay up late, and compare notes on the playground. That detective work is arguably the very skepticism this book wants to cultivate.
+
+Survey research on how children stop believing points the same way. Most discover the truth gradually, around age seven or eight. Most later remember the discovery as neutral or even pleasant, though a minority recall feeling betrayed. The claim that Santa "trains rationalization" is therefore a hypothesis about structure, not a measured effect. It could be tested: do former believers differ at all in later trust or reasoning? As far as I know, nobody has shown that they do.
+
+**"Monopolizes virtue" overreaches.** Charitable giving does peak in December. But much of that peak tracks tax deadlines and fundraising calendars, not myth. The essay's actual claim is that Christmas makes generosity feel optional the rest of the year, and that claim is untested.
+
+| Claim | Status |
+|---|---|
+| The modern Santa is largely a nineteenth-century construction | Well documented |
+| Workshops and elves enter American Christmas imagery in the 1850s–1870s | Documented |
+| The workshop is a sanitized answer to factory and child-labor guilt | Interpretive; motive undocumented |
+| Elves stand in for exploited child laborers | Interpretive; elves predate this role in folklore |
+| Insisting on literal belief trains rationalization | Hypothesis; largely untested |
+| Christmas monopolizes generosity | Conjecture |
+| Modern supply chains include documented forced labor | Documented by multiple governments and organizations |
+| Santa as shared, transparent fiction keeps the ritual's goods | Argued; plausible |
+
+None of these caveats rescues the deceptive version of the tradition. They do mean that the case for honest Christmas should rest on the plainest argument, the one that needs no history at all: a child deserves not to be lied to by the people she trusts most. Everything else in this book is a way of making that argument interesting.
+
+---
+
 ## Conclusion: The Gift Under the Myth
 
 Take the wrapping paper off the Santa story and what's left is not a void. It's the thing the story was always standing in front of: an enormous, uncelebrated truth about what ordinary people are capable of when they choose to make things for each other, take care of each other, and tell each other the truth.
@@ -150,3 +179,7 @@ Take the wrapping paper off the Santa story and what's left is not a void. It's 
 Christmas doesn't need a lie to be magical. It needs an audience willing to notice that the magic was never in the red suit or the sleigh. It was always in the workshop — the real one, staffed by real people, doing real work, whom we are finally ready to stop hiding behind the curtain.
 
 That's the gift this book is trying to give back: not less wonder, but wonder that doesn't require anyone — child or adult — to stop thinking in order to keep believing in something good.
+- **1823** — "A Visit from St. Nicholas" (better known as "'Twas the Night Before Christmas") gives Santa his modern silhouette: sleigh, reindeer, chimney entry, the whole apparatus. It is traditionally credited to Clement Clarke Moore, though that attribution has long been contested in favor of Henry Livingston Jr.
+- **1856** — Louisa May Alcott writes, but never publishes, "Christmas Elves." It is one of the earliest pairings of Santa with an elfin workforce.
+- **1866** — Thomas Nast's "Santa Claus and His Works" in *Harper's Weekly* shows Santa at a North Pole workbench. He builds toys and keeps a ledger of good and bad children.
+- **1873** — *Godey's Lady's Book* runs an image of Santa's workshop staffed by elves. These are the decades when factory production was expanding fastest in both Britain and the United States.

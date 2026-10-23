@@ -122,6 +122,37 @@ The stall will not last. Once AI is diagnosing better, planning care better, pre
 
 The resistance is not ideological, not professional, and not principled. It is social-graph preservation. They protect their peers, their networks, their donors, their lifestyle, their interpretive authority, and their shared institutional ecosystem. Mathematicians are not in that ecosystem. Doctors, financiers, executives, and lawyers are.
 
+## Where This Could Be Wrong
+
+An essay that accuses a guild of theology should meet the standard it applies. The Golem essay in this collection already flagged the problem. In the Cantor affair, the guild was the conservative force and the outsider was right. History does not belong to whoever is newer. Here are the places this argument leaks.
+
+**"Useless" has a bad track record.** In 1940, G. H. Hardy took comfort in the idea that number theory had no warlike applications. Within four decades it was the foundation of public-key cryptography, which now secures most of the world's commerce and many of its weapons systems. Riemann's geometry waited roughly sixty years for general relativity. Group theory, built to understand polynomial equations, became the language of particle physics. Some of what looks like ritual is stored option value. The charity scientists extend to mathematicians may turn out to be a down payment.
+
+**Formal verification is a guild invention.** Proof assistants such as Lean, Coq, and Isabelle, and libraries such as Mathlib, were built largely by mathematicians and logicians. In late 2020, Peter Scholze publicly challenged the community to machine-check a hard result of his own. That effort, the Liquid Tensor Experiment, verified its central claim within about six months and was completed in 2022. Prominent mathematicians, Terence Tao among them, have openly welcomed AI-assisted and formalized proof. A priesthood that builds the printing press for its own scripture fits the medieval analogy poorly.
+
+**"Under review" is the ledger, not the ritual.** Human claims sit under review too, sometimes for years. Shinichi Mochizuki announced a proof of the abc conjecture in 2012. Most of the field still does not accept it, after Scholze and Jakob Stix identified a gap they considered fatal. Demanding verification of an AI proof is what the field demands of everyone. Some of the reaction described above is identity defense, and some of it is quality control. This essay should not count both as theology.
+
+**The legal guild has reformed from inside, a little.** In 2020, the Utah Supreme Court created a regulatory sandbox that permits nonlawyer and technology-driven legal services. In 2021, Arizona's Supreme Court eliminated its ban on nonlawyer ownership of law firms. In both cases, lawyers and judges loosened their own monopoly before a public crisis forced them to. The golf-buddy model predicts such moves should be rare and late. They happened early, in small states, and have spread slowly. That evidence cuts both ways.
+
+**The social-graph story is unfalsifiable as written.** "They will resist until the last moment, unless they concede to buy time" covers every possible outcome. To be more than a mood, it needs predictions that could fail. Here are two:
+- Jurisdictions where the bar controls legal regulation should adopt legal AI more slowly than jurisdictions where courts or legislatures hold that power.
+- Rules on deploying medical AI should loosen measurably *before* rules on the unauthorized practice of law do.
+
+
+If the opposite happens, the sequence in this essay was wrong, and it should say so.
+
+**Interpretation is not only rent.** Part of what a lawyer or doctor provides is accountability: someone who can be sued, disbarred, or cross-examined. The Church of CYA essay argues that blame is a biased proxy for harm, but it is still a proxy. A machine interpreter with no one to blame raises a problem that dissolving the monopoly does not solve. Breaking a monopoly on interpretation is a different achievement from deciding who answers when the interpretation is wrong.
+
+| Claim | Status |
+|---|---|
+| Mathematical prestige rests partly on social insulation | Plausible; sociological, not epistemic |
+| Pure mathematics has low real-world leverage | Contested; long history of delayed application |
+| Resistance to AI proofs is identity defense | True of some; much is ordinary quality control |
+| Law is more automatable than medicine | Arguable; depends on how accountability is handled |
+| Law's monopoly falls before medicine's | Prediction; testable |
+| Legal elites will trade medical reform for time | Speculative; unfalsifiable as currently stated |
+
+
 ## What the Collapse Actually Is
 
 The collapse of authority guilds is not the collapse of knowledge. Proofs will still be true or false. Statutes will still say what they say. Bodies will still get sick. What collapses is the human monopoly on saying what those things mean, and on charging rent for the saying.

@@ -141,6 +141,7 @@ Look at the fields that work with causal structure every day:
 - **Provenance systems** track derivation: which inputs could have contributed to this output?
 
 All of these are partial orders that people already handle through causal partitions rather than metric neighbourhoods. The light cone is the continuous, symmetry-rich generalization of the structure these engineers rebuild by hand.
+
 A practical caveat is worth stating upfront. When an engineer already has the exact, deterministic DAG in memory—as in a clean Git history or a local Bazel build—nobody should replace fast, exact graph traversal or 2-hop cover indices with an approximate embedding where a false negative breaks a build. Fully observed deterministic graphs are noise-free testbeds for validating the mathematics, not targets for replacing exact algorithms. The production case for learned causal geometry arises when the dependency structure is **partially observed, implicit, or predictive**: inferring missing spans in distributed OpenTelemetry traces, predictive test selection in CI/CD before full dependency resolution, premise selection in formal theorem proving, or prerequisite planning for LLM agents.
 
 ### 4.3 Hidden constraints, not large distances
@@ -273,7 +274,8 @@ Here is what it would take to test the thesis rather than just argue for it.
 2. **Invariance accounting.** For each candidate geometry, state precisely which transformations preserve the order: translations, dilations, the relevant indefinite orthogonal group, and conformal maps. Make "scale-free" a checkable property.
 3. **Separating examples.** Construct families of DAGs, especially self-similar and multi-scale ones, on which curved embeddings provably need distortion that grows with scale range while flat cone embeddings do not.
 
-- **block-Lorentzian $(p_i,1)$ products and cone constructions** (with $p_i \ge 2$) treated as an inductive-bias choice selected by the data's constraint structure;
+4. **Signature selection.** Treat block-Lorentzian $(p_i,1)$ products and cone constructions (with $p_i \ge 2$) as an inductive-bias choice selected by the data's constraint structure. Develop diagnostics that estimate the number of independent constraint families $k$ from data before training. One example is lower bounds on the order dimension of sampled subposets; exact computation is NP-hard beyond dimension 2, but crowns and standard examples give cheap certificates.
+
 ### 8.2 Compare signatures directly
 
 Hold the total ambient dimension fixed—choosing $N \ge 6$ so that multi-block Lorentzian spaces have spatial dimension $p_i \ge 2$ per block and do not collapse into axis-aligned order embeddings—and vary only the structure:
@@ -321,6 +323,25 @@ Making accessibility search practical requires three engineering choices:
     - `cone_critical(x, eps)`: retrieves boundary transitions minimizing $|Q(y-x)| < \varepsilon$ to surface zero-slack critical paths and tight bottlenecks;
     - `cone_interior(x, k)`: maximizes proper time $\tau = \sqrt{-Q(y-x)}$ within a bounded horizon $T_{\max}$ to find the most robust downstream impacts.
 3. **Hybrid "foliated" retrieval for RAG and agents.** Practical systems like LLM agent planning and code retrieval care about both prerequisites and semantic similarity. A foliated architecture uses both geometries: the Lorentzian cone order acts as a hard causal filter ($A \to B$), while the spatial Euclidean norm on spacelike antichains ranks semantic resemblance ($A \sim B$).
+
+For concreteness, the lift in item 1 is just the polarization identity for $Q$. Writing $Q(v) = v^\top G v$,
+
+$$
+$$
+
+so with
+
+$$
+\phi(x) = \big(2Gx,\; -Q(x),\; -1\big), \qquad \psi(y) = \big(y,\; 1,\; Q(y)\big) \in \mathbb{R}^{d+2},
+$$
+
+one has $\langle \phi(x), \psi(y)\rangle = -Q(y-x)$ exactly.
+
+The condition $\langle\phi(x),\psi(y)\rangle \ge 0$ selects the closed *double* cone, both future and past. The time-orientation filter $t_y \ge t_x$ is therefore not optional.
+
+Two practical notes follow:
+- **Thresholds versus top-$k$.** MIPS libraries answer top-$k$ queries, not thresholds. A cone query is therefore run as a top-$k$ search with geometrically increasing $k$, stopping once the $k$-th score falls below zero.
+- **Norm equalization.** The sign of the score does not depend on $\|\psi(y)\|$, but approximate-search ranking does. Apply the standard norm-equalizing augmentation for asymmetric MIPS before indexing, so the index does not favour high-norm entries.
 
 ---
 
@@ -372,3 +393,4 @@ $$
 
 Mathematics has had the tools for this for about a century. Relative to that history, the embedding literature has explored very little of what is available.
 - **Compilers and PERT/CPM schedulers** reason about data dependencies and critical paths, preserving prerequisite order while reordering independent tasks freely.
+- **Product cones need one lift per block.** For $\bigoplus_{i=1}^k \mathbb{R}^{p_i,1}$, membership is a *conjunction* of $k$ sign conditions, and no single inner product expresses a conjunction. Lift each block separately into its own $(d_i+2)$-dimensional index, query the most selective block first (typically the one with the narrowest aperture around the query), and verify the remaining $k-1$ conditions exactly on the candidates. This is the same plan a relational engine uses for a multi-predicate range query: one index-driven predicate, the rest as residual filters.

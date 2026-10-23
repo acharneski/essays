@@ -50,6 +50,7 @@ Consider what the creature actually is. It is intelligent. It learns language by
 Nobody meets it through any of those qualities. They meet it through its appearance, and its appearance arrives first.
 
 First impressions are powerful because they control which evidence gets admitted later. The first judgment acts as a gatekeeper. Once "monster" is assigned, kindness reads as manipulation, eloquence reads as cunning, and approaching someone reads as attacking them. The creature's good conduct doesn't fail to persuade so much as fail to register. It never makes it into the record.
+
 The one exception in the novel proves the rule. The only human who ever enters a genuine conversation with the creature is the blind elder De Lacey. With the high-certainty visual channel offline, the old man cannot run the instant threat-categorization script triggered by the creature's seams; he has to attend to the voice and the plea. Yet even that brief opening reveals how deep the templates run: to earn a hearing from a blind man, the creature first had to spend months at the cottage wall reverse-engineering the family's language, manners, and cultural priors so he could pass an auditory inspection as a cultivated gentleman. And the moment Felix walks in with working eyes, visceral disgust overrides everything the old man heard, locking the room back into panic.
 
 ---
@@ -114,7 +115,7 @@ Receive fear
 Update world model
 ```
 
-This happens again and again: the villagers who stone it, the De Lacey family that drives it out, the father who shoots it after it saves his daughter from drowning. Each rejection is a prediction error, and each one revises the creature's model of the world:
+This happens again and again: the villagers who stone it, the De Lacey family that drives it out, the rustic who shoots it moments after it pulls a girl from a river. Each rejection is a prediction error, and each one revises the creature's model of the world:
 
 > *Humans fear me.*
 
@@ -202,7 +203,9 @@ Unlike Wikipedia or AI, Frankenstein's creature is not only a victim of mistaken
 Eventually the villagers are not just prejudiced. They are responding to something that has started killing people.
 
 This is where the tidy conditioning story runs into game theory. When the misjudged party begins acting in ways that confirm the judgment, it is no longer possible to say only that the fear was irrational. The fear helped cause the behavior, and the behavior now justifies the fear. Cause and justification have become tangled together, and no single framework untangles them.
+
 Even the creature's two modes of confronting Victor—eloquent rhetoric in the glacier hut versus strangling William in the woods—expose the difference between two ways of forcing an update. Coercion and manipulation operate like a **recipe**: they treat the other system's cognitive architecture as a means to an end, bypassing or weaponizing its priors to force a predetermined output. Murder doesn't expand Victor's model of what the creature is; it holds his survival priors hostage and hardens his categories further. Ironically, chronic exposure to human rejection starves the creature's own social plasticity, coercing his mind to collapse into a defensive recipe of its own: *"If I cannot inspire love, I will cause fear."*
+
 A **conversation**, by contrast, treats the other system's architecture as an end in itself, offering transparent prediction errors that invite the system to increase its own complexity and revise its model without destroying its autonomy.
 
 

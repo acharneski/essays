@@ -165,7 +165,11 @@ A Socrates who had been through this would not stop at being impressed. He would
 > If one side can secretly be two, and two sides can secretly be one, what other distinctions are counterfeit?
 
 And he would not ask it about paper.
+
 He would also ask the question that every invariant quietly hides: *invariant under what?* A property is preserved only relative to a chosen family of transformations. Felix Klein showed that a geometry is nothing more than what survives a particular group of moves; change the group and you have a different geometry. Category theory says the same thing in other words: two structures are "the same up to isomorphism," and everything depends on what you allow to count as an isomorphism. The one-sidedness of the Möbius strip survives bending and stretching and dies under scissors.
+
+Children discover this for themselves. Cut a Möbius strip down the middle and you do not get two strips. You get one longer loop with two full twists, and that loop has two perfectly ordinary sides. The invariant was real, but only for as long as you agreed not to cut.
+
 So the hunt for what stays the same was never the whole of the Socratic method. The harder half was always deciding which changes you are entitled to ignore. "Treat like cases alike" is an invariance claim, and the entire quarrel lives in the word *like*.
 
 ---
@@ -363,6 +367,7 @@ He walked the room through it.
 Daniel, at the back of the room, answered quietly. "Prolonged conflict."
 
 "Then," Socrates said, "conflict is what the structure produces. Not because anybody wants it. Not because anyone is evil. Because that is what the arrows compose into."
+
 "Notice, too, where the fighting gathers," he added. "A court must in the end place the child in one house or the other. Somewhere there is a line where the two homes are equally good for her. Near that line, a tiny difference decides everything, so it is worth fighting over, and parents and lawyers drift toward it the way water drifts toward a drain. And here is the irony. At the line itself, the child loses almost nothing whichever way the court rules, because the two homes are nearly equal. The damage is not in the verdict. It is in the war waged to reach it."
 
 

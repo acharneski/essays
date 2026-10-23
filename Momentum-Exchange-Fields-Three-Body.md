@@ -403,8 +403,8 @@ Two derived quantities are produced:
 3. **Regularize.** When $r_2 < \rho/10$, switch to Levi-Civita regularization about $P_2$. Do the same about $P_1$ if needed.
 4. **Detect events.** Detect crossings of $\Sigma_{\text{out}}$, collisions, and re-entry through $\Sigma_{\text{in}}$ by root finding on $r_2 - \rho$ with direction filtering.
 5. **Differentiate the map.** Compute $D\Phi$ from the STM, corrected for the variable crossing time:
-   $$D\Phi = \left(I - \frac{\mathbf f\,\nabla\sigma^{\top}}{\nabla\sigma\cdot\mathbf f}\right)\Phi_{\text{STM}}\,\frac{\partial \mathbf s_{\text{in}}}{\partial\xi}.$$
-   Here $\sigma = r_2 - \rho$ and $\mathbf f$ is the vector field at exit.
+   $$D\Phi = \left(I - \frac{\mathbf f\,\nabla\gamma^{\top}}{\nabla\gamma\cdot\mathbf f}\right)\Phi_{\text{STM}}\,\frac{\partial \mathbf s_{\text{in}}}{\partial\xi}.$$
+   Here $\gamma = r_2 - \rho$ is the exit event function and $\mathbf f$ is the vector field at exit. The name $\gamma$ avoids a clash with the FTLE $\sigma$ of §7.3.
 6. **Compute fields.** Evaluate $\Delta\mathbf v$, $\Delta E$, $\Delta h$, $\Delta\mathcal E_1$, $A$, $\mathbf b$, $\tau$, $r_{2,\min}$, $g_\Phi$, $\sigma$.
 7. **Store the outcome label.**
 
@@ -555,4 +555,108 @@ The conversation that started this project suggested that no such combined plot 
 | $H$ | energy curvature form (Hessian of $\Delta E$) |
 | $g_\Phi$ | sensitivity metric (pullback of $K$ through $\Phi$) |
 | $\sigma$ | finite-time Lyapunov exponent |
+| $\gamma$ | exit event function $r_2 - \rho$ (§8.2) |
 | $\ell$ | outcome label |
+---
+## Appendix B: Reference Sketch (Planar, Unregularized)
+This sketch is a correctness baseline for milestone M1, not the production pipeline. It implements:
+- the equations of motion (§3.3) and the Jacobi constant (§3.4);
+- the encounter seed (§5.2), exit and collision events (§5.3), and $\Delta E$, $\Delta h$, $\Delta\mathbf v$ (§6);
+- the patched-conic reference map (§4.2).
+It deliberately omits:
+- the STM and $D\Phi$;
+- Levi-Civita regularization, so close passes to $P_2$ will be slow or inaccurate;
+- multi-pass labelling.
+Its main use is to exercise validation tests 1 and 2 of §10. Agreement between $\Delta E$ and $\Delta h$, together with Jacobi drift, is the first thing any later implementation must reproduce.
+~~~python
+import numpy as np
+from scipy.integrate import solve_ivp
+def distances(x, y, mu):
+    return np.hypot(x + mu, y), np.hypot(x - 1 + mu, y)
+def omega(x, y, mu):
+    r1, r2 = distances(x, y, mu)
+    return 0.5 * (x * x + y * y) + (1 - mu) / r1 + mu / r2
+def grad_omega(x, y, mu):
+    r1, r2 = distances(x, y, mu)
+    ox = x - (1 - mu) * (x + mu) / r1**3 - mu * (x - 1 + mu) / r2**3
+    oy = y - (1 - mu) * y / r1**3 - mu * y / r2**3
+    return ox, oy
+def rhs(t, s, mu):
+    # x'' = Omega_x + 2 y',  y'' = Omega_y - 2 x'   (§3.3)
+    x, y, vx, vy = s
+    ox, oy = grad_omega(x, y, mu)
+    return [vx, vy, ox + 2 * vy, oy - 2 * vx]
+def jacobi(s, mu):
+    x, y, vx, vy = s
+    return 2 * omega(x, y, mu) - (vx * vx + vy * vy)
+def inertial_velocity(s):
+    # v_I = v_R + omega x r   (§4.1)
+    x, y, vx, vy = s
+    return np.array([vx - y, vy + x])
+def energy_and_h(s, mu):
+    x, y, vx, vy = s
+    r1, r2 = distances(x, y, mu)
+    vI = inertial_velocity(s)
+    E = 0.5 * vI @ vI - (1 - mu) / r1 - mu / r2
+    h = x * vy - y * vx + x * x + y * y
+    return E, h                      # C = -2 (E - h)   (§6.2)
+def seed(alpha, beta, C, mu, rho):
+    """State on Sigma_in for encounter coordinates (alpha, beta) at Jacobi level C (§5.2)."""
+    x = 1 - mu + rho * np.cos(alpha)
+    y = rho * np.sin(alpha)
+    v2 = 2 * omega(x, y, mu) - C
+    if v2 <= 0:
+        return None                  # forbidden region
+    n_in = -np.array([np.cos(alpha), np.sin(alpha)])
+    c, s_ = np.cos(beta), np.sin(beta)  # beta > 0 rotates counterclockwise (prograde about P2)
+    d = np.array([c * n_in[0] - s_ * n_in[1], s_ * n_in[0] + c * n_in[1]])
+    return np.concatenate([[x, y], np.sqrt(v2) * d])
+def make_events(mu, rho, r_body):
+    def exit_ev(t, s, *args):
+        return np.hypot(s[0] - 1 + mu, s[1]) - rho
+    exit_ev.terminal, exit_ev.direction = True, +1
+    def coll_ev(t, s, *args):
+        return np.hypot(s[0] - 1 + mu, s[1]) - r_body
+    coll_ev.terminal, coll_ev.direction = True, -1
+    return [exit_ev, coll_ev]
+def encounter(alpha, beta, C, mu, rho, r_body, t_max=20.0):
+    s0 = seed(alpha, beta, C, mu, rho)
+    if s0 is None:
+        return None
+    sol = solve_ivp(rhs, (0.0, t_max), s0, args=(mu,), method="DOP853",
+                    rtol=1e-12, atol=1e-12, events=make_events(mu, rho, r_body))
+    if sol.t_events[1].size:
+        label = "collision"
+    elif sol.t_events[0].size:
+        label = "exit"
+    else:
+        label = "captured"
+    s1 = sol.y[:, -1]
+    E0, h0 = energy_and_h(s0, mu)
+    E1, h1 = energy_and_h(s1, mu)
+    return {
+        "label": label,
+        "tau": sol.t[-1],
+        "dv": inertial_velocity(s1) - inertial_velocity(s0),
+        "dE": E1 - E0,
+        "dh": h1 - h0,               # validation test 2: |dE - dh| < 1e-9
+        "dC": jacobi(s1, mu) - jacobi(s0, mu),   # validation test 1
+    }
+def rot(theta):
+    c, s = np.cos(theta), np.sin(theta)
+    return np.array([[c, -s], [s, c]])
+def patched_conic(v_in, V_P, b, mu, side=+1):
+    """Two-body reference map (§4.2) with its energy identity (§4.4)."""
+    u = np.linalg.norm(v_in - V_P)
+    delta = side * 2 * np.arcsin(1 / np.sqrt(1 + (b * u * u / mu) ** 2))
+    R = rot(delta)
+    v_out = R @ v_in + (np.eye(2) - R) @ V_P
+    dE = 0.5 * (v_out @ v_out - v_in @ v_in)
+    assert np.isclose(dE, V_P @ (v_out - v_in))
+    return v_out, delta, dE
+~~~
+Quick checks worth automating:
+1. **Jacobi drift.** For a grid of $(\alpha, \beta)$ at Earth–Moon $\mu$, `dC` stays below $10^{-10}$ on every `exit` sample.
+2. **Energy–angular-momentum identity.** `abs(dE - dh)` stays below $10^{-9}$.
+3. **Patched-conic limit.** At Sun–Earth $\mu$ with distant passes, `dE` approaches `patched_conic(...)[2]`, evaluated with the secondary's inertial velocity $\mathbf V_P = (0,\, 1-\mu)$ at the instant of closest approach.
+Failures of check 3 at small impact parameters are expected until regularization (§8.2, step 3) is added.
