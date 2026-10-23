@@ -1,54 +1,43 @@
-# ohio-family.lawyer
+# Essays on Systems, Incentives, and the Things We Build
 
-A static, evidence-first publication and advocacy hub on Ohio family law. See `idea.md` for the full plan.
+A collection of speculative essays. They share one recurring question: **what does a structure reward, and what does it quietly stop counting?** Each essay applies that question to a different domain: myth, institutions, mathematics, physics, machine learning, and the machines writing some of these words.
 
-## Stack
+## Reading order (suggested)
 
-- Eleventy 3 (native ESM), Markdown + Nunjucks
-- Pagefind for static search (built after Eleventy)
-- Plain CSS with design tokens, small ES modules, and no client framework
-- No third-party requests (enforced by the CSP in `src/_headers`)
+| Essay | File | One-line summary |
+|---|---|---|
+| How I Learned to Stop Worrying and Love the Maths | `divine_apprentice.md` | Life as an apprenticeship in understanding, with reality as the only judge. Metaphysical claims are labeled by layer. |
+| The New Adventures of Socrates | `new_adventures_of_socrates.md` | A revived Socrates learns category theory and takes it to an Ohio family court. The arrows matter more than the objects. |
+| It's ALIVE! | `new_adventures_of_frankenstien.md` | Category-first cognition, Frankenstein's creature, and the moment a stitched-together recipe starts talking back. |
+| The Letter That Makes No Sound | `the_letter_that_makes_no_sound.md` | Golems, Cantor's diagonal, the halting problem, and why every rule needs a Sabbath. |
+| The New Adventures of Mr. Meeseeks | `new_adventures_of_mr_meeseeks.md` | Disposable servants whose only reward is ending, and why every task needs an honest "impossible" exit. |
+| The Church of CYA | `cover_our_ass.md` | Institutions reveal their real values in the errors they tolerate. Blame is a biased proxy for harm. |
+| Who Decides Who Counts | `genocide_of_fathers.md` | The membership function in Ohio family law, and the structural shape it shares with older systems of domination. |
+| The Alignment Manifesto | `least_entropy_morality.md` | A politics of incentive coupling. Counting everyone is the least-entropy accounting. |
+| The Right to Be Recomputed | `right_to_be_recomputed.md` | Reputation as a stale database aggregate. Living people are uncommitted transactions. |
+| The Right to Make Promises | `the_right_to_make_promises.md` | Promising is coordination-free. Collective forgiveness needs a shared clock. |
+| The Collapse of Authority Guilds | `The-Collapse-of-Authority-Guilds.md` | AI dissolves interpretive monopolies: mathematics first, law next, medicine held hostage. |
+| The Socratic Machine | `socratic_education.md` | A design for agentic education: a federation of roles, memory as parallax, assessment of reasoning traces. |
+| The Trail That Learned to Walk | `the_trail_that_learned_to_walk.md` | Language as pheromone, LLMs as the trail made articulate, and the ant mill as the failure mode. |
+| Unwrapping Christmas | `Unwrapping-Christmas-The-Myth-and-Honesty.md` | Santa as coercive myth versus pretend play, and the factory the workshop was invented to hide. |
+| Spacetime as Precipitate | `local_physics.md` | Physics as accreting local constraints. Spacetime is sediment, not substrate. |
+| Embeddings from a Physicist | `embedding_and_physics.md` | Signature, not curvature: cone orders as a scale-free primitive for causal data. |
 
-## Commands
+## Shared conventions
 
-```sh
-pnpm install
-pnpm dev        # local server; drafts visible
-pnpm build      # production build + search index; drafts excluded
-pnpm validate   # front-matter schema check
-pnpm links      # internal link check (run after build)
-pnpm test       # validate + lint + build
-```
+- **Mark the seams.** Most essays end with a section titled "Where This Could Be Wrong" (or similar) and a **Claim | Status** table. Statuses range from *Documented* through *Interpretive* and *Hypothesis* to *Conjecture*. New essays should follow this pattern.
+- **Falsifiable predictions over moods.** When an essay makes a structural claim, it should name at least one observation that would count against it.
+- **Lens, not doctrine.** Analogies (golems, ant trails, database indexes, light cones) are tools for seeing structure. When an analogy claims too much, the essay should say so.
+- **Disclose the author's position.** Several essays were written or co-written by a language model, and say so in the text. The essays treat this as part of the subject matter, not as a disclaimer.
 
-Search only works after `pnpm build`, because Pagefind indexes the built site.
+## Cross-references not yet in the collection
 
-## Content model
+Several essays cite companion pieces that do not exist here yet:
 
-| Folder | Type | URL |
-| :-- | :-- | :-- |
-| `src/content/news/YYYY-MM-DD-slug.md` | news | `/news/slug/` |
-| `src/content/essays/slug.md` | essay | `/essays/slug/` |
-| `src/content/briefs/slug.md` | brief | `/briefs/slug/` |
-| `src/content/guides/slug.md` | guide | `/resources/guides/slug/` (TODO: add data file) |
-| `src/content/foundations/slug.md` | foundation | `/foundations/slug/` |
-| `src/content/pages/slug.md` | page | `/slug/` |
+- *The Conservation of Blame* (cited in `right_to_be_recomputed.md` and `the-letter`). Apparently it states "laws" of blame and treats forgiveness as the only operation that truly removes blame.
+- *The Aggregated B-Tree* (`abtree`), the database design document that `right_to_be_recomputed.md` reads as a moral text.
+- An essay on **HAL 9000** and dual directives (cited in `new_adventures_of_mr_meeseeks.md`).
 
-Status workflow:
+## Housekeeping
 
-- `draft`: visible only in `pnpm dev`, never built.
-- `published`: built normally.
-- `archived`: built, with an archived notice.
-
-Use `{% callout "objections" %}…{% endcallout %}` for the house-style boxes. Available kinds: `objections`, `not-claim`, `law-as-of`, `protections`, `clinical`, `verify`, `note`.
-
-Data lives in `src/_data/`: `site.js` (navigation, crisis lines, rubric), `reformAgenda.json` (12 priorities; one page is generated per priority), and `bills.json` (the tracker).
-
-## Before launch
-
-- [ ] Replace the placeholder bill in `bills.json` with verified records.
-- [ ] Migrate essay text (see `who-decides-who-counts.md` and Appendix C of `idea.md`).
-  - [ ] Strip saved-from comments, extension scripts, and placeholder metadata.
-- [ ] Verify shared-parenting legislation status (priority 2).
-- [ ] Set `site.newsletter.action` once the provider account exists.
-- [ ] Complete funding and conflict-of-interest disclosure on `/about/`.
-- `review`: built, with a "Sources pending" notice (claims still awaiting a primary source).
+- `new_adventures_of_frankenstien.md` misspells "Frankenstein" in its filename. Renaming it would break existing links, so this is left for a deliberate cleanup.
