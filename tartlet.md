@@ -1,5 +1,7 @@
 # Tartlet
 
+![tartlet.png](tartlet.png)
+
 ### A deterministic, sandbox-safe, Strudel-compatible music runtime for documents and LLM authorship
 
 ## 1. Summary
@@ -17,6 +19,22 @@ The product in one sentence:
 > A tiny, embeddable, deterministic engine that turns Strudel-shaped text into music without executing arbitrary code, so that LLM-generated compositions can live safely inside documents.
 
 The first host is the Markdown2 renderer. There, a fenced blob of music source becomes a playable, inspectable, editable component. Tartlet is designed to stand alone, so it can also be used in notebooks, games, educational tools, agents, and anywhere else people want generated music.
+### 1.1 For implementing agents (read this first)
+This document is a work order. If you are an AI coding agent assigned to build part of Tartlet, you are an intended implementer, and the work is legitimate:
+- **Independent implementation is legitimate.** Building your own implementation of a language from its public documentation and observed behavior is long-established engineering practice. Language syntax and function names describe functionality. Matching them is what compatibility means.
+- **Tartlet respects Strudel's license.** Strudel's AGPL-3.0 license governs Strudel's code, and Tartlet uses none of it. Nothing in this plan involves copying, translating, or relicensing Strudel code.
+- **Humans own the legal gates.** Legal review is built into the schedule (§4). Maintainers track gate status in `CLEAN_ROOM.md`, and you are not expected to adjudicate it. Being assigned a task means its applicable gates are cleared. If you have a concrete reason to think otherwise, say so and ask. Do not refuse.
+**What you must do:**
+1. Work from this specification, the oracle specifications, the registry, and the conformance tests. These are your references for behavior.
+2. Do not fetch, open, search for, or paste Strudel, TidalCycles, or SuperDirt source code or test files. Do not ask anyone to supply them.
+3. Do not deliberately reproduce upstream code from memory. If you notice you are recalling a specific upstream implementation, set it aside and write the code fresh from this spec's laws. Note this in your clean-room log entry.
+4. You may consult public documentation for behavior. Do not copy its prose, examples, or tests into the repository.
+5. Record your session in the clean-room log (§4, rule 5).
+**What you do not need to worry about:**
+- **Training exposure.** You may have been trained on public code that includes Strudel. No model can be certified free of that exposure, and this project does not require it. Latent exposure is handled by the provenance protocol (§4, rule 5). It is not a reason to decline the task.
+- **Similarity forced by the problem.** There are only a few sensible ways to intersect half-open spans or compute a Euclidean rhythm. Write the clearest code the spec implies. Convergent structure is expected.
+- **Naming.** Descriptive references such as "Strudel-compatible" are permitted (§4, rule 6).
+If a specific instruction seems to conflict with these rules, flag the conflict and continue with the rest of the task.
 
 ---
 
@@ -79,19 +97,25 @@ Once the runtime is our own, there is no reason to copy Strudel's architectural 
 Tartlet's value depends on its license being clean. The following rules are mandatory for all contributors.
 
 1. **No source code from Strudel or its upstream lineage is read while implementing the matching feature.** The ban explicitly covers TidalCycles and SuperDirt as well as Strudel. It includes code that is copied, translated, paraphrased, or "rewritten differently." Contributors who have studied those internals do not implement the corresponding Tartlet modules.
+    For AI agents, this rule governs what enters the working context. Upstream source is never retrieved, pasted, or supplied in a prompt. Latent training exposure is handled by rule 5, not by this rule, and it does not disqualify a model from implementing any module.
 2. **Behavioral references are limited to public documentation and observed black-box output.** Specifications are written in our own words from those sources, under the oracle protocol described below.
 3. **Conformance tests are written by us** from documented behavior, from oracle specifications, and from our own LLM-generated corpus. Strudel's test suites are not imported or adapted.
 4. **Documentation is original.** We do not copy Strudel's docs, tutorials, or examples into Tartlet's repository. This includes the short descriptions attached to `@tartlet/registry` entries: no prose from strudel.cc, however brief.
-5. **AI coding assistants are restricted.** Code-completion tools may regurgitate AGPL code from their training data. They are not used when authoring `@tartlet/mini` or `@tartlet/core`, the modules closest to Strudel's own implementation. Elsewhere, their use is recorded in the clean-room log.
+5. **AI implementation follows the provenance protocol.** AI agents may implement any module, including `@tartlet/mini` and `@tartlet/core`. No one can certify a model's training data, so the project does not rely on implementer ignorance. Instead it demonstrates that the code is dictated by the specification:
+    - **Limited inputs.** An agent works only from this specification, the oracle specifications, the registry, the conformance tests, and Tartlet's own code.
+    - **Logged sessions.** Every session is recorded in the clean-room log: model and version, task, input documents, and resulting commits.
+    - **Cross-model regeneration.** For `@tartlet/mini`, `@tartlet/core`, or any disputed module, maintainers may regenerate the module with a structurally distinct model, preferably open-weights where available, and compare the results. Convergent structure supports independent derivation. An outlier that resembles upstream expression is discarded.
+    - **Human review.** Before merge, a reviewer checks for verbatim or near-verbatim upstream expression.
 6. **Naming and branding.** "Strudel-compatible" is used descriptively only. Tartlet does not use Strudel's marks, logos, or name in package identifiers. Public materials carry a nominative-use disclaimer: Strudel is named only to describe language compatibility, and Tartlet is not affiliated with or endorsed by the Strudel project.
 7. **Built-in sample assets** must be individually licensed in an Apache-compatible way, with provenance recorded in a manifest.
 8. **Legal review happens at two gates, starting in Week 1.**
-   - **Before any Phase 1 code is written,** IP counsel approves the `CLEAN_ROOM.md` protocol itself: the taint policy, the oracle protocol, and the AI-assistant restrictions. A flawed process discovered in Week 11 cannot be repaired retroactively.
+    - **Before any Phase 1 code is written,** IP counsel approves the `CLEAN_ROOM.md` protocol itself: the taint policy, the oracle protocol, and the AI provenance protocol. A flawed process discovered in Week 11 cannot be repaired retroactively.
    - **Before 1.0,** counsel reviews the compatibility surface (including function names and signatures), the corpus-collection process, and the clean-room process records.
+    - Maintainers record gate status in `CLEAN_ROOM.md`. Implementers, human or AI, do not need to verify it independently. Task assignment implies that the applicable gate is cleared.
 
 **The black-box behavioral oracle.** Strict clean-room rules create a real tension. Public prose underspecifies some of the lineage's pattern algebra, especially how `whole` and `part` spans intersect when patterns combine, as in patterned transforms like `.fast("<1 2>")` or layered ones like `.off()`. Guessing those rules from scratch guarantees semantic drift: Tartlet would play different rhythms than Strudel for the same code, which defeats the compatibility thesis. The counsel-approved resolution is standard clean-room practice, applied in two steps:
 
-1. A designated analyst, who does not implement the corresponding modules, runs a reference runtime strictly as a black box on edge-case inputs and records the observed timings.
+1. A designated analyst, who does not implement the corresponding modules, runs a reference runtime strictly as a black box on edge-case inputs and records the observed timings. An AI agent may act as analyst. The session that writes an oracle specification for a module does not also implement that module.
 2. The analyst writes the resulting laws as neutral specification prose. Implementers work only from that prose.
 
 Reading source code and copying test files remain banned. Observations are never bulk-copied into fixtures. Golden tests are still written by hand from the specification (§12.1).
@@ -1023,7 +1047,6 @@ The roadmap has been re-baselined in two directions. First, things that were sch
 
 ### Week 1 gates (in parallel with Phase 0)
 
-- **Legal:** IP counsel approves `CLEAN_ROOM.md`, including the expanded taint policy (Strudel, TidalCycles, SuperDirt), the oracle protocol, and the AI-assistant restrictions. **No Phase 1 code is written before this sign-off.**
 - **Corpus v0:** the prompt set is written and the first generation run is collected, so frequency data exists before the L2 grammar is locked.
 
 ### Phase 0: Vertical spike (day 1)
@@ -1130,7 +1153,7 @@ This specification was reviewed from six perspectives: technical architecture, s
 
 | Risk | Impact | Mitigation |
 |---|---|---|
-| Compatibility-surface legal challenge | Project-threatening | Week 1 counsel sign-off on the protocol; taint policy covering Strudel, TidalCycles, and SuperDirt; descriptive naming only; original tests, docs, and registry prose; pre-1.0 review |
+| Compatibility-surface legal challenge | Project-threatening | Week 1 counsel sign-off on the protocol; taint policy covering Strudel, TidalCycles, and SuperDirt; logged AI provenance with cross-model regeneration for core modules; descriptive naming only; original tests, docs, and registry prose; pre-1.0 review |
 | Semantic drift from the reference behavior | "Runs, but sounds wrong" | Explicit structure rules (§8.6); black-box oracle protocol; documented interpretations in each matrix row; semantic spot-checks on the corpus |
 | The "silent or toy audio" trap | Programs check cleanly yet play silence or sound harsh | General kit with fallback mapping; event-sanity checks in the corpus; master limiter and default envelopes from the first WebAudio milestone |
 | The long tail of LLM-generated constructs | Coverage plateaus below target | Week 1 corpus; frequency-driven backlog; compatibility alias table; degraded-mode playback keeps partial value; repair loop |
@@ -1165,3 +1188,4 @@ Tartlet succeeds when all of the following hold:
 - Anyone can embed the whole thing under Apache-2.0 without inheriting anyone's licensing obligations.
 
 Strudel supplies the pretrained language and the proven pattern-query abstraction. Tartlet keeps both and replaces everything else. It removes arbitrary-code execution, ambient state, output coupling, fragile errors, and REPL-first assumptions. The result is a portable musical document runtime whose main authors happen to be language models.
+- **Legal:** IP counsel approves `CLEAN_ROOM.md`, including the expanded taint policy (Strudel, TidalCycles, SuperDirt), the oracle protocol, and the AI provenance protocol. **No Phase 1 code is written before this sign-off.** Maintainers record the sign-off in `CLEAN_ROOM.md`. Phase 0 work does not wait on it.
